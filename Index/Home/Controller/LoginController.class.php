@@ -13,7 +13,18 @@ class LoginController extends Controller {
      * 登陆表单处理
      */
     public function login(){
-    	p($_POST);
+        if(!IS_POST)$this->error('页面不存在');
+    	$account=I('account');
+    	$pwd=md5(I('pwd'));
+    	$where=array('account'=>$account);
+    	$user = M('user')->where($where)->find();
+    	if (!$user || $user['password'] != $pwd)$this->error('用户不存在或者密码错误');
+		if($user['lock'])$this->error('用户被锁定');
+		
+		//登陆成功写入SESSION并且跳转到到首页
+		session('uid',$user['id']);
+		header('Content-Type:text/html;Charset=UTF-8');
+		redirect(__APP__,3,'登陆成功，正在为您跳转...');
     }
     
     /*
@@ -55,6 +66,7 @@ class LoginController extends Controller {
     	if ($id){
     		//插入数据成功后把用户ID写SESSION
     		session('uid',$id);
+    		header('Content-Type:text/html;Charset=UTF-8');
     		redirect(__APP__, 5, '注册成功，页面跳转中...');
     	}else {
     		$this->error('注册失败，请重试...');
