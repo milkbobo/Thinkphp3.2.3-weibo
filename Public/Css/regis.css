@@ -1,0 +1,103 @@
+@import './common.css';
+
+body{
+	background: url(../Images/regis_bg.png) repeat-x #C8E1F0;
+}
+#logo{
+	width: 780px;
+	height: 38px;
+	background: url(../Images/logo.png) no-repeat;
+	margin: 20px auto;
+}
+#reg-wrap{
+	width: 740px;
+	height: auto;
+	overflow: hidden;
+	border-top: 2px solid #F00;
+	margin: 0 auto;
+	background: #FAFAFA;
+	padding: 20px;
+}
+#reg-wrap fieldset{
+	padding: 20px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+#reg-wrap fieldset legend {
+	padding: 0 10px;
+	font-size: 13px;
+}
+#reg-wrap fieldset p {
+	padding: 20px;
+}
+#reg-wrap fieldset p label {
+	display: inline-block;
+	width: 100px;
+	text-align: right;
+	padding-right: 20px;
+	color: #777;
+}
+.input {
+	width: 200px;
+	height: 20px;
+	line-height: 20px;
+	padding: 5px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+.run {
+	width: 100%;
+	text-align: center;
+}
+#verify {
+	width: 100px;
+}
+#verify-img {
+	display: block;
+	float: right;
+	margin-right: 300px;
+	margin-top: 3px;
+	cursor: pointer;
+}
+#regis {
+	width:200px;
+	height:30px;
+	border: 1px solid #FF9B00;
+	background: #FFA920;
+	border-radius: 4px;
+	color: #fff;
+	font-weight: bold;
+	font-size: 14px;
+	cursor: pointer;
+}
+
+/*CSS3 INPUT获取焦点时效果*/
+textarea:focus,
+select:focus,
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-color: rgba(82, 168, 236, 0.8);
+    outline: 0;
+    outline: thin dotted \9;
+    /* IE6-9 */
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(82,168,236,.6);
+    -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(82,168,236,.6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(82,168,236,.6);
+}
+
+/*****jQuery Validate 错误信息*****/
+input.error{
+	border:1px solid red;
+}
+input.valid {
+	border:1px solid #1d95f6;
+}
+span.error{
+	background : url(../Images/unchecked.gif) no-repeat 0 0;
+	padding-left: 16px;
+	color: #f00;
+}
+span.success{
+	background : url(../Images/checked.gif) no-repeat 0 0;
+	padding-left: 16px;
+}

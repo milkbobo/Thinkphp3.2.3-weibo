@@ -1,0 +1,107 @@
+@import './common.css';
+
+body{
+	background: #C4EFF4;
+}
+#top-bg{
+	height: 166px;
+	background: url(../Images/login_top_bg.png) no-repeat center;
+	margin: 0 auto;
+}
+#login-form {
+	height: 452px;
+	background: url(../Images/login_bg_fom.png) no-repeat center;
+	margin: 0 auto;
+}
+#login-wrap{
+	width:800px;
+	height:300px;
+	margin:auto;
+	padding-top: 70px;
+	padding-left: 50px;
+}
+#login-wrap p{
+	height: 40px;
+	line-height: 40px;
+	font-size: 14px;
+	margin-bottom: 5px;
+	color: #999;
+}
+#login-wrap p a{
+	display: inline-block;
+	width: 100px;
+	height: 30px;
+	line-height: 30px;
+	border: 2px solid #C0E6EA;
+	color: #CC0000;
+	text-align: center;
+	font-size: 14px;
+	background: #fff;
+	font-weight: bold;
+	border-radius: 6px;
+	margin-left: 30px;
+}
+#login-form fieldset {
+	width: 300px;
+	height: auto;
+	overflow: hidden;
+	padding: 5px;
+	border-radius: 6px;
+	border: 1px solid #dcdcdc;
+}
+#login-form fieldset legend {
+	margin-left: 20px;
+	padding: 0 10px;
+	color: #ccc;
+	font-size: 13px;
+}
+.input{
+	width: 160px;
+	height: 24px;
+	line-height: 24px;
+	background: #fff;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	padding:5px;
+}
+#login-form fieldset p {
+	padding: 10px 0;
+}
+#login-form fieldset p label {
+	display: inline-block;
+	width: 80px;
+	height: 26px;
+	line-height: 26px;
+	text-align: right;
+}
+.auto{
+	margin-left: 90px;
+}
+#login-form fieldset p #login{
+	margin-left: 90px;
+	width: 100px;
+	height: 28px;
+	cursor: pointer;
+	border: 1px solid #53CD00;
+	background: #90D925;
+	border-radius: 4px;
+	color: #EEF8E6;
+	font-weight: bold;
+}
+/*CSS3 INPUT获取焦点时效果*/
+textarea:focus,
+select:focus,
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-color: rgba(82, 168, 236, 0.8);
+    outline: 0;
+    outline: thin dotted \9;
+    /* IE6-9 */
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(82,168,236,.6);
+    -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(82,168,236,.6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(82,168,236,.6);
+}
+
+/*jquery validate 错误信息*/
+input.error {border: 1px solid red;}
+input.valid {border: 1px solid #1d95f6;}
