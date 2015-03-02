@@ -2,17 +2,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
-	<title>后盾微博-注册</title>
+	<title>后盾微博-登陆</title>
 	<link rel="stylesheet" href="/weibo/Public/Css/login.css" />
-
-	
+	<script type="text/javascript" src="/weibo/Public/Js/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/weibo/Public/Js/jquery-validate.js"></script>
+	<script type="text/javascript" src="/weibo/Public/Js/login.js"></script>
 </head>
 <body>
 	<div id='top-bg'></div>
 	<div id='login-form'>
 		<div id='login-wrap'>
 			<p>还没有微博帐号？<a href='<?php echo U('register');?>'>立即注册</a></p>
-			<form action="" method='post' name='login'>
+			<form action="<?php echo U('login');?>" method='post' name='login'>
 				<fieldset>
 					<legend>用户登录</legend>
 					<p>

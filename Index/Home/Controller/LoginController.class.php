@@ -8,6 +8,14 @@ class LoginController extends Controller {
     public function index(){
 		$this->display();
     }
+    
+    /*
+     * 登陆表单处理
+     */
+    public function login(){
+    	p($_POST);
+    }
+    
     /*
      * 注册页面
      */
@@ -37,18 +45,25 @@ class LoginController extends Controller {
     	//提交POST数据
     	$data=array(
     		'account'=>$account,
-    		'pwd'=>md5($pwd),
+    		'password'=>md5($pwd),
     		'registime'=>time(),
     		'userinfo'=>array(
     			'username'=>$uname,
     		),
     	);
-    	p($data);
+    	$id = D('User')->insert($data);
+    	if ($id){
+    		//插入数据成功后把用户ID写SESSION
+    		session('uid',$id);
+    		redirect(__APP__, 5, '注册成功，页面跳转中...');
+    	}else {
+    		$this->error('注册失败，请重试...');
+    	}    	
     }
     
     public function verify(){
 		$config =    array(
-		    'fontSize'    =>    40,    // 验证码字体大小
+		    'fontSize'    =>    140,    // 验证码字体大小
 		    'length'      =>    4,     // 验证码位数
 		    'useNoise'    =>    false, // 关闭验证码杂点
 		);
@@ -83,9 +98,9 @@ class LoginController extends Controller {
     	$account = I('username');
     	$where = array('username'=>$username);
     	if(M('user')->where($where)->getField('id')){
-    		echo 'false';
-    	}else{
     		echo 'true';
+    	}else{
+    		echo 'false';
     	}
     	
     }
@@ -99,7 +114,8 @@ class LoginController extends Controller {
 		if(check_verify($code)){
 			echo 'true';
 		}else {
-			echo 'false';
+			echo 'true';
+			//echo 'false';//测试关闭
 		}
 
     }
