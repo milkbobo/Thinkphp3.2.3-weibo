@@ -21,6 +21,25 @@ class LoginController extends Controller {
     	if (!$user || $user['password'] != $pwd)$this->error('用户不存在或者密码错误');
 		if($user['lock'])$this->error('用户被锁定');
 		
+		//处理下一次自动登陆
+		if(isset($_POST['auto'])){
+// 			$value='tongyingyang';
+// 			$value = encryption($value);
+// 			echo $value;
+// 			$value = encryption($value,1);
+
+		$account=$user['account'];
+		$ip=get_client_ip();
+		$value=$account.'|'.$ip;
+		$value=encryption($value);
+		
+// 		echo $value;
+// 		echo'<br/>';
+// 		echo encryption($value,1);
+
+		@setcookie('auto',$value,C('AUTO_LOGIN_TIME'),'/');
+		}
+		
 		//登陆成功写入SESSION并且跳转到到首页
 		session('uid',$user['id']);
 		header('Content-Type:text/html;Charset=UTF-8');
