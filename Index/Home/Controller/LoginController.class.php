@@ -127,7 +127,7 @@ class LoginController extends Controller {
     		$this->error('页面不存在');
     	}
     	$account = I('username');
-    	$where = array('username'=>$username);
+    	$where = array('username'=>$account);
     	if(M('user')->where($where)->getField('id')){
     		echo 'true';
     	}else{

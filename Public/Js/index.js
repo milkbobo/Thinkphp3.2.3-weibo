@@ -3,6 +3,33 @@
  * @author Carmen
  */
 $(function () {
+
+	/**
+	 * 上传微博图片
+	 */
+	$('#picture').uploadify({
+		swf : PUBLIC + '/Uploadify/uploadify.swf',	//引入Uploadify核心Flash文件
+		uploader : uploadUrl,	//PHP处理脚本地址
+		width : 120,	//上传按钮宽度
+		height : 30,	//上传按钮高度
+		buttonImage : PUBLIC + '/Uploadify/browse-btn.png',	//上传按钮背景图地址
+		fileTypeDesc : 'Image File',	//选择文件提示文字
+		fileTypeExts : '*.jpeg; *.jpg; *.png; *.gif',	//允许选择的文件类型
+		formData : {'session_id' : sid},
+		//上传成功后的回调函数
+		onUploadSuccess : function (file, data, response) {
+			eval('var data = ' + data);
+			if (data.status) {
+				$('input[name=max]').val(data.path.max);
+				$('input[name=medium]').val(data.path.medium);
+				$('input[name=mini]').val(data.path.mini);
+
+				$('#upload_img').fadeOut().next().fadeIn().find('img').attr('src', ROOT + '/Uploads/Pic/' + data.path.medium);
+			} else {
+				alert(data.msg);
+			}
+		}
+	});
 	
 	/**
 	 * 发布转入框效果
@@ -110,6 +137,29 @@ $(function () {
 	 * 转发框处理
 	 */
 	 $('.turn').click(function () {
+	 	//获取原微内容并添加到转发框
+	 	var orgObj = $(this).parents('.wb_tool').prev();
+	 	var author = $.trim(orgObj.find('.author').html());
+	 	var content = orgObj.find('.content p').html();
+	 	var tid = $(this).attr('tid') ? $(this).attr('tid') : 0;
+	 	var cons = '';
+
+	 	//多重转发时，转发框内容处理
+	 	if (tid) {
+	 		author = orgObj.find('.author a').html();
+	 		cons = replace_weibo(' // @' + author + ' : ' + content);
+	 		author = $.trim(orgObj.find('.turn_name').html());
+	 		content = orgObj.find('.turn_cons p').html();
+	 	}
+
+	 	$('.turn_main p').html(author + ' : ' + content);
+	 	$('.turn-cname').html(author);
+	 	$('form[name=turn] textarea').val(cons);
+
+	 	//提取原微博ID
+	 	$('form[name=turn] input[name=id]').val($(this).attr('id'));
+	 	$('form[name=turn] input[name=tid]').val(tid);
+
 	 	//隐藏表情框
 	 	$('#phiz').hide();
 	 	//点击转发创建透明背景层
@@ -146,9 +196,31 @@ $(function () {
 	 */
 	//点击评论时异步提取数据
 	$('.comment').toggle(function () {
+		//异步加载状态DIV
 		var commentLoad = $(this).parents('.wb_tool').next();
 		var commentList = commentLoad.next();
-		commentList.show().find('textarea').val('').focus();
+
+		//提取当前评论按钮对应微博的ID号
+		var wid = $(this).attr('wid');
+		//异步提取评论内容
+		$.ajax({
+			url : getComment,
+			data : {wid : wid},
+			dataType : 'html',
+			type : 'post',
+			beforeSend : function () {
+				commentLoad.show();
+			},
+			success : function (data) {
+				if (data != 'false') {
+					commentList.append(data);
+				}
+			},
+			complete : function () {
+				commentLoad.hide();
+				commentList.show().find('textarea').val('').focus();
+			}
+		});
 	}, function () {
 		$(this).parents('.wb_tool').next().next().hide().find('dl').remove();
 		$('#phiz').hide();
@@ -174,15 +246,66 @@ $(function () {
 	});
 	//提交评论
 	$('.comment_btn').click(function () {
-		var wid = $(this).attr('wid');
-		var uid = $(this).attr('uid');
 		var commentList = $(this).parents('.comment_list');
 		var _textarea = commentList.find('textarea');
 		var content = _textarea.val();
+
+		//评论内容为空时不作处理
 		if (content == '') {
 			_textarea.focus();
 			return false;
 		}
+
+		//提取评论数据
+		var cons = {
+			content : content,
+			wid : $(this).attr('wid'),
+			uid : $(this).attr('uid'),
+			isturn : $(this).prev().find('input:checked').val() ? 1 : 0
+		};
+
+		$.post(commentUrl, cons, function (data) {
+			if (data != 'false') {
+				if (cons.isturn) {
+					window.location.reload();
+				} else {
+					_textarea.val('');
+					commentList.find('ul').after(data);
+				}
+			} else {
+				alert('评论失败，请重试...');
+			}
+		}, 'html');
+	});
+
+	/**
+	 * 评论异步分类处理
+	 */
+	$('.comment-page dd').live('click', function () {
+		var commentList = $(this).parents('.comment_list');
+		var commentLoad = commentList.prev();
+		var wid = $(this).attr('wid');
+		var page = $(this).attr('page');
+		//异步提取评论内容
+		$.ajax({
+			url : getComment,
+			data : {wid : wid, page : page},
+			dataType : 'html',
+			type : 'post',
+			beforeSend : function () {
+				commentList.hide().find('dl').remove();
+				commentLoad.show();
+			},
+			success : function (data) {
+				if (data != 'false') {
+					commentList.append(data);
+				}
+			},
+			complete : function () {
+				commentLoad.hide();
+				commentList.show().find('textarea').val('').focus();
+			}
+		});
 	});
 
 
@@ -248,51 +371,11 @@ function check (str) {
 	return num;
 }
 
-
 /**
- * 创建全屏透明背景层
- * @param   id
+ * 替换微博内容，去除 <a> 链接与表情图片
  */
-function createBg (id) {
-	$('<div id = "' + id + '"></div>').appendTo('body').css({
- 		'width' : $(document).width(),
- 		'height' : $(document).height(),
- 		'position' : 'absolute',
- 		'top' : 0,
- 		'left' : 0,
- 		'z-index' : 2,
- 		'opacity' : 0.3,
- 		'filter' : 'Alpha(Opacity = 30)',
- 		'backgroundColor' : '#000'
- 	});
-}
-
-
-/**
-* 元素拖拽
-* @param  obj		拖拽的对象
-* @param  element 	触发拖拽的对象
-*/
-function drag (obj, element) {
-	var DX, DY, moving;
-	element.mousedown(function (event) {
-		DX = event.pageX - parseInt(obj.css('left'));	//鼠标距离事件源宽度
-		DY = event.pageY - parseInt(obj.css('top'));	//鼠标距离事件源高度
-		moving = true;	//记录拖拽状态
-	});
-	$(document).mousemove(function (event) {
-		if (!moving) return;
-		var OX = event.pageX, OY = event.pageY;	//移动时鼠标当前 X、Y 位置
-		var	OW = obj.outerWidth(), OH = obj.outerHeight();	//拖拽对象宽、高
-		var DW = $(window).width(), DH = $('body').height();  //页面宽、高
-		var left, top;	//计算定位宽、高
-		left = OX - DX < 0 ? 0 : OX - DX > DW - OW ? DW - OW : OX - DX;
-		top = OY - DY < 0 ? 0 : OY - DY > DH - OH ? DH - OH : OY - DY;
-		obj.css({
-			'left' : left + 'px',
-			'top' : top + 'px'
-		});
-	}).mouseup(function () {
-		moving = false;	//鼠标抬起消取拖拽状态
-	});
+function replace_weibo (content) {
+	content = content.replace(/<img.*?title=['"](.*?)['"].*?\/?>/ig, '[$1]');
+	content = content.replace(/<a.*?>(.*?)<\/a>/ig, '$1');
+	return content.replace(/<span.*?>\&nbsp;(\/\/)\&nbsp;<\/span>/ig, '$1');
 }

@@ -74,6 +74,69 @@
 	color:#2B96E1;
 	cursor: pointer;
 }
+/*****创建分组弹出框*****/
+#add-group {
+	width: 300px;
+	height: auto;
+	overflow: hidden;
+	z-index: 5;
+	position: absolute;
+	background:#fff;
+	border:3px solid #9D9D9D;
+	border-radius: 4px;
+	display: none;
+}
+#add-group .group_head{
+	width:300px;
+	height:29px;
+	background: #F6F6F6;
+	border-bottom: 1px solid #FF9B00;
+}
+#add-group .group_head .group_text{
+	display:block;
+	width:300px;
+	height:30px;
+	line-height:30px;
+	font-weight: bold;
+	text-indent: 1em;
+	cursor: move;
+}
+#add-group .group-name {
+	width: 260px;
+	height: 36px;
+	line-height: 36px;
+	margin: 20px auto;
+	background: #f9f9f9;
+	text-align: center;
+	border-radius: 2px;
+}
+#add-group .gp-btn-wrap {
+	width: 300px;
+	height: 36px;
+	line-height: 36px;
+	text-align: right;
+	margin-bottom: 10px;
+}
+#add-group .gp-btn-wrap span {
+	display: inline-block;
+	width: 58px;
+	height: 22px;
+	line-height: 22px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	text-align: center;
+	cursor: pointer;
+	margin-right: 10px;
+}
+#add-group .gp-btn-wrap .add-group-sub {
+	background: #F9AB00;
+	color: #fff;
+	font-weight: bold;
+	border:1px solid #FF9B00;
+}
+#add-group .gp-btn-wrap .group-cencle {
+	background: #f6f6f6;
+}
 /*****中间*****/
 
 /**发布**/
@@ -157,13 +220,22 @@
 	top:25px;
 	left:0px;
 }
-#middle .send_wrap .send_tool #upload_img div{
+#middle .send_wrap .send_tool #pic-show{
+	border: 3px solid #CCC;
+	border-radius: 4px;
+	padding:5px;
+	background: #fff;
+	position: absolute;
+	top:25px;
+	left:0px;
+}
+#middle .send_wrap .send_tool #upload_img .upload-title{
 	width:300px;
 	height:30px;
 	border-bottom: 1px solid #E1E1E1;
 	background:#FAFAFA;
 }
-#middle .send_wrap .send_tool #upload_img div p{
+#middle .send_wrap .send_tool #upload_img .upload-title p{
 	width:100px;
 	height:30px;
 	line-height:30px;
@@ -172,7 +244,7 @@
 	color:#888888;
 	text-indent: 1em;
 }
-#middle .send_wrap .send_tool #upload_img div span{
+#middle .send_wrap .send_tool #upload_img .upload-title span{
 	display: block;
 	width:16px;
 	height:16px;
@@ -180,6 +252,12 @@
 	float: right;
 	margin: 7px 5px;
 	cursor: pointer;
+}
+#middle .send_wrap .send_tool #upload_img .upload-btn {
+	padding-top: 20px;
+}
+#middle .send_wrap .send_tool #upload_img #SWFUpload_0,#picture-button {
+	margin-left:85px;
 }
 #middle .send_wrap .send_tool .send_btn{
 	width:82px;
@@ -389,6 +467,21 @@
 	text-align: center;
 	float: right;
 }
+#middle .weibo .comment_list .comment-page {
+	width : 448px;
+	height: auto;
+	overflow: hidden;
+	border-bottom: 1px solid #D7EEFB;
+}
+#middle .weibo .comment_list .comment-page dd {
+	float: left;
+	padding: 5px;
+	margin: 5px 10px;
+	cursor: pointer;
+	border: 1px solid #D7EEFB;
+	border-radius: 4px;
+	background: #fff;
+}
 /*转发样式*/
 #middle .weibo .wb_turn{
 	width:448px;
@@ -462,6 +555,12 @@
 	display:block;
 	margin:0 auto;
 	cursor: url(../Images/small.cur), auto !important;
+}
+#page {
+	width: 100%;
+	height: 60px;
+	line-height: 60px;
+	text-align: center;
 }
 
 /*右侧*/

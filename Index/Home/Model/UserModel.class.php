@@ -15,9 +15,8 @@ class UserModel extends RelationModel{
 	//定义用户与用户信息处理表关系属性
 	Protected $_link = array(
 		'userinfo' =>array(
-		'mapping_type'=>HAS_ONE,
-		'foreign_key'=> 'uid',
-				
+			'mapping_type'=>self::HAS_ONE,
+			'foreign_key'=> 'uid',
 		)	
 	);
 	

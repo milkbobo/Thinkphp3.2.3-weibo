@@ -17,11 +17,9 @@ class CommonController extends Controller {
 				
 			}
 			//检索出用户信息并且该用户没有被锁定时候，保存登陆状态
-			if($user['lock'])$this->error('用户被锁定');
-			
-// 			if($user && !$user['lock']){
-// 				session('uid',$user['id']);
-// 			}
+ 			if($user && !$user['lock']){
+ 				session('uid',$user['id']);
+ 			}
 			
 		}
 		

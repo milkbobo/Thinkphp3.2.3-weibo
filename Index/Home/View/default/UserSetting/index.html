@@ -1,0 +1,154 @@
+<include file='Common:header'/>
+	<title>修改个人资料</title>
+	<link rel="stylesheet" href="__PUBLIC__/Css/nav.css" />
+	<link rel="stylesheet" href="__PUBLIC__/Css/edit.css" />
+    <link rel="stylesheet" href="__PUBLIC__/Uploadify/uploadify.css"/>
+	<script type="text/javascript" src='__PUBLIC__/Js/jquery-1.7.2.min.js'></script>
+	<script type="text/javascript" src='__PUBLIC__/Js/nav.js'></script>
+    <script type='text/javascript' src='__PUBLIC__/Js/city.js'></script>
+	<script type='text/javascript' src='__PUBLIC__/Js/edit.js'></script>
+    <script type="text/javascript" src='__PUBLIC__/Uploadify/jquery.uploadify.min.js'></script>
+    <js file='__PUBLIC__/Js/jquery-validate.js'/>
+    <script type='text/javascript'>
+        var address = "{$user.location}";
+        var constellation = "{$user.constellation}";
+        var PUBLIC = '__PUBLIC__';
+        var uploadUrl = '{:U("Common/uploadFace")}';
+        var sid = '{:session_id()}';
+        var ROOT = '__ROOT__';
+    </script>
+<!--==========顶部固定导行条==========-->
+    <include file='Common:nav'/>
+
+<!--==========内容主体==========-->
+	<div style='height:60px;opcity:10'></div>
+    <div class="main">
+    <!--=====左侧=====-->
+        <include file='Common:left'/>
+    <!--=====右侧=====-->
+    	<div id='right'>
+    		<ul id='sel-edit'>
+    			<li class='edit-cur'>基本信息</li>
+    			<li>修改头像</li>
+    			<li>修改密码</li>
+    		</ul>
+    		<div class='form'>
+    			<form action="{:U('editBasic')}" method='post'>
+    				<p>
+    					<label for=""><span class='red'>*</span>昵称：</label>
+    					<input type="text" name='nickname' value='{$user.username}' class='input'/>
+    				</p>
+    				<p>
+    					<label for="">真实名称：</label>
+    					<input type="text" name='truename' value='{$user.truename}' class='input'/>
+    				</p>
+    				<p>
+    					<label for=""><span class='red'>*</span>性别：</label>
+    					<input type="radio" name='sex' value='1' <if condition='$user["sex"]=="男"'>checked='checked'</if>/>&nbsp;男&nbsp;&nbsp;&nbsp;&nbsp;
+    					<input type="radio" name='sex' value='2' <if condition='$user["sex"] == "女"'>checked='checked'</if>/>&nbsp;女
+    				</p>
+    				<p>
+    					<label for=""><span class='red'>*</span>所在地：</label>
+    					<select name="province" id="">
+    						<option value="">请选择</option>
+    					</select>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <select name="city">
+                            <option value="">请选择</option>
+                        </select>
+    				</p>
+    				<p>
+    					<label for="">星座：</label>
+    					<select name="night" id="">
+    						<option value="">请选择</option>
+    						<option value="白羊座">白羊座</option>
+    						<option value="金牛座">金牛座</option>
+    						<option value="双子座">双子座</option>
+    						<option value="巨蟹座">巨蟹座</option>
+    						<option value="狮子座">狮子座</option>
+    						<option value="处女座">处女座</option>
+    						<option value="天秤座">天秤座</option>
+    						<option value="天蝎座">天蝎座</option>
+    						<option value="射手座">射手座</option>
+    						<option value="魔羯座">魔羯座</option>
+    						<option value="水瓶座">水瓶座</option>
+    						<option value="双鱼座">双鱼座</option>
+    					</select>
+    				</p>
+    				<p>
+    					<label for="" class='intro'>一句话介绍自己：</label>
+    					<textarea name="intro">{$user.intro}</textarea>
+    				</p>
+    				<p>
+    					<input type="submit" value='保存修改' class='edit-sub'/>
+    				</p>
+    			</form>
+    		</div>
+    		<div class='form hidden'>
+    			<form action="{:U('editFace')}" method='post'>
+	    			<div class='edit-face'>
+	    				<img src="
+                        <if condition='$user["face180"]'>
+                            __ROOT__/Uploads/Face/{$user.face180}
+                        <else/>
+                            __PUBLIC__/Images/noface.gif
+                        </if>" width='180' height='180' id='face-img'/>
+	    				<p>
+	    					<input type="file" name='face' id='face'/>
+	    				</p>
+	    				<p>
+                            <input type="hidden" name='face180' value=''/>
+                            <input type="hidden" name='face80' value=''/>
+                            <input type="hidden" name='face50' value=''/>
+	    					<input type="submit" value='保存修改' class='edit-sub'/>
+	    				</p>
+	    			</div>
+    			</form>
+    		</div>
+    		<div class='form hidden'>
+    			<form action="{:U('editPwd')}" method='post' name='editPwd'>
+    				<p class='account'>登录邮箱：<span>admin@admin.com</span></p>
+    				<p>
+    					<label for=""><span class='red'>*</span>旧密码：</label>
+    					<input type="password" name='old' class='input'/>
+    				</p>
+    				<p>
+    					<label for=""><span class='red'>*</span>新密码：</label>
+    					<input type="password" name='new' class='input' id='new'/>
+    				</p>
+    				<p>
+    					<label for=""><span class='red'>*</span>确认密码：</label>
+    					<input type="password" name='newed' class='input'/>
+    				</p>
+    				<p>
+    					<input type="submit" value='确认修改' class='edit-sub'/>
+    				</p>
+    			</form>
+    		</div>
+    	</div>
+    </div>
+<!--==========内容主体结束==========-->
+<!--==========底部==========-->
+    <div id="bottom">
+        <div id="copy">
+            <div>
+                <p>
+                    版权所有：后盾网 京ICP备10027771号-1 站长统计 All rights reserved, houdunwang.com services for Beijing 2008-2012 
+                </p>
+            </div>
+        </div>
+    </div>
+
+<!--[if IE 6]>
+    <script type="text/javascript" src="__PUBLIC__/Js/DD_belatedPNG_0.0.8a-min.js"></script>
+    <script type="text/javascript">
+        DD_belatedPNG.fix('#top','background');
+        DD_belatedPNG.fix('.logo','background');
+        DD_belatedPNG.fix('#sech_text','background');
+        DD_belatedPNG.fix('#sech_sub','background');
+        DD_belatedPNG.fix('.send_title','background');
+        DD_belatedPNG.fix('.icon','background');
+        DD_belatedPNG.fix('.ta_right','background');
+    </script>
+<![endif]-->
+</body>
+</html>

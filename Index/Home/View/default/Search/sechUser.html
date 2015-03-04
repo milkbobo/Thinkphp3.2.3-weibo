@@ -1,0 +1,145 @@
+<include file='Common:header'/>
+	<title>微博找人</title>
+	<link rel="stylesheet" href="__PUBLIC__/Css/nav.css" />
+	<link rel="stylesheet" href="__PUBLIC__/Css/sech_user.css" />
+	<link rel="stylesheet" href="__PUBLIC__/Css/bottom.css" />
+	<script type="text/javascript" src='__PUBLIC__/Js/jquery-1.7.2.min.js'></script>
+    <script type="text/javascript" src='__PUBLIC__/Js/nav.js'></script>
+<!--==========顶部固定导行条==========-->
+<include file='Common:nav'/>
+<!--==========内容主体==========-->
+	<div style='height:60px;opcity:10'></div>
+    <div class="main">
+    <!--=====左侧=====-->
+        <include file='Common:left'/>
+        <div id='right'>
+    		<p id='sech-logo'></p>
+    		<div id='sech'>
+    			<div>
+	    			<form action="{:U('sechUser')}" method='get'>
+	    				<input type="text" name='keyword' id='sech-cons' value='<if condition="$keyword">{$keyword}<else/>搜索微博、找人</if>'/>
+	    				<input type="submit" value='搜&nbsp;索' id='sech-sub'/>
+	    			</form>
+    			</div>
+    			<ul>
+                    <li><span class='cur'>找人</span></li>
+    				<li><span>微博</span></li>
+    			</ul>
+    		</div>
+    		<if condition="isset($result)">
+    		<div id='content'>
+    			<if condition='$result'>
+	    		<div class='view_line'>
+	                <strong>用户</strong>
+	            </div>
+	            <ul>
+	            	<foreach name='result' item='v'>
+	    			<li>
+						<dl class='list-left'>
+							<dt>
+								<img src="
+								<if condition='$v["face80"]'>
+									__ROOT__/Uploads/Face/{$v.face80}
+								<else/>
+									__PUBLIC__/Images/noface.gif
+								</if>" width='80' height='80'/>
+							</dt>
+							<dd>
+								<a href="">{$v.username|str_replace=$keyword, '<font style="color:red">' . $keyword . '</font>', ###}</a>
+							</dd>
+							<dd>
+								<i class='icon icon-boy'></i>&nbsp;
+								<span>
+									<if condition='$v["location"]'>
+										{$v.location}
+									<else/>
+										该用户未填写所在地
+									</if>
+								</span>
+							</dd>
+							<dd>
+								<span>关注 <a href="">{$v.follow}</a></span>
+								<span class='bd-l'>粉丝 <a href="">{$v.fans}</a></span>
+								<span class='bd-l'>微博 <a href="">{$v.weibo}</a></span>
+							</dd>
+						</dl>
+	    				<dl class='list-right'>
+	    					<if condition='$v["mutual"]'>
+	    						<dt>互相关注</dt>
+	    						<dd>移除</dd>
+    						<elseif condition='$v["followed"]' />
+                            	<dt>√&nbsp;已关注</dt>
+                            	<dd>移除</dd>
+                        	<else/>
+	    						<dt class='add-fl' uid='{$v.uid}'>+&nbsp;关注</dt>
+	    					</if>
+	    				</dl>
+	    			</li>
+	    			</foreach>
+    			</ul>
+    			<div style="text-align:center;padding:20px;">{$page}</div>
+    			<else/>
+    				<p style='text-indent:7em;'>未找到与<strong style='color:red'>{$keyword}</strong>相关的用户</p>
+    			</if>
+	        </div>
+	    	</if>
+    	</div>
+    </div>
+<!--==========内容主体结束==========-->
+<!--==========底部==========-->
+    <div id="bottom">
+        <div class='link'>
+            <dl>
+                <dt>后盾网论坛</dt>
+                <dd><a href="">后盾网免费视频教程</a></dd>
+                <dd><a href="">后盾网免费视频教程</a></dd>
+                <dd><a href="">后盾网免费视频教程</a></dd>
+            </dl>
+            <dl>
+                <dt>后盾网论坛</dt>
+                <dd><a href="">后盾网免费视频教程</a></dd>
+                <dd><a href="">后盾网免费视频教程</a></dd>
+                <dd><a href="">后盾网免费视频教程</a></dd>
+            </dl>
+            <dl>
+                <dt>后盾网论坛</dt>
+                <dd><a href="">后盾网免费视频教程</a></dd>
+                <dd><a href="">后盾网免费视频教程</a></dd>
+                <dd><a href="">后盾网免费视频教程</a></dd>
+            </dl>
+            <dl>
+                <dt>后盾网论坛</dt>
+                <dd><a href="">后盾网免费视频教程</a></dd>
+                <dd><a href="">后盾网免费视频教程</a></dd>
+                <dd><a href="">后盾网免费视频教程</a></dd>
+            </dl>
+            <dl>
+                <dt>后盾网论坛</dt>
+                <dd><a href="">后盾网免费视频教程</a></dd>
+                <dd><a href="">后盾网免费视频教程</a></dd>
+                <dd><a href="">后盾网免费视频教程</a></dd>
+            </dl>
+        </div>
+        <div id="copy">
+            <div>
+                <p>
+                    版权所有：后盾网 京ICP备10027771号-1 站长统计 All rights reserved, houdunwang.com services for Beijing 2008-2012 
+                </p>
+            </div>
+        </div>
+    </div>
+
+<!--[if IE 6]>
+    <script type="text/javascript" src="__PUBLIC__/Js/DD_belatedPNG_0.0.8a-min.js"></script>
+    <script type="text/javascript">
+        DD_belatedPNG.fix('#top','background');
+        DD_belatedPNG.fix('.logo','background');
+        DD_belatedPNG.fix('#sech_text','background');
+        DD_belatedPNG.fix('#sech_sub','background');
+        DD_belatedPNG.fix('.send_title','background');
+        DD_belatedPNG.fix('.icon','background');
+        DD_belatedPNG.fix('.ta_right','background');
+    </script>
+<![endif]-->
+</body>
+</html>

@@ -7,9 +7,9 @@
 	<script type="text/javascript" src="/weibo/Public/Js/jquery-1.7.2.min.js"></script>
 	<script type="text/javascript" src="/weibo/Public/Js/jquery-validate.js"></script>
 	<script type='text/javascript'>
-		var checkAccount = "<?php echo U('checkAccount','','');?>";
-		var checkUname = "<?php echo U('checkUname','','');?>";
-		var checkVerify = "<?php echo U('checkVerify','','');?>";
+		var checkAccount = "<?php echo U('checkAccount');?>";
+		var checkUname = "<?php echo U('checkUname');?>";
+		var checkVerify = "<?php echo U('checkVerify');?>";
 	</script>
 	<script type="text/javascript" src="/weibo/Public/Js/register.js"></script>
 </head>
@@ -38,7 +38,7 @@
 				<p>
 					<label for="verify">验证码：</label>
 					<input type="text" name='verify' class='input' id='verify'/>
-					<img src="<?php echo U('verify','','');?>" width='80' height='25' id='verify-img'/>
+					<img src="<?php echo U('verify');?>" width='80' height='25' id='verify-img'/>
 				</p>
 				<p class='run'>
 					<input type="submit" value='马上注册' id='regis'/>

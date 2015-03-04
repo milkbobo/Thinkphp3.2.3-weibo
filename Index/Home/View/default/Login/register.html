@@ -7,9 +7,9 @@
 	<js file='__PUBLIC__/Js/jquery-1.7.2.min.js'/>
 	<js file='__PUBLIC__/Js/jquery-validate.js'/>
 	<script type='text/javascript'>
-		var checkAccount = "{:U('checkAccount','','')}";
-		var checkUname = "{:U('checkUname','','')}";
-		var checkVerify = "{:U('checkVerify','','')}";
+		var checkAccount = "{:U('checkAccount')}";
+		var checkUname = "{:U('checkUname')}";
+		var checkVerify = "{:U('checkVerify')}";
 	</script>
 	<js file='__PUBLIC__/Js/register.js'/>
 </head>
@@ -38,7 +38,7 @@
 				<p>
 					<label for="verify">验证码：</label>
 					<input type="text" name='verify' class='input' id='verify'/>
-					<img src="{:U('verify','','')}" width='80' height='25' id='verify-img'/>
+					<img src="{:U('verify')}" width='80' height='25' id='verify-img'/>
 				</p>
 				<p class='run'>
 					<input type="submit" value='马上注册' id='regis'/>
