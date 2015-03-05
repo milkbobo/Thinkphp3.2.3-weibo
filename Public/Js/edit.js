@@ -58,18 +58,21 @@ $(function () {
 		buttonImage : PUBLIC + '/Uploadify/browse-btn.png',	//上传按钮背景图地址
 		fileTypeDesc : 'Image File',	//选择文件提示文字
 		fileTypeExts : '*.jpeg; *.jpg; *.png; *.gif',	//允许选择的文件类型
-		formData : {'session_id' : sid},
+		formData : {session_name:session_id},
+		//如果用formData : {'session_id' : session_id},首页加上var session_id = '{:session_id()}';
+		//打开thinkphp的convention.php，把'VAR_SESSION_ID'注释去掉
+		//'VAR_SESSION_ID'      =>  'session_id',     //sessionID的提交变量
 		//上传成功后的回调函数
 		onUploadSuccess : function (file, data, response) {
-			eval('var data = ' + data);
+			eval('var data = ' + data);	
 			if (data.status) {
-				$('#face-img').attr('src', ROOT + '/Uploads/Face/' + data.path.max);
-				$('input[name=face180]').val(data.path.max);
-				$('input[name=face80]').val(data.path.medium);
-				$('input[name=face50]').val(data.path.mini);
-			} else {
-				alert(data.msg);
-			}
+			$('#face-img').attr('src', ROOT+'/Uploads/Face/'+data.path.m180);
+			$('input[name=face180]').val(data.path.m180);
+			$('input[name=face80]').val(data.path.m80);
+			$('input[name=face50]').val(data.path.m50);
+		} else {
+			alert(data.msg);
+		}		
 		}
 	});
 
