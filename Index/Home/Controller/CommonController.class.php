@@ -37,6 +37,39 @@ class CommonController extends Controller {
 		 echo json_encode($upload);
 	}
 	
+	public function addGroup(){
+		if(!IS_POST)$this->error('页面不存在');
+		 $data=array(
+		 	'name'=>I('name'),
+		 	'uid'=>session('uid'),
+		 );
+		 if(M('group')->data($data)->add()){
+		 	echo json_encode(array('status'=>1,'msg'=>'插入成功'));
+		 }else {
+		 	echo json_encode(array('status'=>0,'msg'=>'插入失败，请重试...'));
+		 }
+	}
+	
+	/*
+	 * 异步添加关注
+	 */
+	public function addFollow(){
+		if(!IS_POST)$this->error('页面不存在');
+		$data=array(
+			'follow'=>I('follow','','intval'),
+			'fans'=>session('uid'),
+			'gid'=>I('gid','','intval'),
+		);
+		if (M('follow')->data($data)->add()){
+			$db =M('userinfo');
+			$db->where(array('uid' => $data['follow']))->setInc('fans');
+			$db->where(array('uid' => session('uid')))->setInc('follow');
+			echo json_encode(array('status'=>1,'msg'=>'关注成功'));
+		}else {
+			echo json_encode(array('status'=>0,'msg'=>'关注失败，请重试...'));
+		}
+	}
+	
 	/*
 	 * 处理图片上传
 	 * @param [String] $path [保存文件夹名称]
