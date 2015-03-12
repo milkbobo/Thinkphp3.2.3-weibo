@@ -78,7 +78,19 @@ function time_format($time){
     
 	return $str;
 }
+
+/*
+ * 替换微博内容的URL地址、@用户与表情
+ */
+function replace_weibo ($content){
+	$content= '后盾网： http://www.tongyingyang.com/dfas/sdf?p=2';
+	//给URL地址加上<a>链接
+	$preg = '/(?:http:\/\/)?([\w.]+[\w\/]*[\w.]*[\w\/]*\??[\w=\&\+\%]*)/is';// ? 0个或1个    
+	$content = preg_replace($preg, '<a href="http://\\1" target="black">\\1</a>', $content);
+	echo $content;
+}
 ?>
+
 
 
 
