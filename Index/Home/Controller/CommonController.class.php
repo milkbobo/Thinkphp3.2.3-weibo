@@ -37,6 +37,18 @@ class CommonController extends Controller {
 		 echo json_encode($upload);
 	}
 	
+	/*
+	 * 微博图片上传
+	 */
+	public function uploadPic(){
+		if(!IS_POST)$this->error('页面不存在');
+		$upload =$this->_upload('Pic','800,300,120','800,300,120');
+		echo json_encode($upload);
+	}
+	
+	/*
+	 * 异步创建分组
+	 */
 	public function addGroup(){
 		if(!IS_POST)$this->error('页面不存在');
 		 $data=array(
@@ -94,6 +106,11 @@ class CommonController extends Controller {
 		}else{// 上传成功
  			$width=explode(',', $width);
  			$height=explode(',', $height);
+ 			$size=array(
+ 					'max',
+ 					'medium',
+ 					'mini'
+ 			);
  			$image = new \Think\Image();// 实例图片处理
  			$facepath=C('UPLOAD_PATH'). $path . '/'.$info['Filedata']['savepath'];
  			$open=$facepath.$info['Filedata']['savename'];
@@ -102,7 +119,7 @@ class CommonController extends Controller {
  			$image_date=array();
  			while ($sl<count($width)){
  				$image->thumb($width[$sl], $height[$sl])->save($open.'_'.$width[$sl].'_'.$height[$sl].'.'.$info['Filedata']['ext']);
- 				$image_date['m'.$width[$sl]]=$info['Filedata']['savepath'].$info['Filedata']['savename'].'_'.$width[$sl].'_'.$height[$sl].'.'.$info['Filedata']['ext'];
+ 				$image_date[$size[$sl]]=$info['Filedata']['savepath'].$info['Filedata']['savename'].'_'.$width[$sl].'_'.$height[$sl].'.'.$info['Filedata']['ext'];
  				$sl++;
  			}
  			//生成缩略图后，删除源文件
