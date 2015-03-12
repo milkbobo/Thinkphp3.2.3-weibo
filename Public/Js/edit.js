@@ -66,10 +66,10 @@ $(function () {
 		onUploadSuccess : function (file, data, response) {
 			eval('var data = ' + data);	
 			if (data.status) {
-			$('#face-img').attr('src', ROOT+'/Uploads/Face/'+data.path.max);
-			$('input[name=face180]').val(data.path.max);
-			$('input[name=face80]').val(data.path.medium);
-			$('input[name=face50]').val(data.path.mini);
+			$('#face-img').attr('src', ROOT+'/Uploads/Face/'+data.path.m180);
+			$('input[name=face180]').val(data.path.m180);
+			$('input[name=face80]').val(data.path.m80);
+			$('input[name=face50]').val(data.path.m50);
 		} else {
 			alert(data.msg);
 		}		
@@ -95,7 +95,7 @@ $(function () {
 		},
 		rules : {
 			old : {
-				required : true,//不能为空
+				required : true,
 				user : true
 			},
 			new : {
