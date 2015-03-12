@@ -1,6 +1,6 @@
 <?php
 return array(
-//数据库配置
+		//数据库配置
 		'DB_TYPE' => 'mysql', // 数据库类型
 		'DB_HOST'               =>  'localhost', // 服务器地址
 		'DB_NAME'               =>  'weibo',          // 数据库名
@@ -20,4 +20,10 @@ return array(
 		'UPLOAD_MAX_SIZE'=>2000000,//最大上传大小
 		'UPLOAD_PATH'=> './Uploads/', //文件上传保存路径
 		'UPLOAD_EXTS'=>array('jpg', 'gif', 'png', 'jpeg'),// 允许上传类型
+		
+		//URL路由
+		'URL_ROUTER_ON'   => true,  //开启路由功能
+		'URL_ROUTE_RULES'=>array(	//定义路由规则
+				':id\d'=>'User/index'
+		),
 );

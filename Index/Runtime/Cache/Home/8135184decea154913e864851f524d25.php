@@ -3,10 +3,10 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
 	<title>后盾微博-登录</title>
-	<link rel="stylesheet" href="/weibo/Public/Css/login.css" />
-	<script type="text/javascript" src="/weibo/Public/Js/jquery-1.7.2.min.js"></script>
-	<script type="text/javascript" src="/weibo/Public/Js/jquery-validate.js"></script>
-	<script type="text/javascript" src="/weibo/Public/Js/login.js"></script>
+	<link rel="stylesheet" href="/Public/Css/login.css" />
+	<script type="text/javascript" src="/Public/Js/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/Public/Js/jquery-validate.js"></script>
+	<script type="text/javascript" src="/Public/Js/login.js"></script>
 </head>
 <body>
 	<div id='top-bg'></div>
