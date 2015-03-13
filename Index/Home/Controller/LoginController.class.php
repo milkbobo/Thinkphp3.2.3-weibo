@@ -93,10 +93,12 @@ class LoginController extends Controller {
     }
     
     public function verify(){
+    	ob_clean();
 		$config =    array(
 		    'fontSize'    =>    140,    // 验证码字体大小
 		    'length'      =>    4,     // 验证码位数
 		    'useNoise'    =>    false, // 关闭验证码杂点
+			'reset' => false // 验证成功后是否重置，————这里是无效的。
 		);
 		$Verify =     new \Think\Verify($config);
 		$Verify->entry();
@@ -145,7 +147,7 @@ class LoginController extends Controller {
 		if(check_verify($code)){
 			echo 'true';
 		}else {
-			echo 'true';
+			echo 'flase';
 			//echo 'false';//测试关闭
 		}
 

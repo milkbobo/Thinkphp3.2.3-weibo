@@ -9,8 +9,18 @@ function p ($arr){
 	die();
 }
 
+function p2 ($arr){
+	echo '<pre>';
+	print_r($arr);
+	echo '</pre>';
+
+}
+
 function check_verify($code, $id = ''){
-	$verify = new \Think\Verify();
+	$config = array(
+			'reset' => false // 验证成功后是否重置，—————这里才是有效的。
+	);
+	$verify = new \Think\Verify($config);
 	return $verify->check($code, $id);
 }
 
@@ -83,7 +93,9 @@ function time_format($time){
  * 替换微博内容的URL地址、@用户与表情
  */
 function replace_weibo ($content){
-	$content= '后盾网： http://www.tongyingyang.com/dfas/sdf?p=2 @后盾视频 地方啊 @阿顿发送到';
+	if(empty($content))return ;
+	
+	$content= '后盾网： http://www.tongyingyang.com/dfas/sdf?p=2 @后盾视频 地方啊 @阿顿发送到 [嘻嘻] [睡觉]';
 	
 	//给URL地址加上<a>链接
 	$preg = '/(?:http:\/\/)?([\w.]+[\w\/]*[\w.]*[\w\/]*\??[\w=\&\+\%]*)/is';// ? 0个或1个    
@@ -91,9 +103,38 @@ function replace_weibo ($content){
 	
 	//给@用户加<a>链接
 	$preg = '/@(\S+)/is';
-	$content = preg_replace($preg, '<a href="'.__MODULE__.'/User/\\1">@\\1</a>', $content);//
-	echo $content;
+	$content = preg_replace($preg, '<a href="'.__MODULE__.'/User/\\1">@\\1</a>', $content);//preg_replace是直接搜索出来替换
+	
+
+	//提取微博内容中所有表情文件
+	$preg='/\[(\S+)\]/is';
+	preg_match_all($preg,$content,$arr);//正则匹配出来，并且包含与整个模式匹配的文本。
+	//载入表情包数组文件
+	//$phiz = F('phiz','','./Public/Data/');
+	$phiz = include './Public/Data/phiz.php';
+	
+	
+	if (!empty($arr[1])){ //$arr不为空的时候
+		foreach ($arr[1] as $k => $v){
+			$name = array_search($v,$phiz);//array_search在数组中查找一个键值。如果找到了该值,匹配元素的键名并会被返回。
+			if($name){
+				$content = str_replace($arr[0][$k],'<img src="'.__ROOT__.'/Public/Images/phiz/'.$name.'.gif" title="'.$v.'"/>',$content);	
+			}
+			
+		}
+	}
+	p($arr);
+	return $content;
+	
+	
+	
+	
+	
+	
 }
+
+
+
 ?>
 
 

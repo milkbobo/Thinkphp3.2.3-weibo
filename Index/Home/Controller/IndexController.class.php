@@ -7,7 +7,7 @@ class IndexController extends CommonController {
 	 */
 	public function Index(){
 		
-		replace_weibo('adsf');die;
+		replace_weibo('adsf');
 		
 		$db=D('Weibo');
 		//取得当前用户的ID与当前用户 所有关注好友的ID
