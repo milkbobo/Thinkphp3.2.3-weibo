@@ -138,8 +138,8 @@ $(function () {
 	 */
 	 $('.turn').click(function () {
 	 	//获取原微内容并添加到转发框
-	 	var orgObj = $(this).parents('.wb_tool').prev();
-	 	var author = $.trim(orgObj.find('.author').html());
+	 	var orgObj = $(this).parents('.wb_tool').prev();//parents父级
+	 	var author = $.trim(orgObj.find('.author').html());//$.trim去除空格 find下一个标签，prev上一个标签
 	 	var content = orgObj.find('.content p').html();
 	 	var tid = $(this).attr('tid') ? $(this).attr('tid') : 0;
 	 	var cons = '';

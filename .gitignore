@@ -52,5 +52,4 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
-/Index/Runtime/*
-Index/Runtime/Cache/Home/1c9bdd6033909369a9fa4fc399b93757.php
+Index/Runtime/*
