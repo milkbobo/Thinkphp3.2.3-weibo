@@ -95,7 +95,7 @@ function time_format($time){
 function replace_weibo ($content){
 	if(empty($content))return ;
 	
-	//$content= '后盾网： http://www.tongyingyang.com/dfas/sdf?p=2 @后盾视频 地方啊 @阿顿发送到 [嘻嘻] [睡觉]';
+	$content= '后盾网： http://www.tongyingyang.com/dfas/sdf?p=2 @后盾视频 地方啊 @阿顿发送到 [嘻嘻] [睡觉]';
 	
 	//给URL地址加上<a>链接
 	$preg = '/(?:http:\/\/)?([\w.]+[\w\/]*[\w.]*[\w\/]*\??[\w=\&\+\%]*)/is';// ? 0个或1个    
@@ -123,6 +123,7 @@ function replace_weibo ($content){
 			
 		}
 	}
+	p($arr);
 	return $content;
 	
 	

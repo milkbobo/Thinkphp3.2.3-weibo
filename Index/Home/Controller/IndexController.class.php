@@ -7,7 +7,7 @@ class IndexController extends CommonController {
 	 */
 	public function Index(){
 		
-		//replace_weibo('adsf');
+		replace_weibo('adsf');
 		
 		$db=D('Weibo');
 		//取得当前用户的ID与当前用户 所有关注好友的ID
@@ -55,52 +55,6 @@ class IndexController extends CommonController {
 			$this->success('发布成功',U('index'));
 		}else {
 			$this->error('发布失败，请重试...');
-		}
-	}
-	
-	/*
-	 * 转发微博
-	 */
-	
-	Public function turn(){
-		if(!IS_POST)$this->error('页面不存在');
-		
-		//原微博ID
-		$id = I('id','','intval');
-		$content=I('content');
-		
-		//提取插入数据
-		$data=array(
-			'content'=>$content,
-			'isturn'=>$id,
-			'time'=>time(),
-			'uid'=>session('uid'),
-		);
-
-		//插入数据至微博表
-		$db = M('weibo');
-		if($db->data($data)->add()){
-			//原微博转发数+1
-			$db->where(array('id'=>$id))->setInc('turn');
-			//用户发布微博数+1
-			M('userinfo')->where(array('uid'=>session('uid')))->setInc('weibo');
-			
-			//如果点击了同时评论插入内容到评论表
-			if(isset($_POST['becomment'])){
-				$data=array(
-					'content'=>$content,
-					'time'=>time(),
-					'uid'=>session('uid'),
-					'wid'=>$id,
-				);
-			if(M('comment')->data($data)->add()){
-				$db->where(array('id'=>$id))->setInc('comment');
-			}
-			}
-			
-			$this->success('转发成功...','index');
-		}else {
-			$this->error('转发失败，请重试！');
 		}
 	}
 	
