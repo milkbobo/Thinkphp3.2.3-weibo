@@ -25,7 +25,7 @@ class WeiboModel extends ViewModel{
 	 * 返回查询记录
 	 */
 	public function getAll($where){
-		return $this->where($where)->select();
+		return $this->where($where)->order('time DESC')->select();
 	}
 }
 
