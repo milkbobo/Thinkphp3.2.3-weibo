@@ -25,8 +25,22 @@ class WeiboModel extends ViewModel{
 	 * 返回查询记录
 	 */
 	public function getAll($where){
-		return $this->where($where)->order('time DESC')->select();
+		$result= $this->where($where)->order('time DESC')->select();
+		//重组结果集数组，得到转发微博
+		if($result){
+			foreach ($result as $k => $v){
+				$where=array('id'=>$v['isturn']);
+				$result[$k]['isturn'] = $this->find($v['isturn']);
+			}
+
+		}
+		return $result;
+		
+
 	}
+	
+	
+	
 }
 
 

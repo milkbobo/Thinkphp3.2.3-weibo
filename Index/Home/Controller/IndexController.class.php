@@ -25,7 +25,7 @@ class IndexController extends CommonController {
 		
 		//读取所有微博
 		$result= $db->getAll($where);
-//		p($result);
+		p($result);
 		$this -> weibo = $result;
 		$this->display();
 		
