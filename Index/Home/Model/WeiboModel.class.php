@@ -12,8 +12,8 @@ class WeiboModel extends ViewModel{
 			
 			'userinfo' => array(
 					'username',
-					'face50'=>'face',
-					'_on'=>'weibo.uid = userinfo.uid',//键值后表示别面
+					'face50'=>'face',//键值后表示别面
+					'_on'=>'weibo.uid = userinfo.uid',
 					'_type'=>'LEFT'
 			),
 			'picture'=>array(
@@ -24,19 +24,19 @@ class WeiboModel extends ViewModel{
 	/*
 	 * 返回查询记录
 	 */
-	public function getAll($where){
-		$result= $this->where($where)->order('time DESC')->select();
+	public function getAll($where,$limit){
+		$result= $this->where($where)->order('time DESC')->limit($limit)->select();
 		//重组结果集数组，得到转发微博
 		if($result){
 			foreach ($result as $k => $v){
-				$where=array('id'=>$v['isturn']);
-				$result[$k]['isturn'] = $this->find($v['isturn']);
+				$result[$k]['isturn'] = $this->find($v['isturn']);// TP会自动识别 $db 数据库 变成$this ，find()里面可以翻where()条件
 			}
 
 		}
 		return $result;
 		
-
+	
+		
 	}
 	
 	

@@ -375,7 +375,7 @@ function check (str) {
  * 替换微博内容，去除 <a> 链接与表情图片
  */
 function replace_weibo (content) {
-	content = content.replace(/<img.*?title=['"](.*?)['"].*?\/?>/ig, '[$1]');//[]可能包含什么符号 //问好 0到1次
-	content = content.replace(/<a.*?>(.*?)<\/a>/ig, '$1');
+	content = content.replace(/<img.*?title=['"](.*?)['"].*?\/?>/ig, '[$1]');//替换表情//[]可能包含什么符号 //问好 0到1次
+	content = content.replace(/<a.*?>(.*?)<\/a>/ig, '$1');//替换a链接
 	return content.replace(/<span.*?>\&nbsp;(\/\/)\&nbsp;<\/span>/ig, '$1');
 }

@@ -10,7 +10,11 @@ class IndexController extends CommonController {
 		//replace_weibo('adsf');
 		
 		$db=D('Weibo');
+		
+		
+		
 		//取得当前用户的ID与当前用户 所有关注好友的ID
+		
 		$uid = array(session('uid'));
 		$where=array('fans'=>session('uid'));
 		$result =M('follow')->where($where)->field('follow')->select();
@@ -23,9 +27,20 @@ class IndexController extends CommonController {
 		//组合WHERE条件,条件为当前用户自身的ID与当前用户所关注好友的ID
 		$where = array('uid'=>array('IN',$uid));
 		
+		//统计数据总条数，用于分页
+		$count  = $db->where($where)->count();// 查询满足要求的 总记录数  
+		$Page       = new \Think\Page($count,20);// 实例化分页类 传入总记录数和每页显示的记录数(20)
+		// 进行分页数据查询 注意limit方法的参数要使用Page类的属性
+		$limit=$Page->firstRow.','.$Page->listRows;
+		
+		$Page->setConfig('theme',"共 %TOTAL_ROW% 条记录 %FIRST% %UP_PAGE% %NOW_PAGE% / %TOTAL_PAGE% %DOWN_PAGE% %END% ");
+		$Page->setConfig('prev','上一页');
+		$Page->setConfig('next','下一页');
+		
 		//读取所有微博
-		$result= $db->getAll($where);
-		p($result);
+		$result= $db->getAll($where,$limit);
+		//p($result);
+		$this->page= $Page->show();// 分页显示输出
 		$this -> weibo = $result;
 		$this->display();
 		
@@ -64,15 +79,16 @@ class IndexController extends CommonController {
 	
 	Public function turn(){
 		if(!IS_POST)$this->error('页面不存在');
-		
+		//p($_POST);
 		//原微博ID
 		$id = I('id','','intval');
+		$tid= I('tid','','intval');
 		$content=I('content');
 		
 		//提取插入数据
 		$data=array(
 			'content'=>$content,
-			'isturn'=>$id,
+			'isturn'=>$tid ? $tid : $id,
 			'time'=>time(),
 			'uid'=>session('uid'),
 		);
@@ -82,9 +98,14 @@ class IndexController extends CommonController {
 		if($db->data($data)->add()){
 			//原微博转发数+1
 			$db->where(array('id'=>$id))->setInc('turn');
+			
+			//转发+1
+			if($tid){
+				$db->where(array('tid'=>$tid))->setInc('turn');
+			}
 			//用户发布微博数+1
 			M('userinfo')->where(array('uid'=>session('uid')))->setInc('weibo');
-			
+
 			//如果点击了同时评论插入内容到评论表
 			if(isset($_POST['becomment'])){
 				$data=array(
