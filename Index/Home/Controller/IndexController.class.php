@@ -126,6 +126,22 @@ class IndexController extends CommonController {
 	}
 	
 	/*
+	 *  评论
+	 */
+	
+	public function comment(){
+		if(!IS_POST)$this->error('页面不存在');
+		//提取评论数据
+		$data=array(
+			'content'=>I('content'),
+			'time'=>time(),
+			'uid'=>session('uid'),
+			'wid'=>I('wid','','intval'),
+		);
+		p($data);
+	}
+	
+	/*
 	 * 退出登录
 	 */
 	
