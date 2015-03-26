@@ -138,7 +138,32 @@ class IndexController extends CommonController {
 			'uid'=>session('uid'),
 			'wid'=>I('wid','','intval'),
 		);
-		p($data);
+		
+		//读取评论用户信息
+		$field=array('username','face50'=>'face','uid');
+		$where=array('uid'=>$data['uid']);
+		$user=M('userinfo')->where($where)->field($field)->find();
+		
+		//组合评论样式字符串返回
+		$str= '';
+		$str.= '<dl class="comment_content">';
+		$str.='<dt><a href="'.U('/'.$data['uid']).'">';
+		$str.='<img src="';
+		$str.=__ROOT__;
+		if ($user['face']){
+			$str .='/Uploads/Face'.$user['face'];
+		}else {
+			$str .='/Public/Images/noface.gif';
+		}
+		$str.='"alt="'.$user['username'].'" width="30" height="30"/>';
+		$str.='</a></dt><dd>';
+		$str.='<a href="'.$data['uid'].'" class="comment_name">';
+		$str.=$user['username']." : ".$data['content'];
+		$str.="&nbsp;&nbsp;(".time_format($data['time']).")";
+		$str.='<div class="reply">';
+		$str.='<a href="">回复</a>';
+		$str.='</div></dd></dl>';
+		echo $str;
 	}
 	
 	/*
