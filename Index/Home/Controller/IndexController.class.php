@@ -139,10 +139,42 @@ class IndexController extends CommonController {
 			'wid'=>I('wid','','intval'),
 		);
 		
+		if (M('comment')->data($data)->add()){
 		//读取评论用户信息
 		$field=array('username','face50'=>'face','uid');
 		$where=array('uid'=>$data['uid']);
 		$user=M('userinfo')->where($where)->field($field)->find();
+		
+		//被评论微博的发布者用户名
+		$uid=I('uid','','intval');
+		$username = M('userinfo')->where(array('uid'=>$uid))->getField('username');
+		
+		$db = M('weibo');
+		//评论数+1
+		$db->where(array('id'=>$data['wid']))->setInc('comment');
+		
+		//评论同时转发时处理
+		if ($_POST['isturn']){
+			//读取转发微博ID与内容
+			$field = array('id','content','isturn');
+			$weibo = $db->field($field)->find($data['wid']);
+			$content = $weibo['isturn'] ? $data['content'] . '// @'.$username.' : '.$weibo['content'] : $data['content'];
+			
+			//同时转发到微博的数据
+			$cons = array(
+				'content'=>$content,
+				'isturn'=>$weibo['isturn'] ? $weibo['isturn'] : $data['wid'],
+				'time'=>$data['time'],
+				'uid'=>$data['uid'],
+			
+			);
+			if ($db->data($cons)->add()){
+				$db->where(array('id'=>$weibo['id']))->setInc('turn');
+			}
+			
+			echo 1;
+			exit();
+		}
 		
 		//组合评论样式字符串返回
 		$str= '';
@@ -151,19 +183,23 @@ class IndexController extends CommonController {
 		$str.='<img src="';
 		$str.=__ROOT__;
 		if ($user['face']){
-			$str .='/Uploads/Face'.$user['face'];
+			$str .='/Uploads/Face/'.$user['face'];
 		}else {
 			$str .='/Public/Images/noface.gif';
 		}
 		$str.='"alt="'.$user['username'].'" width="30" height="30"/>';
 		$str.='</a></dt><dd>';
 		$str.='<a href="'.$data['uid'].'" class="comment_name">';
-		$str.=$user['username']." : ".$data['content'];
+		$str.=$user['username']." : ".replace_weibo($data['content']);
 		$str.="&nbsp;&nbsp;(".time_format($data['time']).")";
 		$str.='<div class="reply">';
 		$str.='<a href="">回复</a>';
 		$str.='</div></dd></dl>';
 		echo $str;
+		}else {
+			echo 'false';
+		}
+		
 	}
 	
 	/*
