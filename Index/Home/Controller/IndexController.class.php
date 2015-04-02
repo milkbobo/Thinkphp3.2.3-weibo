@@ -17,6 +17,13 @@ class IndexController extends CommonController {
 		
 		$uid = array(session('uid'));
 		$where=array('fans'=>session('uid'));
+		
+		if (isset($_GET['gid'])){
+			$gid = I('gid','','intval');
+			$where['gid']=$gid;
+			$uid = '';
+		}
+		
 		$result =M('follow')->where($where)->field('follow')->select();
 		if($result){
 			foreach ($result as $v){
