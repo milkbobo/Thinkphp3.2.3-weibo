@@ -281,7 +281,7 @@ $(function () {
 	/**
 	 * 评论异步分类处理
 	 */
-	$('.comment-page dd').live('click', function () {
+	$('.comment-page dd').live('click', function () {//因为是ajax过来，未来事件，所以要用绑定函数live或者on。
 		var commentList = $(this).parents('.comment_list');
 		var commentLoad = commentList.prev();
 		var wid = $(this).attr('wid');

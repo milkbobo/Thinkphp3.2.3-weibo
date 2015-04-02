@@ -107,7 +107,7 @@ function replace_weibo ($content){
 	
 
 	//提取微博内容中所有表情文件
-	$preg='/\[(\S+)\]/is';
+	$preg='/\[(\S+?)\]/is';//问号，停止贪婪
 	preg_match_all($preg,$content,$arr);//正则匹配出来，并且包含与整个模式匹配的文本。
 	//载入表情包数组文件
 	//$phiz = F('phiz','','./Public/Data/');

@@ -32,7 +32,6 @@ class IndexController extends CommonController {
 		$Page       = new \Think\Page($count,20);// 实例化分页类 传入总记录数和每页显示的记录数(20)
 		// 进行分页数据查询 注意limit方法的参数要使用Page类的属性
 		$limit=$Page->firstRow.','.$Page->listRows;
-		
 		$Page->setConfig('theme',"共 %TOTAL_ROW% 条记录 %FIRST% %UP_PAGE% %NOW_PAGE% / %TOTAL_PAGE% %DOWN_PAGE% %END% ");
 		$Page->setConfig('prev','上一页');
 		$Page->setConfig('next','下一页');
@@ -209,7 +208,15 @@ class IndexController extends CommonController {
 		if(!IS_AJAX)$this->error('页面不存在');
 		$wid = I('wid','','intval');
 		$where=array('wid'=>$wid);
-		$result = D('Comment')->where($where)->select();
+		
+		//数据的总条数
+		$count  = M('comment')->where($where)->count();// 查询满足要求的 总记录数
+		//数据可分的总页数
+		$total = ceil($count / 10);//总页数
+		$page= $_POST['page'] ? I('page','','intval') :1;//现在第几页，默认第一页。
+		$limit = $page < 2 ? '0,10' : (10*($page - 1)).',10';
+		
+		$result = D('Comment')->where($where)->order('time DESC')->limit($limit)->select();
 		if ($result){
 			$str = '';
 			foreach ($result as $v){
@@ -230,11 +237,36 @@ class IndexController extends CommonController {
 				$str.='<div class="reply">';
 				$str.='<a href="">回复</a>';
 				$str.='</div></dd></dl>';
-				echo $str;
 				}
+				
+				if($total>1){
+					$str .= '<dl class="comment-page">';
+					
+					switch($page){
+						case $page > 1 && $page < $total : //不是第一页和尾页
+						$str .='<dd page=" '.($page - 1).' " wid=" '.$wid.' ">上一页</dd>';
+						$str .='<dd page=" '.($page + 1).' " wid=" '.$wid.' ">下一页</dd>';
+						break;
+						
+						case $page < $total : //第一页
+							$str .= '<dd page="'.($page+1).'" wid="'.$wid.'">下一页</dd>';
+						break;
+						
+						case $page == $total : //最后一页
+							$str .= '<dd page=" '.($page - 1).' " wid="'.$wid.'">上一页</dd>';
+						break;
+					}
+					
+					$str .='</dl>';
+					
+				}
+				
+				echo $str;
 		}else {
 			echo 'false';
 		}
+		
+		
 	}
 	
 	/*
