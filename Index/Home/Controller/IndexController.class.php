@@ -132,6 +132,41 @@ class IndexController extends CommonController {
 	}
 	
 	/*
+	 * 收藏微博
+	 */
+	public function keep(){
+		if(!IS_POST)$this->error('页面不存在');
+		
+		$wid=I('wid');
+		$uid = session('uid');
+		
+		$db = M('keep');
+		
+		//检测用户是否已经收藏微博
+		$where = array('wid'=>$wid,'uid'=>$uid);
+		if($db->where($where)->getField('id')){
+			echo -1;
+			exit;
+		}
+		
+		//添加收藏
+		$data =array(
+		'uid'=>$uid,
+		'time'=>$_SERVER['REQUEST_TIME'],
+		'wid'=>$wid,
+		);
+		
+		if($db->data($data)->add()){
+			//收藏成功时对改微博的收藏数+1
+			M('weibo')->where(array('id'=>$wid))->setInc('keep');
+			echo 1;
+		}else {
+			echo 0;
+		}
+		
+	}
+	
+	/*
 	 *  评论
 	 */
 	

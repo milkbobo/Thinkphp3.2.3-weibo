@@ -18,6 +18,7 @@
         var ROOT = '';
         var commentUrl = "<?php echo U('Index/comment');?>";
         var getComment = '<?php echo U("Index/getComment");?>';
+        var keepUrl = '<?php echo U("Index/keep");?>';
     </script>
 </head>
 <body>
@@ -239,7 +240,10 @@
                         <ul>
                             <li><span class='turn' id='<?php echo ($v["id"]); ?>'>转发<?php if($v["turn"]): ?>(<?php echo ($v["turn"]); ?>)<?php endif; ?></span></li>
                             <li>|</li>
-                            <li><span class='keep'>收藏<?php if($v["keep"]): ?>(<?php echo ($v["keep"]); ?>)<?php endif; ?></span></li>
+                            <li class='keep-wrap'>
+                            <span class='keep' wid='<?php echo ($v["id"]); ?>'>收藏<?php if($v["keep"]): ?>(<?php echo ($v["keep"]); ?>)<?php endif; ?></span>
+                            <div class="keep-up hidden">收藏成功</div>
+                            </li>
                             <li>|</li>
                             <li><span class='comment' wid='<?php echo ($v["id"]); ?>'>评论<?php if($v["comment"]): ?>(<?php echo ($v["comment"]); ?>)<?php endif; ?></span></li>
                         </ul>
@@ -344,7 +348,10 @@
                         <ul>
                             <li><span class='turn' id='<?php echo ($v["id"]); ?>' tid='<?php echo ($v["isturn"]["id"]); ?>'>转发<?php if($v["turn"]): ?>(<?php echo ($v["turn"]); ?>)<?php endif; ?></span></li>
                             <li>|</li>
-                            <li><span class='keep'>收藏<?php if($v["keep"]): ?>(<?php echo ($v["keep"]); ?>)<?php endif; ?></span></li>
+                            <li class="keep-warp">
+                            <span class='keep' wid='<?php echo ($v["id"]); ?>'>收藏<?php if($v["keep"]): ?>(<?php echo ($v["keep"]); ?>)<?php endif; ?></span>
+                            <div class="keep-up hidden">收藏成功</div>
+                            </li>
                             <li>|</li>
                             <li><span class='comment' wid='<?php echo ($v["id"]); ?>'>评论<?php if($v["comment"]): ?>(<?php echo ($v["comment"]); ?>)<?php endif; ?></span></li>
                         </ul>

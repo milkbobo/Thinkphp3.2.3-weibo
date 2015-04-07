@@ -15,6 +15,7 @@
         var ROOT = '__ROOT__';
         var commentUrl = "{:U('Index/comment')}";
         var getComment = '{:U("Index/getComment")}';
+        var keepUrl = '{:U("Index/keep")}';
     </script>
 <include file='Common:nav'/>
 <!--==========内容主体==========-->
@@ -123,7 +124,10 @@
                         <ul>
                             <li><span class='turn' id='{$v["id"]}'>转发<if condition='$v["turn"]'>({$v.turn})</if></span></li>
                             <li>|</li>
-                            <li><span class='keep'>收藏<if condition='$v["keep"]'>({$v.keep})</if></span></li>
+                            <li class='keep-wrap'>
+                            <span class='keep' wid='{$v.id}'>收藏<if condition='$v["keep"]'>({$v.keep})</if></span>
+                            <div class="keep-up hidden">收藏成功</div>
+                            </li>
                             <li>|</li>
                             <li><span class='comment' wid='{$v.id}'>评论<if condition='$v["comment"]'>({$v.comment})</if></span></li>
                         </ul>
@@ -232,7 +236,10 @@
                         <ul>
                             <li><span class='turn' id='{$v.id}' tid='{$v.isturn.id}'>转发<if condition='$v["turn"]'>({$v.turn})</if></span></li>
                             <li>|</li>
-                            <li><span class='keep'>收藏<if condition='$v["keep"]'>({$v.keep})</if></span></li>
+                            <li class="keep-warp">
+                            <span class='keep' wid='{$v.id}'>收藏<if condition='$v["keep"]'>({$v.keep})</if></span>
+                            <div class="keep-up hidden">收藏成功</div>
+                            </li>
                             <li>|</li>
                             <li><span class='comment' wid='{$v.id}'>评论<if condition='$v["comment"]'>({$v.comment})</if></span></li>
                         </ul>

@@ -189,7 +189,31 @@ $(function () {
 	 });
 	drag($('#turn'), $('.turn_text'));  //拖拽转发框
 
+	/*
+	 * 收藏微博
+	 */
+	$('.keep').click(function(){
+		var wid=$(this).attr('wid');
+		var keepUp=$(this).next();
+		var msg ='';
+		
+		$.post(keepUrl,{wid:wid},function(data){
+			if (data == 1){
+				msg = '收藏成功';
+			}
+			if(data == -1){
+				msg = '已收藏';
+			}
+			if(data == 0){
+				msg = '收藏失败';
+			}
+			keepUp.html(msg).fadeIn();
+			setTimeout(function(){
+				keepUp.fadeOut();
+			},3000);
+		})
 
+	});
 
 	/**
 	 * 评论框处理

@@ -373,6 +373,22 @@
 	color:#2B96E1;
 	cursor: pointer;
 }
+#middle .weibo .wb_tool ul .keep-warp{
+	position:relative;
+}
+#middle .weibo .wb_tool ul .keep-warp .keep-up{
+	position:absolute;
+	width:80px;
+	height:24px;
+	line-height:24px;
+	text-align:center;
+	border:1px solid #088CD2;
+	border-radius:4px;
+	background:#D7EEFB;
+	color:#71CD6A;
+	left:-25px;
+	top:-30px;
+}
 #middle .weibo .comment_load{
 	width:488px;
 	height:60px;
