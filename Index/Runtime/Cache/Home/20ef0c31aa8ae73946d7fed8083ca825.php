@@ -28,7 +28,7 @@
             <div class='top_wrap'>
                 <div class="logo fleft"></div>
                 <ul class='top_left fleft'>
-                    <li class='cur_bg'><a href=''>首页</a></li>
+                    <li class='cur_bg'><a href='/index.php'>首页</a></li>
                     <li><a href=''>私信</a></li>
                     <li><a href=''>评论</a></li>
                     <li><a href=''>@我</a></li>
@@ -39,7 +39,10 @@
                         <input type='submit' value='' id='sech_sub' class='fleft'/>
                     </form>
                 </div>
-                <div class="user fleft"><a href="">后盾网</a></div>
+                <div class="user fleft">
+                <a href="<?php echo U('/'.session('uid'));?>"><?php echo(M('userinfo')->where(array('uid'=>session('uid')))->getField('username')); ?></a>
+
+                </div>
                 <ul class='top_right fleft'>
                     <li title='快速发微博' class='fast_send'><i class='icon icon-write'></i></li>
                     <li class='selector'><i class='icon icon-msg'></i>
@@ -381,16 +384,17 @@
 <!--==========右侧==========-->
         <div id="right">
             <div class="edit_tpl"><a href="" id='set_model'></a></div>
+            <?php $where =array('uid'=>session('uid')); $field = array('username','face80'=>'face','follow','fans','weibo','uid'); $userinfo = M('userinfo')->where($where)->field($field)->find(); ?>
             <dl class="user_face">
                 <dt>
-                    <a href=""><img src="/Public/Images/noface.gif" width='80' height='80' alt="" /></a>
+                    <a href="<?php echo U('/'.$userinfo['uid']);?>"><img src="<?php if($userinfo["face"]): ?>/Uploads/Face/<?php echo ($userinfo["face"]); else: ?>/Public/Images/noface.gif<?php endif; ?>" width='80' height='80' alt="" /></a>
                 </dt>
-                <dd><a href="">后盾网</a></dd>
+                <dd><a href="<?php echo U('/'.$userinfo['uid']);?>"><?php echo ($userinfo["username"]); ?></a></dd>
             </dl>
             <ul class='num_list'>
-                <li><a href=""><strong>256</strong><span>关注</span></a></li>
-                <li><a href=""><strong>4096</strong><span>粉丝</span></a></li>
-                <li class='noborder'><a href=""><strong>1024</strong><span>微博</span></a></li>
+                <li><a href=""><strong><?php echo ($userinfo["follow"]); ?></strong><span>关注</span></a></li>
+                <li><a href=""><strong><?php echo ($userinfo["fans"]); ?></strong><span>粉丝</span></a></li>
+                <li class='noborder'><a href="<?php echo U('/'.$userinfo['uid']);?>"><strong><?php echo ($userinfo["weibo"]); ?></strong><span>微博</span></a></li>
             </ul>
             <div class="maybe">
                 <fieldset>
