@@ -28,5 +28,5 @@ return array(
 		),
 		
 		//自定义标签配置
-		'TAGLIB_BUILD_IN'=>'Cx,Html,Hd',//加入系统标签库
+ 		'TAGLIB_BUILD_IN'=>'Cx,Hd',//加入系统标签库
 );

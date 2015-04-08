@@ -383,42 +383,37 @@
         </div>
 <!--==========右侧==========-->
         <div id="right">
-        <test id='100' name="Home\\TagLib\\Hd"/>
             <div class="edit_tpl"><a href="" id='set_model'></a></div>
-            <?php $where =array('uid'=>session('uid')); $field = array('username','face80'=>'face','follow','fans','weibo','uid'); $userinfo = M('userinfo')->where($where)->field($field)->find(); ?>
-            <dl class="user_face">
+			<?php $where =array("uid"=>$_SESSION["uid"]);$field = array("username","face80"=>"face","follow","fans","weibo","uid");$userinfo = M("userinfo")->where($where)->field($field)->find();extract($userinfo);?><dl class="user_face">
                 <dt>
-                    <a href="<?php echo U('/'.$userinfo['uid']);?>"><img src="<?php if($userinfo["face"]): ?>/Uploads/Face/<?php echo ($userinfo["face"]); else: ?>/Public/Images/noface.gif<?php endif; ?>" width='80' height='80' alt="" /></a>
+                    <a href="<?php echo U('/'.$uid);?>"><img src="<?php if($face): ?>/Uploads/Face/<?php echo ($face); else: ?>/Public/Images/noface.gif<?php endif; ?>" width='80' height='80' alt="" /></a>
                 </dt>
-                <dd><a href="<?php echo U('/'.$userinfo['uid']);?>"><?php echo ($userinfo["username"]); ?></a></dd>
+                <dd><a href="<?php echo U('/'.$uid);?>"><?php echo ($userinfo["username"]); ?></a></dd>
             </dl>
             <ul class='num_list'>
                 <li><a href=""><strong><?php echo ($userinfo["follow"]); ?></strong><span>关注</span></a></li>
                 <li><a href=""><strong><?php echo ($userinfo["fans"]); ?></strong><span>粉丝</span></a></li>
-                <li class='noborder'><a href="<?php echo U('/'.$userinfo['uid']);?>"><strong><?php echo ($userinfo["weibo"]); ?></strong><span>微博</span></a></li>
+                <li class='noborder'><a href="<?php echo U('/'.$uid);?>"><strong><?php echo ($userinfo["weibo"]); ?></strong><span>微博</span></a></li>
             </ul>
             <div class="maybe">
                 <fieldset>
-                <?php $db = M('follow'); $where =array('fans'=>session('uid')); $follow = $db->where($where)->field('follow')->select(); foreach($follow as $k=>$v){ $follow[$k]=$v['follow']; } $sql='SELECT `uid`,`username`,`face50` AS `face`,COUNT(f.`follow`) AS `count` FROM `hd_follow` f LEFT JOIN `hd_userinfo` u 
-                ON f.`follow` = u.`uid` WHERE f.`fans` IN('.implode(',',$follow).') AND f.`follow` NOT IN('.implode(',',$follow).') AND 
-                f.`follow` <>'.session('uid').' GROUP BY f.`follow` ORDER BY `count` DESC LIMIT 4'; $friend =$db->query($sql); ?>
                     <legend>可能感兴趣的人</legend>
                     <ul>
-                    <?php if(is_array($friend)): foreach($friend as $key=>$v): ?><li>
+                    <?php $uid=$_SESSION["uid"];$db = M("follow");$where =array("fans"=>$uid);$follow = $db->where($where)->field("follow")->select();foreach($follow as $k=>$v) :$follow[$k]=$v["follow"];endforeach;$sql="SELECT `uid`,`username`,`face50` AS `face`,COUNT(f.`follow`) AS `count` FROM `hd_follow` f LEFT JOIN `hd_userinfo` u ON f.`follow` = u.`uid` WHERE f.`fans` IN(".implode(',',$follow).") AND f.`follow` NOT IN(".implode(',',$follow).") AND f.`follow` <>".$uid." GROUP BY f.`follow` ORDER BY `count` DESC LIMIT 4";$friend =$db->query($sql);foreach($friend as $k=>$v){extract($v);}?><li>
                             <dl>
                                 <dt>
-                                    <a href="<?php echo U('/'.$v['uid']);?>">
-                                    <img src="<?php if($v["face"]): ?>/Uploads/Face/<?php echo ($v["face"]); else: ?>
+                                    <a href="<?php echo U('/'.$uid);?>">
+                                    <img src="<?php if($face): ?>/Uploads/Face/<?php echo ($face); else: ?>
                                     /Public/Images/noface.gif<?php endif; ?>" alt="" width='30' height='
                                     30'/></a>
                                 </dt>
-                                <dd><a href="<?php echo U('/'.$v['uid']);?>"><?php echo ($v["username"]); ?></a></dd>
-                                <dd>共<?php echo ($v["count"]); ?>个共同好友</dd>
+                                <dd><a href="<?php echo U('/'.$uid);?>"><?php echo ($username); ?></a></dd>
+                                <dd>共<?php echo ($count); ?>个共同好友</dd>
                             </dl>
-                            <span class='heed_btn add-fl' uid='<?php echo ($v["uid"]); ?>'><strong>+&nbsp;</strong>关注</span>
-                        </li><?php endforeach; endif; ?>
+                            <span class='heed_btn add-fl' uid='<?php echo ($uid); ?>'><strong>+&nbsp;</strong>关注</span>
+                        </li></fieldset>
                     </ul>
-                </fieldset>
+                
             </div>
             <div class="post">
                 <div class='post_line'>

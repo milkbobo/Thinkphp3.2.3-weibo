@@ -1,62 +1,39 @@
         <div id="right">
-        <test id='100' name="Home\\TagLib\\Hd"/>
             <div class="edit_tpl"><a href="" id='set_model'></a></div>
-            <php>
-            $where =array('uid'=>session('uid'));
-            $field = array('username','face80'=>'face','follow','fans','weibo','uid');
-            $userinfo = M('userinfo')->where($where)->field($field)->find();
-            </php>
+			<userinfo id='$_SESSION["uid"]'>
             <dl class="user_face">
                 <dt>
-                    <a href="{:U('/'.$userinfo['uid'])}"><img src="<if condition='$userinfo["face"]'>__ROOT__/Uploads/Face/{$userinfo.face}<else/>__PUBLIC__/Images/noface.gif</if>" width='80' height='80' alt="" /></a>
+                    <a href="{:U('/'.$uid)}"><img src="<if condition='$face'>__ROOT__/Uploads/Face/{$face}<else/>__PUBLIC__/Images/noface.gif</if>" width='80' height='80' alt="" /></a>
                 </dt>
-                <dd><a href="{:U('/'.$userinfo['uid'])}">{$userinfo.username}</a></dd>
+                <dd><a href="{:U('/'.$uid)}">{$userinfo.username}</a></dd>
             </dl>
             <ul class='num_list'>
                 <li><a href=""><strong>{$userinfo.follow}</strong><span>关注</span></a></li>
                 <li><a href=""><strong>{$userinfo.fans}</strong><span>粉丝</span></a></li>
-                <li class='noborder'><a href="{:U('/'.$userinfo['uid'])}"><strong>{$userinfo.weibo}</strong><span>微博</span></a></li>
+                <li class='noborder'><a href="{:U('/'.$uid)}"><strong>{$userinfo.weibo}</strong><span>微博</span></a></li>
             </ul>
+            </userinfo>
             <div class="maybe">
                 <fieldset>
-                <php>
-                $db = M('follow');
-                $where =array('fans'=>session('uid'));
-                $follow = $db->where($where)->field('follow')->select();
-                
-                foreach($follow as $k=>$v){
-                $follow[$k]=$v['follow'];
-                }
-                //echo implode(',',$follow);
-                
-                $sql='SELECT `uid`,`username`,`face50` AS `face`,COUNT(f.`follow`) AS `count` FROM `hd_follow` f LEFT JOIN `hd_userinfo` u 
-                ON f.`follow` = u.`uid` WHERE f.`fans` IN('.implode(',',$follow).') AND f.`follow` NOT IN('.implode(',',$follow).') AND 
-                f.`follow` <>'.session('uid').' GROUP BY f.`follow` ORDER BY `count` DESC LIMIT 4';
-                
-                $friend =$db->query($sql);
-
-                
-                </php>
                     <legend>可能感兴趣的人</legend>
                     <ul>
-                    <foreach name='friend' item='v'>
+                    <maybe uid='$_SESSION["uid"]'>
                         <li>
                             <dl>
                                 <dt>
-                                    <a href="{:U('/'.$v['uid'])}">
-                                    <img src="<if condition='$v["face"]'>
-                                    __ROOT__/Uploads/Face/{$v.face}<else/>
+                                    <a href="{:U('/'.$uid)}">
+                                    <img src="<if condition='$face'>
+                                    __ROOT__/Uploads/Face/{$face}<else/>
                                     __PUBLIC__/Images/noface.gif</if>" alt="" width='30' height='
                                     30'/></a>
                                 </dt>
-                                <dd><a href="{:U('/'.$v['uid'])}">{$v.username}</a></dd>
-                                <dd>共{$v.count}个共同好友</dd>
+                                <dd><a href="{:U('/'.$uid)}">{$username}</a></dd>
+                                <dd>共{$count}个共同好友</dd>
                             </dl>
-                            <span class='heed_btn add-fl' uid='{$v.uid}'><strong>+&nbsp;</strong>关注</span>
-                        </li>
-                        </foreach>
-                    </ul>
-                </fieldset>
+                            <span class='heed_btn add-fl' uid='{$uid}'><strong>+&nbsp;</strong>关注</span>
+                        </li></fieldset>
+                        </maybe>
+                    </ul> 
             </div>
             <div class="post">
                 <div class='post_line'>
