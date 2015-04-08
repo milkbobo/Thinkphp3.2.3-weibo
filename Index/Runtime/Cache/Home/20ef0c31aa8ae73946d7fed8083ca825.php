@@ -398,48 +398,24 @@
             </ul>
             <div class="maybe">
                 <fieldset>
+                <?php $db = M('follow'); $where =array('fans'=>session('uid')); $follow = $db->where($where)->field('follow')->select(); foreach($follow as $k=>$v){ $follow[$k]=$v['follow']; } $sql='SELECT `uid`,`username`,`face50` AS `face`,COUNT(f.`follow`) AS `count` FROM `hd_follow` f LEFT JOIN `hd_userinfo` u 
+                ON f.`follow` = u.`uid` WHERE f.`fans` IN('.implode(',',$follow).') AND f.`follow` NOT IN('.implode(',',$follow).') AND 
+                f.`follow` <>'.session('uid').' GROUP BY f.`follow` ORDER BY `count` DESC LIMIT 4'; $friend =$db->query($sql); ?>
                     <legend>可能感兴趣的人</legend>
                     <ul>
-                        <li>
+                    <?php if(is_array($friend)): foreach($friend as $key=>$v): ?><li>
                             <dl>
                                 <dt>
-                                    <a href=""><img src="/Public/Images/noface.gif" alt="" width='30' height='30'/></a>
+                                    <a href="<?php echo U('/'.$v['uid']);?>">
+                                    <img src="<?php if($v["face"]): ?>/Uploads/Face/<?php echo ($v["face"]); else: ?>
+                                    /Public/Images/noface.gif<?php endif; ?>" alt="" width='30' height='
+                                    30'/></a>
                                 </dt>
-                                <dd><a href="">后盾官网</a></dd>
-                                <dd>共10个共同好友</dd>
+                                <dd><a href="<?php echo U('/'.$v['uid']);?>"><?php echo ($v["username"]); ?></a></dd>
+                                <dd>共<?php echo ($v["count"]); ?>个共同好友</dd>
                             </dl>
-                            <span class='heed_btn'><strong>+&nbsp;</strong>关注</span>
-                        </li>
-                        <li>
-                            <dl>
-                                <dt>
-                                    <a href=""><img src="/Public/Images/noface.gif" alt="" width='30' height='30'/></a>
-                                </dt>
-                                <dd><a href="">后盾官网</a></dd>
-                                <dd>共10个共同好友</dd>
-                            </dl>
-                            <span class='heed_btn'><strong>+&nbsp;</strong>关注</span>
-                        </li>
-                        <li>
-                            <dl>
-                                <dt>
-                                    <a href=""><img src="/Public/Images/noface.gif" alt="" width='30' height='30'/></a>
-                                </dt>
-                                <dd><a href="">后盾论坛</a></dd>
-                                <dd>共10个共同好友</dd>
-                            </dl>
-                            <span class='heed_btn'><strong>+&nbsp;</strong>关注</span>
-                        </li>
-                        <li>
-                            <dl>
-                                <dt>
-                                    <a href=""><img src="/Public/Images/noface.gif" alt="" width='30' height='30'/></a>
-                                </dt>
-                                <dd><a href="">后盾论坛</a></dd>
-                                <dd>共10个共同好友</dd>
-                            </dl>
-                            <span class='heed_btn'><strong>+&nbsp;</strong>关注</span>
-                        </li>
+                            <span class='heed_btn add-fl' uid='<?php echo ($v["uid"]); ?>'><strong>+&nbsp;</strong>关注</span>
+                        </li><?php endforeach; endif; ?>
                     </ul>
                 </fieldset>
             </div>
