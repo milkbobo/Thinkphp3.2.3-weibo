@@ -1,0 +1,248 @@
+@import './common.css';
+/********************************头部**************************************/
+#top_wrap{
+	width:100%;
+	height:40px;
+	background:url(../images/top_bg.png) no-repeat center 38px;
+	position:fixed;
+	_position:absolute;
+	left:0;
+	_top:expression(eval(document.documentElement.scrollTop));
+	z-index: 1;
+}
+#top{
+	width:100%;
+	height:38px;
+	background: #333333;
+	background:url(../images/nav_bg.png) repeat-x;
+}
+#top .top_wrap{
+	width:980px;
+	height:38px;
+	margin:0 auto;
+}
+#top .top_wrap .logo{
+	width:160px;
+	height:38px;
+	background:url(../images/logo.png);
+}
+#top .top_wrap .top_left{
+	width:264px;
+	height:38px;
+}
+#top .top_wrap .top_left li{
+	width:66px;
+	height:38px;
+	text-align: center;
+	float:left;
+}
+#top .top_wrap .top_left li a{
+	display: inline-block;
+	height:38px;
+	line-height:38px;
+	color:#B5B9BE;
+}
+#search{
+	width:255px;
+	height:24px;
+	padding:7px 10px;
+}
+#sech_text{
+	width:186px;
+	height:24px;
+	line-height:24px;
+	border:0;
+	padding:0 10px;
+	background:url(../images/top_bg.png) no-repeat 0 -5px;
+}
+#sech_sub{
+	width:29px;
+	height:24px;
+	border:0;
+	cursor: pointer;
+	background:url(../images/top_bg.png) no-repeat -206px -5px;
+}
+#top .top_wrap .user{
+	max-width: 80px;
+	padding:0 10px;
+	_width:80px;
+	overflow: hidden;
+	height:38px;
+	text-align: center;
+}
+#top .top_wrap .user a{
+	display:inline-block;
+	height:38px;
+	line-height:38px;
+	color:#B5B9BE;
+}
+#top .top_wrap .top_right{
+	margin-left:20px;
+}
+#top .top_wrap .top_right li{
+	width:38px;
+	height:26px;
+	float:left;
+	padding-top:12px;
+	text-align: center;
+	cursor: pointer;
+	position:relative;
+}
+#top .top_wrap .top_right ul{
+	width:100px;
+	height:auto;
+	overflow: hidden;
+	border:1px solid #ccc;
+	border-top:0;
+	background:#fff;
+	cursor:default;
+	position:absolute;
+	top:38px;
+	left:-65px;
+}
+#top .top_wrap .top_right ul li{
+	width:100px;
+	height:24px;
+	line-height:24px;
+	padding:0;
+	margin:5px 0;
+	cursor:pointer;
+}
+#top .top_wrap .top_right #news{
+	width:36px;
+	background:#FFFFFF;
+	border-left:1px solid #CCCCCC;
+	border-right:1px solid #CCCCCC;
+}
+/********************************头部**************************************/
+
+/*****加关注弹出框*****/
+#follow {
+	width: 300px;
+	height: auto;
+	overflow: hidden;
+	z-index: 5;
+	position: absolute;
+	background:#fff;
+	border:3px solid #9D9D9D;
+	border-radius: 4px;
+	display: none;
+}
+#follow .follow_head{
+	width:300px;
+	height:29px;
+	background: #F6F6F6;
+	border-bottom: 1px solid #FF9B00;
+}
+#follow .follow_head .follow_text{
+	display:block;
+	width:300px;
+	height:30px;
+	line-height:30px;
+	font-weight: bold;
+	text-indent: 1em;
+	cursor: move;
+}
+#follow .sel-group {
+	width: 260px;
+	height: 36px;
+	line-height: 36px;
+	margin: 20px auto;
+	background: #f9f9f9;
+	text-align: center;
+	border-radius: 2px;
+}
+#follow .fl-btn-wrap {
+	width: 300px;
+	height: 36px;
+	line-height: 36px;
+	text-align: right;
+	margin-bottom: 10px;
+}
+#follow .fl-btn-wrap span {
+	display: inline-block;
+	width: 58px;
+	height: 22px;
+	line-height: 22px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	text-align: center;
+	cursor: pointer;
+	margin-right: 10px;
+}
+#follow .fl-btn-wrap .add-follow-sub {
+	background: #F9AB00;
+	color: #fff;
+	font-weight: bold;
+	border:1px solid #FF9B00;
+}
+#follow .fl-btn-wrap .follow-cencle {
+	background: #f6f6f6;
+}
+/**自定义模版框**/
+#model{
+	width:570px;
+	height:auto;
+	overflow: hidden;
+	border:3px solid #9d9d9d;
+	border-radius: 3px;
+	background:#fff;
+	position:absolute;
+	z-index:3;
+}
+#model .model_head{
+	width:570px;
+	height:30px;
+	background: #F3F3F3;
+}
+#model .model_head .model_text{
+	display: block;
+	width:534px;
+	height:30px;
+	line-height: 30px;
+	font-weight: bold;
+	text-indent: 2em;
+	float: left;
+	cursor:move;
+}
+#model ul{
+	width:540px;
+	height:auto;
+	overflow: hidden;
+	padding:15px;
+	border-top:1px solid #dcdcdc;
+	border-bottom:1px solid #dcdcdc;
+}
+#model ul li{
+	float: left;
+	width:125px;
+	height:75px;
+	margin:10px 5px;
+	cursor: pointer;
+}
+#model ul .theme-cur {
+	width: 121px;
+	height: 71px;
+	border: 2px solid #EC1A2E;
+	border-radius: 6px;
+}
+#model .model_operat{
+	width:530px;
+	height:30px;
+	line-height:30px;
+	text-align: right;
+	padding:0 20px;
+	margin-bottom: 10px;
+}
+#model .model_operat .model_save,.model_cancel{
+	display: inline-block;
+	width:45px;
+	height:20px;
+	line-height:20px;
+	background:#f6f6f6;
+	border:1px solid #9d9d9d;
+	border-radius: 3px;
+	text-align: center;
+	cursor: pointer;
+	margin-left: 10px;
+}

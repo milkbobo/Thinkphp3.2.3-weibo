@@ -1,0 +1,507 @@
+/*****左侧*****/
+#left{
+	width:149px;
+	height:auto;
+	padding:20px 0;
+	background:#EFF8FC;
+	border-right: 1px solid #E2EEF4;
+}
+#left .left_nav{
+	width:49px;
+	height:auto;
+}
+#left .left_nav li{
+	width:129px;
+	height:38px;
+	overflow: hidden;
+	padding-left:20px;
+}
+#left .left_nav li a{
+		display: block;
+	height:38px;
+	line-height:38px;
+	_padding: 12px 0;
+	width:129px;
+	color:#888888;
+	font-size: 14px;
+}
+#left .left_nav li a i{
+	vertical-align: -4px;
+}
+#left .group{
+	width:149px;
+	height:auto;
+	margin-top:30px;
+}
+#left .group fieldset{
+	border:0;
+	border-top:1px solid #D7EEFB;
+	padding-left: 15px;
+}
+#left .group fieldset legend{
+	padding:0 5px;
+	color:#B8B7B7;
+	font-weight: bold;
+}
+#left .group ul{
+	margin:10px 0;
+}
+#left .group ul li{
+	width:129px;
+	height:38px;
+	overflow: hidden;
+	padding-left: 20px;
+}
+#left .group ul li a{
+	display: block;
+	height:38px;
+	line-height:38px;
+	_padding: 12px 0;
+	width:129px;
+	color:#888888;
+	font-size: 13px;
+}
+#left .group ul li a i{
+	vertical-align: -4px;
+}
+#create_group{
+	display: block;
+	width:80px;
+	margin-left: 20px;
+	font-size:12px;
+	color:#2B96E1;
+	cursor: pointer;
+}
+/*****创建分组弹出框*****/
+#add-group {
+	width: 300px;
+	height: auto;
+	overflow: hidden;
+	z-index: 5;
+	position: absolute;
+	background:#fff;
+	border:3px solid #9D9D9D;
+	border-radius: 4px;
+	display: none;
+}
+#add-group .group_head{
+	width:300px;
+	height:29px;
+	background: #F6F6F6;
+	border-bottom: 1px solid #FF9B00;
+}
+#add-group .group_head .group_text{
+	display:block;
+	width:300px;
+	height:30px;
+	line-height:30px;
+	font-weight: bold;
+	text-indent: 1em;
+	cursor: move;
+}
+#add-group .group-name {
+	width: 260px;
+	height: 36px;
+	line-height: 36px;
+	margin: 20px auto;
+	background: #f9f9f9;
+	text-align: center;
+	border-radius: 2px;
+}
+#add-group .gp-btn-wrap {
+	width: 300px;
+	height: 36px;
+	line-height: 36px;
+	text-align: right;
+	margin-bottom: 10px;
+}
+#add-group .gp-btn-wrap span {
+	display: inline-block;
+	width: 58px;
+	height: 22px;
+	line-height: 22px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	text-align: center;
+	cursor: pointer;
+	margin-right: 10px;
+}
+#add-group .gp-btn-wrap .add-group-sub {
+	background: #F9AB00;
+	color: #fff;
+	font-weight: bold;
+	border:1px solid #FF9B00;
+}
+#add-group .gp-btn-wrap .group-cencle {
+	background: #f6f6f6;
+}
+
+/**中部**/
+#middle{
+	width:560px;
+	padding:20px 20px;
+	height:auto;
+	overflow: hidden;
+	background: #FAFAFA;
+}
+#middle .title {
+	width: 560px;
+	height: 28px;
+	line-height: 28px;
+	border-bottom: 2px solid #EB192D;
+	text-indent: 10px;
+	font-size: 14px;
+	font-weight: bold;
+}
+#middle .title .send {
+	display: inline-block;
+	width: 80px;
+	height: 20px;
+	line-height: 20px;
+	border: 1px solid #FF9B00;
+	background: #F9AB00;
+	color: #fff;
+	text-align: center;
+	text-indent: 0;
+	font-weight: bold;
+	cursor: pointer;
+	border-radius: 4px;
+}
+#middle dl {
+	width: 520px;
+	padding: 20px;
+	height: auto;
+	overflow: hidden;
+	border-bottom: 1px solid #E6E6E6;
+}
+#middle dt {
+	width: 50px;
+	height: 80px;
+	float: left;
+}
+#middle dd {
+	width: 450px;
+	height: auto;
+	overflow: hidden;
+	line-height: 20px;
+	float: left;
+	padding-left: 20px;
+}
+#middle .tright{
+	text-align: right;
+	margin-top: 20px;
+}
+#middle .tright span {
+	cursor: pointer;
+	color: #A2CCEA;
+}
+#middle .tright .send_time {
+	float: left;
+}
+
+#middle dl .comment_list{
+	width:448px;
+	height:auto;
+	border:1px solid #D7EEFB;
+	border-radius: 3px;
+	padding:10px 20px;
+	float: right;
+	margin-top: 10px;
+}
+#middle dl .comment_list textarea{
+	width:438px;
+	height: 18px;
+    line-height: 18px;
+    padding: 5px 4px;
+    overflow: hidden;
+    resize:none;
+	border:1px solid #ccc;
+    box-shadow: 1px 1px 1px 0 #EAEAEA inset;
+    border-radius: 3px;
+    word-wrap: break-word;
+}
+#middle dl .comment_list ul{
+	width:448px;
+	height:10px;
+	padding:10px 0;
+}
+#middle dl .comment_list .phiz{
+	width:15px;
+	height:15px;
+	background:url(../Images/icon.png) no-repeat -250px 0px;
+	margin-top:3px;
+	cursor: pointer;
+	margin-right: 10px;
+}
+#middle dl .comment_list .comment_turn{
+	width:160px;
+	height:22px;
+	line-height:22px;
+}
+#middle dl .comment_list .comment_turn input{
+	width:22px;
+	height:22px;
+	vertical-align: middle;
+}
+#middle dl .comment_list .comment_btn{
+	width:50px;
+	height:20px;
+	line-height: 20px;
+	text-align: center;;
+	background: #F9AB00;
+	color:#fff;
+	border:1px solid #FF9B00;
+	border-radius: 3px;
+	cursor: pointer;
+}
+
+/*右侧*/
+#right{
+	width:229px;
+	height:auto;
+	overflow: hidden;
+	border-left: 1px solid #D7EEFB;
+	float: right;
+	background:#FAFAFA;
+}
+#right .edit_tpl{
+	width:229px;
+	height:20px;
+}
+#right .edit_tpl a:hover{
+	background-position: -280px -24px;
+}
+#right .user_face{
+	width:199px;
+	height:80px;
+	padding:0 15px;
+}
+#right .user_face dt{
+	width:80px;
+	height:80px;
+	float: left;
+}
+#right .user_face dd{
+	width:100px;
+	height:30px;
+	float: right;
+}
+#right .user_face dd a{
+	display: block;
+	line-height:30px;
+	font-weight: bold;
+	color:#333333;
+}
+#right .user_face dd a:hover{
+	color:#2B96E1;
+}
+#right .num_list{
+	width:199px;
+	height:35px;
+	padding:15px;
+}
+#right .num_list li{
+	float: left;
+	padding:0 5px;
+	border-right:1px solid #E6E6E6;
+	text-align: center;
+	cursor: pointer;
+}
+#right .num_list li strong{
+	display: block;
+	font-family: tahoma;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 26px;
+}
+#right .num_list .noborder{
+	border-right:none;
+}
+#right .maybe{
+	width:229px;
+	height:auto;
+	margin-top:30px;
+}
+#right .maybe fieldset{
+	border:0;
+	border-top:1px solid #E6E6E6;
+	padding-left:15px;
+}
+#right .maybe fieldset legend{
+	padding:0 5px;
+	color:#333333;
+	font-weight: bold;
+}
+#right .maybe fieldset ul{
+	padding-top:10px;
+}
+#right .maybe fieldset ul li{
+	height: 30px;
+	padding:10px 5px;
+}
+#right .maybe fieldset ul li dl{
+	width:140px;
+	height:30px;
+	float: left;
+}
+#right .maybe fieldset ul li dl dt{
+	width:30px;
+	height:30px;
+	margin-right:10px;
+	float: left;
+}
+#right .maybe fieldset ul li dl dd{
+	width:100px;
+	height:15px;
+	line-height: 15px;
+	color:#2B96E1;
+	float: left;
+}
+#right .maybe fieldset ul li dl dd a{
+	color:#333333;
+}
+#right .maybe fieldset ul li dl dd a:hover{
+	color:#2B96E5;
+}
+#right .maybe fieldset ul li .heed_btn{
+	display: inline-block;
+	width:45px;
+	height:20px;
+	line-height: 20px;
+	text-align: center;
+	border:1px solid #ccc;
+	cursor: pointer;
+	background: #f2f2f2;
+	border-radius: 3px;
+}
+#right .maybe fieldset ul li .heed_btn strong{
+	font-weight: bold;
+	font-size: 14px;
+	color:#FDAE2A;
+}
+#right .post{
+	width:229px;
+	height:auto;
+	overflow: hidden;
+	margin-top:20px;
+}
+#right .post_line{
+	width:229px;
+	height:29px;
+	border-bottom:1px solid #E6E6E6;
+}
+#right .post span{
+	display: block;
+	width:44px;
+	height:30px;
+	font-weight: bold;
+	text-align: center;
+	line-height:30px;
+	background:url(../Images/line.png) no-repeat 0 -107px #fafafa;
+	margin-left: 20px;
+}
+#right .post ul{
+	width:200px;
+	height: auto;
+	margin-left:29px;
+}
+#right .post ul li{
+	padding:10px 0;
+}
+
+/*****发送私信弹出框*****/
+#letter {
+	width: 400px;
+	height: auto;
+	overflow: hidden;
+	z-index: 5;
+	position: absolute;
+	background:#fff;
+	border:3px solid #9D9D9D;
+	border-radius: 4px;
+	display: none;
+}
+#letter .letter_head{
+	width:400px;
+	height:29px;
+	background: #F6F6F6;
+	border-bottom: 1px solid #FF9B00;
+}
+#letter .letter_head .letter_text{
+	display:block;
+	width:400px;
+	height:30px;
+	line-height:30px;
+	font-weight: bold;
+	text-indent: 1em;
+	cursor: move;
+}
+#letter .send-user {
+	width: 340px;
+	height: 36px;
+	line-height: 36px;
+	margin: 20px auto;
+	background: #f9f9f9;
+	border-radius: 2px;
+	padding-left: 20px;
+}
+#letter .send-user input {
+	width: 120px;
+	height: 20px;
+	line-height: 20px;
+	padding : 2px 5px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+#letter .send-cons {
+	width: 320px;
+	height: auto;
+	overflow: hidden;
+	margin: 20px auto;
+	background: #f9f9f9;
+	border-radius: 2px;
+	padding-left: 40px;
+}
+#letter .send-cons textarea {
+	width: 240px;
+	height: 80px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	resize:none;
+	padding: 5px;
+}
+#letter .lt-btn-wrap {
+	width: 400px;
+	height: 36px;
+	line-height: 36px;
+	text-align: right;
+	margin-bottom: 10px;
+}
+#letter .lt-btn-wrap span {
+	display: inline-block;
+	width: 58px;
+	height: 22px;
+	line-height: 22px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	text-align: center;
+	cursor: pointer;
+	margin-right: 10px;
+}
+#letter .lt-btn-wrap .send-lt-sub {
+	display: inline-block;
+	width: 58px;
+	height: 22px;
+	line-height: 22px;
+	border-radius: 4px;
+	text-align: center;
+	cursor: pointer;
+	margin-right: 10px;
+	background: #F9AB00;
+	color: #fff;
+	font-weight: bold;
+	border:1px solid #FF9B00;
+}
+#letter .lt-btn-wrap .letter-cencle {
+	background: #f6f6f6;
+}

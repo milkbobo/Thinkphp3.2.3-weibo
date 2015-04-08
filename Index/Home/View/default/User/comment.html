@@ -1,0 +1,54 @@
+<include file='Common:header'/>
+	<title>{$Think.config.WEBNAME}-我的评论</title>
+	<link rel="stylesheet" href="__PUBLIC__/Theme/{$style}/Css/nav.css" />
+	<link rel="stylesheet" href="__PUBLIC__/Theme/{$style}/Css/comment.css" />
+	<link rel="stylesheet" href="__PUBLIC__/Theme/{$style}/Css/bottom.css" />
+	<script type="text/javascript" src='__PUBLIC__/Js/jquery-1.7.2.min.js'></script>
+    <script type="text/javascript" src='__PUBLIC__/Js/nav.js'></script>
+    <script type='text/javascript' src='__PUBLIC__/Js/comment.js'></script>
+    <script type="text/javascript">
+        var replyUrl = "{:U('reply')}";
+        var delComment = "{:U('delComment')}";
+    </script>
+<include file='Common:nav'/>
+<!--==========顶部固定导行条==========-->
+<!--==========内容主体==========-->
+<div style='height:60px;opcity:10'></div>
+    <div class="main">
+    <!--=====左侧=====-->
+        <include file='Common:left'/>
+    <!--=====中部=====-->
+        <div id="middle" class='fleft'>
+			<p class='title'>收到的评论（共{$count}条）</p>
+        <foreach name='comment' item='v'>
+			<dl>
+				<dt>
+					<a href="{:U('/' . $v['uid'])}"><img src="<if condition='$v["face"]'>__ROOT__/Uploads/Face/{$v.face}<else/>__PUBLIC__/Images/noface.gif</if>" width='50' height='50'/></a>
+				</dt>
+				<dd>
+					<a href="{:U('/' . $v['uid'])}">{$v.username}</a>：
+					<span>{$v.content|replace_weibo=###}（{$v.time|time_format=###}）</span>
+				</dd>
+				<dd class='tright'>
+					<span class='del-comment' cid='{$v.id}' wid='{$v.wid}'>删除</span> &nbsp;|&nbsp;
+					<span class='c-reply'>回复</span>
+				</dd>
+				<!--回复框-->
+                <dd class='comment_list hidden'>
+                    <textarea name="" sign='comment{$key}'></textarea>
+                    <ul>
+                        <li class='phiz fleft' sign='comment{$key}'></li>
+                        <li class='comment_btn fright' wid='{$v.wid}'>回复</li>
+                    </ul>
+                </dd>
+                <!--回复框结束-->
+			</dl>
+        </foreach>
+        <div id='page'>{$page}</div>
+        </div>
+<!--==========右侧==========-->
+        <include file='Common:right'/>
+    </div>
+<!--==========内容主体结束==========-->
+<!--==========底部==========-->
+<include file='Common:bottom'/>

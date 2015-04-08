@@ -8,7 +8,16 @@ class UserController extends CommonController {
 	
 	public function index(){
 		$id = I('id','','intval');
-		echo $id;
+		//echo $id;
+		
+		//读取用户个人信息
+		$where=array('uid'=>$id);
+		$field='truename,face50,face80,style';
+		$userinfo = M('userinfo')->where($where)->field($field,true)->find();
+		if (!$userinfo)redirect('/',3,'用户不存在，正在为您跳转至首页...');
+		//p($userinfo);
+		$this->userinfo=$userinfo;
+		$this->display();
 	}
 	
 	/*

@@ -1,0 +1,255 @@
+
+.main{
+	background: url('../Images/main_bg2.png');
+}
+/*****左侧*****/
+#left{
+	width:149px;
+	height:auto;
+	padding:20px 0;
+	background:#EFF8FC;
+	border-right: 1px solid #E2EEF4;
+}
+#left .left_nav{
+	width:49px;
+	height:auto;
+}
+#left .left_nav li{
+	width:129px;
+	height:38px;
+	overflow: hidden;
+	padding-left:20px;
+}
+#left .left_nav li a{
+		display: block;
+	height:38px;
+	line-height:38px;
+	_padding: 12px 0;
+	width:129px;
+	color:#888888;
+	font-size: 14px;
+}
+#left .left_nav li a i{
+	vertical-align: -4px;
+}
+#left .group{
+	width:149px;
+	height:auto;
+	margin-top:30px;
+}
+#left .group fieldset{
+	border:0;
+	border-top:1px solid #D7EEFB;
+	padding-left: 15px;
+}
+#left .group fieldset legend{
+	padding:0 5px;
+	color:#B8B7B7;
+	font-weight: bold;
+}
+#left .group ul{
+	margin:10px 0;
+}
+#left .group ul li{
+	width:129px;
+	height:38px;
+	overflow: hidden;
+	padding-left: 20px;
+}
+#left .group ul li a{
+	display: block;
+	height:38px;
+	line-height:38px;
+	_padding: 12px 0;
+	width:129px;
+	color:#888888;
+	font-size: 13px;
+}
+#left .group ul li a i{
+	vertical-align: -4px;
+}
+#create_group{
+	display: block;
+	width:80px;
+	margin-left: 20px;
+	font-size:12px;
+	color:#2B96E1;
+	cursor: pointer;
+}
+/*****创建分组弹出框*****/
+#add-group {
+	width: 300px;
+	height: auto;
+	overflow: hidden;
+	z-index: 5;
+	position: absolute;
+	background:#fff;
+	border:3px solid #9D9D9D;
+	border-radius: 4px;
+	display: none;
+}
+#add-group .group_head{
+	width:300px;
+	height:29px;
+	background: #F6F6F6;
+	border-bottom: 1px solid #FF9B00;
+}
+#add-group .group_head .group_text{
+	display:block;
+	width:300px;
+	height:30px;
+	line-height:30px;
+	font-weight: bold;
+	text-indent: 1em;
+	cursor: move;
+}
+#add-group .group-name {
+	width: 260px;
+	height: 36px;
+	line-height: 36px;
+	margin: 20px auto;
+	background: #f9f9f9;
+	text-align: center;
+	border-radius: 2px;
+}
+#add-group .gp-btn-wrap {
+	width: 300px;
+	height: 36px;
+	line-height: 36px;
+	text-align: right;
+	margin-bottom: 10px;
+}
+#add-group .gp-btn-wrap span {
+	display: inline-block;
+	width: 58px;
+	height: 22px;
+	line-height: 22px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	text-align: center;
+	cursor: pointer;
+	margin-right: 10px;
+}
+#add-group .gp-btn-wrap .add-group-sub {
+	background: #F9AB00;
+	color: #fff;
+	font-weight: bold;
+	border:1px solid #FF9B00;
+}
+#add-group .gp-btn-wrap .group-cencle {
+	background: #f6f6f6;
+}
+/**********右侧**********/
+#right{
+	width: 830px;
+	height: auto;
+	overflow: hidden;
+	float: right;
+}
+#right .total {
+	width: 760px;
+	height: 30px;
+	line-height: 30px;
+	border-bottom: 2px solid #EC1A2E;
+	font-size: 14px;
+	font-weight: bold;
+	margin: 10px auto;
+}
+#right ul {
+	width : 760px;
+	height: auto;
+	overflow: hidden;
+	margin: 10px auto;
+}
+#right ul li {
+	width: 740px;
+	height: 79px;
+	padding: 10px;
+	border-bottom: 1px solid #D9D9D9;
+}
+#right ul li .list-left {
+	width: 460px;
+	height: 79px;
+	float: left;
+}
+#right ul li .list-left dt {
+	width: 50px;
+	height: 51px;
+	padding: 14px;
+	float: left;
+}
+#right ul li .list-left dd {
+	width: 362px;
+	height: 26px;
+	line-height: 26px;
+	padding: 0 10px;
+	float: left;
+}
+#right ul li .list-left dd span {
+	padding-right: 10px;
+}
+#right ul li .list-left dd .bd-l {
+	border-left: 1px solid #ccc;
+	padding-left: 5px;
+}
+#right ul li .list-right {
+	width: 280px;
+	height: 59px;
+	float: right;
+	padding-top: 20px;
+}
+#right ul li .list-right dt {
+	width: 70px;
+	height: 20px;
+	line-height:20px;
+	text-align: center;
+	color: #444444;
+	background: #FAFAFA;
+	border: 1px solid #CCCCCC;
+	border-radius: 4px;
+	float: left;
+	margin: 0 20px;
+}
+#right ul li .list-right .add-fl {
+	border: 1px solid #FF9B00;
+	background: #FFB53F;
+	color: #fff;
+	font-weight: bold;
+	cursor: pointer;
+}
+#right ul li .list-right dd {
+	width: 30px;
+	height: 20px;
+	line-height: 20px;
+	float: left;
+	margin-left: 15px;
+	cursor: pointer;
+	color: #088CDB;
+}
+
+
+/**********底部**********/
+#bottom{
+	width:980px;
+	height:auto;
+	overflow: hidden;	
+	background:#FAFAFA;
+	margin:0 auto;
+	margin-top:30px;
+}
+#copy{
+	width: 980px;
+	height:53px;
+	background: #333333;}
+#copy div{
+	height: 33px;
+	margin: 0 auto;
+	background: url(../Images/bottom_logo.gif) no-repeat;
+	padding: 10px 0;
+}
+#copy div p{
+	height: 33px;
+	line-height: 33px;
+	color: #fff;
+	margin-left: 250px;
+}

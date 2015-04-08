@@ -412,8 +412,7 @@
                             </dl>
                             <span class='heed_btn add-fl' uid='<?php echo ($uid); ?>'><strong>+&nbsp;</strong>关注</span>
                         </li></fieldset>
-                    </ul>
-                
+                    </ul> 
             </div>
             <div class="post">
                 <div class='post_line'>

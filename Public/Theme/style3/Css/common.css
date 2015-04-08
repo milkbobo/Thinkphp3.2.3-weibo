@@ -1,0 +1,181 @@
+@charset "utf-8";
+
+* {
+	padding: 0px;
+	margin: 0px;
+	font-size: 13px;
+	color: #444;
+	font:12px/1.125 Arial,Helvetica,sans-serif;_font-family:"SimSun";
+}
+body{
+	background:url(../images/body_bg.jpg) no-repeat fixed;
+}
+ul, ol {
+	list-style: none;
+}
+a {
+	text-decoration: none;
+	color:#0a8cd2;
+}
+img {
+	border:none;
+}
+table {
+	border-collapse: collapse;
+}
+input,textarea,select,button{
+	outline:none;
+}
+.main{
+	width:980px;
+	height:auto;
+	overflow: hidden;
+	margin:0 auto;
+	background: url(../Images/main_bg.png) repeat-y;
+}
+.fleft{
+	float:left;
+}
+.fright{
+	float:right;
+}
+.clear{
+	clear:both;
+}
+.hidden{
+	display:none;
+}
+.cur_bg{
+	background:#000;
+	opacity:0.8;
+	filter:alpha(opacity = 80);
+}
+.close{
+	display: block;
+	width:16px;
+	height:16px;
+	background:url(../images/icon.png) no-repeat -75px -200px;
+	margin: 7px 10px;
+	cursor: pointer;
+}
+.remark {
+	color : #8B8B85;
+}
+.backToTop{
+	width : 20px;
+	height : 70px;
+	border : 1px solid #ccc;
+	padding-top : 10px;
+	text-align : center;
+	border-radius : 3px;
+	line-height : 12px;
+	color : #B8B7B7;
+	cursor : pointer;
+	background : #FAFAFA;
+	display : none;
+	position : fixed;
+	_position : absolute;
+	opacity : 0.8;
+	filter:Alpha(opacity = 80);
+}
+.icon{
+	display:inline-block;
+	background:url(../images/icon.png);
+}
+.icon-write{
+	width:15px;
+	height:14px;
+	background-position: -50px 0;
+}
+.icon-msg{
+	width:15px;
+	height:14px;
+	background-position: -50px -50px;
+}
+.icon-msg-cur{
+	width:15px;
+	height:14px;
+	background-position: -50px -75px;
+}
+.icon-setup{
+	width:15px;
+	height:16px;
+	background-position: -50px -100px;
+}
+.icon-setup-cur{
+	width:15px;
+	height:16px;
+	background-position: -50px -125px;
+}
+.icon-home{
+	width:19px;
+	height:18px;
+	background-position: -1px -26px;
+}
+.icon-at{
+	width:19px;
+	height:18px;
+	background-position: 0 -50px;
+}
+.icon-comment{
+	width:19px;
+	height:18px;
+	background-position: -1px -75px;
+}
+.icon-letter{
+	width:19px;
+	height:18px;
+	background-position: -1px -100px;
+}
+.icon-keep{
+	width:19px;
+	height:18px;
+	background-position: -1px -125px;
+}
+.icon-group{
+	width:16px;
+	height:18px;
+	background-position: 0 -175px;
+}
+.icon-phiz{
+	width:15px;
+	height:15px;
+	cursor: pointer;
+	background-position: 250px 0;
+}
+.icon-picture{
+	width:15px;
+	height:14px;
+	cursor: pointer;
+	background-position: 250px -25px;
+}
+.icon-packup{
+	width:7px;
+	height:11px;
+	background-position: -175px 0;
+}
+.icon-bigpic{
+	width:10px;
+	height:10px;
+	background-position: -175px -25px;
+}
+.icon-totop{
+	width:12px;
+	height:12px;
+	background-position: -75px -100px;
+	margin-bottom: 5px;
+}
+.icon-news{
+	width:12px;
+	height:12px;
+}
+.icon-girl {
+	width: 12px;
+	height: 12px;
+	background-position: -301px -25px;
+}
+.icon-boy {
+	width: 12px;
+	height: 12px;
+	background-position: -301px 0px;
+}

@@ -1,0 +1,63 @@
+<include file='Common:header'/>
+	<title>{$Think.config.WEBNAME}-我的私信</title>
+	<link rel="stylesheet" href="__PUBLIC__/Theme/{$style}/Css/nav.css" />
+	<link rel="stylesheet" href="__PUBLIC__/Theme/{$style}/Css/letter.css" />
+	<link rel="stylesheet" href="__PUBLIC__/Theme/{$style}/Css/bottom.css" />
+	<script type="text/javascript" src='__PUBLIC__/Js/jquery-1.7.2.min.js'></script>
+    <script type="text/javascript" src='__PUBLIC__/Js/nav.js'></script>
+    <script type='text/javascript' src='__PUBLIC__/Js/letter.js'></script>
+    <script type="text/javascript">
+        var delLetter = "{:U('delLetter')}";
+    </script>
+<include file='Common:nav'/>
+<!--==========顶部固定导行条==========-->
+<!--==========内容主体==========-->
+<div style='height:60px;opcity:10'></div>
+    <div class="main">
+    <!--=====左侧=====-->
+        <include file='Common:left'/>
+    <!--=====中部=====-->
+        <div id="middle" class='fleft'>
+			<p class='title'>我的私信（共{$count}条）<span class='send'>发送私信</span></p>
+        <foreach name='letter' item='v'>
+			<dl>
+				<dt>
+					<a href="{:U('/' . $v['uid'])}"><img src="<if condition='$v["face"]'>__ROOT__/Uploads/Face/{$v.face}<else/>__PUBLIC__/Images/noface.gif</if>" width='50' height='50'/></a>
+				</dt>
+				<dd>
+					<a href="{:U('/' . $v['uid'])}">{$v.username}</a>：
+					<span>{$v.content}</span>
+				</dd>
+				<dd class='tright'>
+                    <span class="send_time">{$v.time|time_format=###}</span>
+					<span class='del-letter' lid='{$v.id}'>删除</span> &nbsp;|&nbsp;
+					<span class='l-reply'>回复</span>
+				</dd>
+			</dl>
+        </foreach>
+        </div>
+<!--==========右侧==========-->
+        <include file='Common:right'/>
+    </div>
+<!--==========内容主体结束==========-->
+
+<!--私信弹出框-->
+<div id='letter'>
+    <form action='{:U("letterSend")}' method='post'>
+        <div class="letter_head">
+            <span class='letter_text fleft'>发送私信</span>
+        </div>
+        <div class='send-user'>
+            用户昵称：<input type="text" name='name'/>
+        </div>
+        <div class='send-cons'>
+            内容：<textarea name="content"></textarea>
+        </div>
+        <div class='lt-btn-wrap'>
+            <input type="submit" value='发送' class='send-lt-sub'/>
+            <span class='letter-cencle'>取消</span>
+        </div>
+    </form>
+</div>
+<!--==========底部==========-->
+<include file='Common:bottom'/>

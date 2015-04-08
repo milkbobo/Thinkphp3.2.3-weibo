@@ -1,0 +1,743 @@
+
+/********************************中部**************************************/
+/*****左侧*****/
+#left{
+	width:149px;
+	height:auto;
+	padding:20px 0;
+	background:#EFF8FC;
+	border-right: 1px solid #E2EEF4;
+}
+#left .left_nav{
+	width:49px;
+	height:auto;
+}
+#left .left_nav li{
+	width:129px;
+	height:38px;
+	overflow: hidden;
+	padding-left:20px;
+}
+#left .left_nav li a{
+		display: block;
+	height:38px;
+	line-height:38px;
+	_padding: 12px 0;
+	width:129px;
+	color:#888888;
+	font-size: 14px;
+}
+#left .left_nav li a i{
+	vertical-align: -4px;
+}
+#left .group{
+	width:149px;
+	height:auto;
+	margin-top:30px;
+}
+#left .group fieldset{
+	border:0;
+	border-top:1px solid #D7EEFB;
+	padding-left: 15px;
+}
+#left .group fieldset legend{
+	padding:0 5px;
+	color:#B8B7B7;
+	font-weight: bold;
+}
+#left .group ul{
+	margin:10px 0;
+}
+#left .group ul li{
+	width:129px;
+	height:38px;
+	overflow: hidden;
+	padding-left: 20px;
+}
+#left .group ul li a{
+	display: block;
+	height:38px;
+	line-height:38px;
+	_padding: 12px 0;
+	width:129px;
+	color:#888888;
+	font-size: 13px;
+}
+#left .group ul li a i{
+	vertical-align: -4px;
+}
+#create_group{
+	display: block;
+	width:80px;
+	margin-left: 20px;
+	font-size:12px;
+	color:#2B96E1;
+	cursor: pointer;
+}
+/*****创建分组弹出框*****/
+#add-group {
+	width: 300px;
+	height: auto;
+	overflow: hidden;
+	z-index: 5;
+	position: absolute;
+	background:#fff;
+	border:3px solid #9D9D9D;
+	border-radius: 4px;
+	display: none;
+}
+#add-group .group_head{
+	width:300px;
+	height:29px;
+	background: #F6F6F6;
+	border-bottom: 1px solid #FF9B00;
+}
+#add-group .group_head .group_text{
+	display:block;
+	width:300px;
+	height:30px;
+	line-height:30px;
+	font-weight: bold;
+	text-indent: 1em;
+	cursor: move;
+}
+#add-group .group-name {
+	width: 260px;
+	height: 36px;
+	line-height: 36px;
+	margin: 20px auto;
+	background: #f9f9f9;
+	text-align: center;
+	border-radius: 2px;
+}
+#add-group .gp-btn-wrap {
+	width: 300px;
+	height: 36px;
+	line-height: 36px;
+	text-align: right;
+	margin-bottom: 10px;
+}
+#add-group .gp-btn-wrap span {
+	display: inline-block;
+	width: 58px;
+	height: 22px;
+	line-height: 22px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	text-align: center;
+	cursor: pointer;
+	margin-right: 10px;
+}
+#add-group .gp-btn-wrap .add-group-sub {
+	background: #F9AB00;
+	color: #fff;
+	font-weight: bold;
+	border:1px solid #FF9B00;
+}
+#add-group .gp-btn-wrap .group-cencle {
+	background: #f6f6f6;
+}
+/*****中间*****/
+
+/**发布**/
+#middle{
+	width:560px;
+	padding:30px 20px;
+	height:auto;
+	overflow: hidden;
+	background: #FAFAFA;
+}
+#middle .send_wrap{
+	width:560px;
+	height:auto;
+	position:relative;
+}
+#middle .send_wrap .send_title{
+	width:200px;
+	height:22px;
+	background: url(../Images/send_weibo.png) no-repeat;
+}
+#middle .send_wrap .send_prompt{
+	width:360px;
+	height:22px;
+	line-height: 22px;
+	text-align: right;
+}
+#middle .send_wrap .send_prompt span{
+	color:#888888;
+}
+#send_num{
+	font-family: Constantia,Georgia;
+    font-size: 22px;
+    font-style: italic;
+    font-weight: 700;
+}
+#middle .send_wrap textarea{
+	width:548px;
+	height:75px;
+	border:1px solid #ccc;
+	border-radius: 3px;
+    font-size: 14px;
+    line-height: 18px;
+    margin: 1px 0 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 5px;
+    word-wrap: break-word;
+    resize:none;
+    margin-top:15px;
+}
+#middle .send_wrap .ta_right{
+	display:block;
+	width:12px;
+	width:12px;
+	height:19px;
+	background: url(../Images/send_weibo.png) no-repeat 0 -69px;
+	position:absolute;
+	top:60px;
+	left:559px;
+}
+#middle .send_wrap .send_tool{
+	height:30px;
+	margin-top:5px;
+}
+#middle .send_wrap .send_tool ul{
+	width:466px;
+	height:23px;
+	padding-top:7px;
+}
+#middle .send_wrap .send_tool ul li{
+	float: left;
+	margin-right:10px;
+	position: relative;
+}
+#middle .send_wrap .send_tool #upload_img{
+	width:300px;
+	height:140px;
+	border: 2px solid #E1E1E1;
+	background: #fff;
+	position: absolute;
+	top:25px;
+	left:0px;
+}
+#middle .send_wrap .send_tool #pic-show{
+	border: 3px solid #CCC;
+	border-radius: 4px;
+	padding:5px;
+	background: #fff;
+	position: absolute;
+	top:25px;
+	left:0px;
+}
+#middle .send_wrap .send_tool #upload_img .upload-title{
+	width:300px;
+	height:30px;
+	border-bottom: 1px solid #E1E1E1;
+	background:#FAFAFA;
+}
+#middle .send_wrap .send_tool #upload_img .upload-title p{
+	width:100px;
+	height:30px;
+	line-height:30px;
+	float: left;
+	font-weight: bold;
+	color:#888888;
+	text-indent: 1em;
+}
+#middle .send_wrap .send_tool #upload_img .upload-title span{
+	display: block;
+	width:16px;
+	height:16px;
+	background:url(../Images/icon.png) no-repeat -75px -200px;
+	float: right;
+	margin: 7px 5px;
+	cursor: pointer;
+}
+#middle .send_wrap .send_tool #upload_img .upload-btn {
+	padding-top: 20px;
+}
+#middle .send_wrap .send_tool #upload_img #SWFUpload_0,#picture-button {
+	margin-left:85px;
+}
+#middle .send_wrap .send_tool .send_btn{
+	width:82px;
+	height:30px;
+	border:0;
+	background: url(../Images/send_weibo.png) no-repeat -50px -50px;
+	cursor: pointer;
+}
+
+/**展示**/
+#middle .view_line{
+	width:560px;
+	height:30px;
+	background:url(../Images/line.png) repeat-x 0 28px;
+	margin-bottom: 20px;
+}
+#middle .view_line strong{
+	display:inline-block;
+	width:44px;
+	height:30px;
+	line-height:30px;
+	text-align: center;
+	background: url(../Images/line.png) no-repeat 0 -45px #FAFAFA;
+	margin-left: 10px;
+}
+#middle .weibo{
+	width:560px;
+	height:auto;
+	overflow: hidden;
+	border-bottom:1px solid #E6E6E6;
+	padding:20px 0;
+}
+#middle .weibo .face{
+	width:50px;
+	height:50px;
+	float:left;
+}
+#middle .weibo .wb_cons{
+	float: right;
+	width:490px;
+}
+#middle .weibo dl .wb_name{
+	width:490px;
+	height:20px;
+}
+#middle .weibo dl dt a{
+	color:#333333;
+	font-weight: bold;
+}
+#middle .weibo dl dt a:hover{
+	color:#2B96E1;
+}
+#middle .weibo .content p{
+	width:490px;
+	line-height: 24px;
+	height:auto;
+	word-wrap: break-word;
+}
+#middle .weibo .wb_img{
+	width:490px;
+	height:auto;
+	margin:10px 0;
+}
+#middle .weibo .wb_img .mini_img{
+	cursor: url(../Images/big.cur), auto !important;
+}
+#middle .weibo .wb_img .img_tool{
+	width:448px;
+	height:auto;
+	border:1px solid #D7EEFB;
+	border-radius: 3px;
+	padding:10px 20px;
+}
+#middle .weibo .wb_img .img_tool ul li{
+	padding:5px;
+	float: left;
+}
+#middle .weibo .wb_img .img_tool ul li .packup{
+	color:#2B96E1;
+	cursor: pointer;
+}
+#middle .weibo .wb_img .img_tool ul li a{
+	color:#2B96E1;
+}
+#middle .weibo .wb_img .img_info{
+	width:448px;
+	height:auto;
+	overflow: hidden;
+}
+#middle .weibo .wb_img .img_info img{
+	display:block;
+	margin:0 auto;
+	cursor: url(../Images/small.cur), auto !important;
+}
+#middle .weibo .wb_tool{
+	width:490px;
+	height:24px;
+	line-height:24px;
+}
+#middle .weibo .wb_tool .send_time{
+	color:#75BAE4;
+	float: left;
+}
+#middle .weibo .wb_tool ul{
+	height:24px;
+	float: right;
+}
+#middle .weibo .wb_tool ul li{
+	padding: 0 5px;
+	float:left;
+}
+#middle .weibo .wb_tool ul li span{
+	color:#2B96E1;
+	cursor: pointer;
+}
+#middle .weibo .wb_tool ul .keep-wrap {
+	position: relative;
+}
+#middle .weibo .wb_tool ul .keep-wrap .keep-up {
+	position: absolute;
+	width: 80px;
+	height: 24px;
+	line-height: 24px;
+	text-align: center;
+	border: 1px solid #088CD2;
+	border-radius: 4px;
+	background: #D7EEFB;
+	color: #71CD6A;
+	left:-25px;
+	top: -30px;
+}
+#middle .weibo .comment_load{
+	width:488px;
+	height:60px;
+	line-height:60px;
+	text-align: center;
+	border:1px solid #D7EEFB;
+	border-radius: 3px;
+}
+#middle .weibo .comment_list{
+	width:448px;
+	height:auto;
+	border:1px solid #D7EEFB;
+	border-radius: 3px;
+	padding:10px 20px;
+}
+#middle .weibo .comment_list textarea{
+	width:438px;
+	height: 18px;
+    line-height: 18px;
+    padding: 5px 4px;
+    overflow: hidden;
+    resize:none;
+	border:1px solid #ccc;
+    box-shadow: 1px 1px 1px 0 #EAEAEA inset;
+    border-radius: 3px;
+    word-wrap: break-word;
+}
+#middle .weibo .comment_list ul{
+	width:448px;
+	height:10px;
+	padding:10px 0;
+}
+#middle .weibo .comment_list .phiz{
+	width:15px;
+	height:15px;
+	background:url(../Images/icon.png) no-repeat -250px 0px;
+	margin-top:3px;
+	cursor: pointer;
+	margin-right: 10px;
+}
+#middle .weibo .comment_list .comment_turn{
+	width:160px;
+	height:22px;
+	line-height:22px;
+}
+#middle .weibo .comment_list .comment_turn input{
+	width:22px;
+	height:22px;
+	vertical-align: middle;
+}
+#middle .weibo .comment_list .comment_btn{
+	width:50px;
+	height:20px;
+	line-height: 20px;
+	text-align: center;;
+	background: #F9AB00;
+	color:#fff;
+	border:1px solid #FF9B00;
+	border-radius: 3px;
+	cursor: pointer;
+}
+#middle .weibo .comment_list .comment_content{
+	width:448px;
+	height:auto;
+	overflow: hidden;
+	padding:20px 0 10px 0;
+	border-bottom: 1px solid #D7EEFB;
+}
+#middle .weibo .comment_list .comment_content dt{
+	width:30px;
+	height:30px;
+	float: left;
+}
+#middle .weibo .comment_list .comment_content dd{
+	width:400px;
+	height:auto;
+	overflow: hidden;
+	line-height:20px;
+	word-wrap: break-word;
+	float: right;
+}
+#middle .weibo .comment_list .comment_content dd .reply{
+	width:400px;
+	height:20px;
+	padding: 5px 0;
+}
+#middle .weibo .comment_list .comment_content dd .reply a{
+	display: block;
+	width:30px;
+	height:20px;
+	line-height: 20px;
+	text-align: center;
+	float: right;
+}
+#middle .weibo .comment_list .comment-page {
+	width : 448px;
+	height: auto;
+	overflow: hidden;
+	border-bottom: 1px solid #D7EEFB;
+}
+#middle .weibo .comment_list .comment-page dd {
+	float: left;
+	padding: 5px;
+	margin: 5px 10px;
+	cursor: pointer;
+	border: 1px solid #D7EEFB;
+	border-radius: 4px;
+	background: #fff;
+}
+/*转发样式*/
+#middle .weibo .wb_turn{
+	width:448px;
+	height: auto;
+	overflow: hidden;
+	border:1px solid #D7EEFB;
+	border-radius: 3px;
+	padding:15px 20px;
+	margin:15px 0;
+}
+#middle .weibo .wb_turn .turn_name{
+	width:448px;
+	height:20px;
+}
+#middle .weibo .wb_turn .turn_cons p{
+	width:448px;
+	line-height: 24px;
+	height:auto;
+	word-wrap: break-word;
+}
+#middle .weibo .wb_turn .turn_img{
+	width:448px;
+	height:auto;
+	margin:10px 0;
+}
+#middle .weibo .wb_turn .turn_img img{
+	cursor: url(../Images/big.cur), auto !important;
+}
+#middle .weibo .turn_tool{
+	width:448px;
+	height:24px;
+	line-height:24px;
+}
+#middle .weibo .wb_turn .turn_tool .send_time{
+	color:#75BAE4;
+	float: left;
+}
+#middle .weibo .wb_turn .turn_tool ul{
+	height:24px;
+	float: right;
+}
+#middle .weibo .wb_turn .turn_tool ul li{
+	padding: 0 5px;
+	float:left;
+}
+#middle .weibo .wb_turn .turn_tool ul li a{
+	color:#75BAE4;
+}
+#middle .weibo .turn_img .turn_img_tool{
+	width:448px;
+	height:auto;
+	padding:10px 0;
+}
+#middle .weibo .turn_img .turn_img_tool ul li{
+	padding:5px;
+	float: left;
+}
+#middle .weibo .turn_img .turn_img_tool ul li .packup{
+	color:#2B96E1;
+	cursor: pointer;
+}
+#middle .weibo .turn_img .turn_img_tool ul li a{
+	color:#2B96E1;
+}
+#middle .weibo .turn_img .turn_img_info{
+	width:448px;
+	height:auto;
+	overflow: hidden;
+}
+#middle .weibo .turn_img .turn_img_info img{
+	display:block;
+	margin:0 auto;
+	cursor: url(../Images/small.cur), auto !important;
+}
+#page {
+	width: 100%;
+	height: 60px;
+	line-height: 60px;
+	text-align: center;
+}
+
+/*右侧*/
+#right{
+	width:229px;
+	height:auto;
+	overflow: hidden;
+	border-left: 1px solid #D7EEFB;
+	float: right;
+	background:#FAFAFA;
+}
+#right .edit_tpl{
+	width:229px;
+	height:20px;
+}
+#right .edit_tpl a{
+	display: block;
+	float: right;
+	width: 20px;
+	height:20px;
+	background:url(../Images/send_weibo.png) no-repeat -280px 0px;
+}
+
+#right .edit_tpl a:hover{
+	background-position: -280px -24px;
+}
+#right .user_face{
+	width:199px;
+	height:80px;
+	padding:0 15px;
+}
+#right .user_face dt{
+	width:80px;
+	height:80px;
+	float: left;
+}
+#right .user_face dd{
+	width:100px;
+	height:30px;
+	float: right;
+}
+#right .user_face dd a{
+	display: block;
+	line-height:30px;
+	font-weight: bold;
+	color:#333333;
+}
+#right .user_face dd a:hover{
+	color:#2B96E1;
+}
+#right .num_list{
+	width:199px;
+	height:35px;
+	padding:15px;
+}
+#right .num_list li{
+	float: left;
+	padding:0 5px;
+	border-right:1px solid #E6E6E6;
+	text-align: center;
+	cursor: pointer;
+}
+#right .num_list li strong{
+	display: block;
+	font-family: tahoma;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 26px;
+}
+#right .num_list .noborder{
+	border-right:none;
+}
+#right .maybe{
+	width:229px;
+	height:auto;
+	margin-top:30px;
+}
+#right .maybe fieldset{
+	border:0;
+	border-top:1px solid #E6E6E6;
+	padding-left:15px;
+}
+#right .maybe fieldset legend{
+	padding:0 5px;
+	color:#333333;
+	font-weight: bold;
+}
+#right .maybe fieldset ul{
+	padding-top:10px;
+}
+#right .maybe fieldset ul li{
+	height: 30px;
+	padding:10px 5px;
+}
+#right .maybe fieldset ul li dl{
+	width:140px;
+	height:30px;
+	float: left;
+}
+#right .maybe fieldset ul li dl dt{
+	width:30px;
+	height:30px;
+	margin-right:10px;
+	float: left;
+}
+#right .maybe fieldset ul li dl dd{
+	width:100px;
+	height:15px;
+	line-height: 15px;
+	color:#2B96E1;
+	float: left;
+}
+#right .maybe fieldset ul li dl dd a{
+	color:#333333;
+}
+#right .maybe fieldset ul li dl dd a:hover{
+	color:#2B96E5;
+}
+#right .maybe fieldset ul li .heed_btn{
+	display: inline-block;
+	width:60px;
+	height:20px;
+	line-height: 20px;
+	text-align: center;
+	border:1px solid #ccc;
+	cursor: pointer;
+	background: #f2f2f2;
+	border-radius: 3px;
+}
+#right .maybe fieldset ul li .heed_btn strong{
+	font-weight: bold;
+	font-size: 14px;
+	color:#FDAE2A;
+}
+#right .post{
+	width:229px;
+	height:auto;
+	overflow: hidden;
+	margin-top:20px;
+}
+#right .post_line{
+	width:229px;
+	height:29px;
+	border-bottom:1px solid #E6E6E6;
+}
+#right .post span{
+	display: block;
+	width:44px;
+	height:30px;
+	font-weight: bold;
+	text-align: center;
+	line-height:30px;
+	background:url(../Images/line.png) no-repeat 0 -107px #fafafa;
+	margin-left: 20px;
+}
+#right .post ul{
+	width:200px;
+	height: auto;
+	margin-left:29px;
+}
+#right .post ul li{
+	padding:10px 0;
+}
+/********************************中部**************************************/
