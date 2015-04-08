@@ -383,6 +383,7 @@
         </div>
 <!--==========右侧==========-->
         <div id="right">
+        <test id='100' name="Home\\TagLib\\Hd"/>
             <div class="edit_tpl"><a href="" id='set_model'></a></div>
             <?php $where =array('uid'=>session('uid')); $field = array('username','face80'=>'face','follow','fans','weibo','uid'); $userinfo = M('userinfo')->where($where)->field($field)->find(); ?>
             <dl class="user_face">

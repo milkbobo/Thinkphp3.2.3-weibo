@@ -26,4 +26,7 @@ return array(
 		'URL_ROUTE_RULES'=>array(	//定义路由规则
 				':id\d'=>'User/index'
 		),
+		
+		//自定义标签配置
+		'TAGLIB_BUILD_IN'=>'Cx,Html,Hd',//加入系统标签库
 );
