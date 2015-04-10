@@ -390,6 +390,11 @@
 	text-align: center;
 	float: right;
 }
+#page {
+	width: 100%;
+	margin: 30px 0;
+	text-align: center;
+}
 /*转发样式*/
 #middle .weibo .wb_turn{
 	width:518px;

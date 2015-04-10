@@ -17,6 +17,19 @@ class UserController extends CommonController {
 		if (!$userinfo)redirect('/',3,'用户不存在，正在为您跳转至首页...');
 		//p($userinfo);
 		$this->userinfo=$userinfo;
+		
+		//导入分页处理页
+		//统计分页
+		$where = array('uid'=>$id);
+		$count  = M('weibo')->where($where)->count();// 查询满足要求的 总记录数
+		$Page= new \Think\Page($count,5);// 实例化分页类 传入总记录数和每页显示的记录数(20)
+		$limit=$Page->firstRow.','.$Page->listRows;
+		$Page->setConfig('theme',"共 %TOTAL_ROW% 条记录 %FIRST% %UP_PAGE% %NOW_PAGE% / %TOTAL_PAGE% %DOWN_PAGE% %END% ");
+		$Page->setConfig('prev','上一页');
+		$Page->setConfig('next','下一页');
+		//读取用户发布的微博
+		$this->page=$Page->show();
+		$this->weibo=D('weibo')->getAll($where,$limit);
 		$this->display();
 	}
 	

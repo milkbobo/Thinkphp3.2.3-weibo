@@ -73,7 +73,7 @@ class IndexController extends CommonController {
 				);
 				M('picture')->data($img)->add();
 			}
-			$this->success('发布成功',U('index'));
+			$this->success('发布成功',$_SERVER['HTTP_REFERE']);
 		}else {
 			$this->error('发布失败，请重试...');
 		}
@@ -125,7 +125,7 @@ class IndexController extends CommonController {
 			}
 			}
 			
-			$this->success('转发成功...','index');
+			$this->success('转发成功...',$_SERVER['HTTP_REFERE']);
 		}else {
 			$this->error('转发失败，请重试！');
 		}
