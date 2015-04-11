@@ -74,6 +74,42 @@ class UserController extends CommonController {
 	}
 	
 	/*
+	 * 用户关注与粉丝列表
+	 */
+	public function followList(){
+// 		p($_GET);
+
+ 		$uid = I('uid','','intval');
+ 		
+ 		//区分关注 与 粉丝（1：关注，0：粉丝）
+ 		$type = I('type','','intval');
+ 		$db = M('follow');
+ 		
+ 		//根据type参数不同，读取用户关注与粉丝ID
+ 		$where = $type ? array('fans'=>$uid) : array('follow' => $uid);
+ 		$field = $type ? 'follow' : 'fans';
+ 		$count = $db->where($where)->count();
+ 		$Page       = new \Think\Page($count,10);// 实例化分页类 传入总记录数和每页显示的记录数(25)
+ 		$limit=$Page->firstRow.','.$Page->listRows;
+ 		
+ 		$uids = $db->field($field)->where($where)->limit($limit)->select();
+ 		
+		if ($uids){
+			//把用户关注或者粉丝ID重组为一维数组
+			foreach ($uids as $k => $v){
+				$uids[$k]= $type ? $v['follow'] : $v['fans'];
+			}
+			
+			//提取用户个人信息
+			$where = array('IN'=>array($uids));
+			$field = array('face50'=>'face','username','location','follow','fans','weibo','uid');
+			$users = M('userinfo')->where($where)->field($field)->select();
+		}
+		
+ 		p($users);
+	}
+	
+	/*
 	 * 空操作
 	 */
 	public function _empty($name){

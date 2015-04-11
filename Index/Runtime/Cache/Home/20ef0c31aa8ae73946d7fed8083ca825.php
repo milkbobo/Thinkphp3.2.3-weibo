@@ -398,8 +398,8 @@
                 <dd><a href="<?php echo U('/'.$uid);?>"><?php echo ($userinfo["username"]); ?></a></dd>
             </dl>
             <ul class='num_list'>
-                <li><a href=""><strong><?php echo ($userinfo["follow"]); ?></strong><span>关注</span></a></li>
-                <li><a href=""><strong><?php echo ($userinfo["fans"]); ?></strong><span>粉丝</span></a></li>
+                <li><a href="<?php echo U('follow/' . $userinfo['uid']);?>"><strong><?php echo ($userinfo["follow"]); ?></strong><span>关注</span></a></li>
+                <li><a href="<?php echo U('fans/' . $userinfo['uid']);?>"><strong><?php echo ($userinfo["fans"]); ?></strong><span>粉丝</span></a></li>
                 <li class='noborder'><a href="<?php echo U('/'.$uid);?>"><strong><?php echo ($userinfo["weibo"]); ?></strong><span>微博</span></a></li>
             </ul>
             <div class="maybe">
