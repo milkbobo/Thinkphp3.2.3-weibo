@@ -2,10 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
-    <title>后盾微博-首页</title>
-    <link rel="stylesheet" href="/Public/Css/nav.css" />
-    <link rel="stylesheet" href="/Public/Css/index.css" />
-    <link rel="stylesheet" href="/Public/Css/bottom.css" />
+    <title><?php echo (C("WEBNAME")); ?>-首页</title>
+    <link rel="stylesheet" href="/Public/Theme/<?php echo ($style); ?>/Css/nav.css" />
+    <link rel="stylesheet" href="/Public/Theme/<?php echo ($style); ?>/Css/index.css" />
+    <link rel="stylesheet" href="/Public/Theme/<?php echo ($style); ?>/Css/bottom.css" />
     <link rel="stylesheet" href="/Public/Uploadify/uploadify.css"/>
     <script type="text/javascript" src='/Public/Js/jquery-1.7.2.min.js'></script>
     <script type="text/javascript" src='/Public/Js/nav.js'></script>
@@ -19,6 +19,7 @@
         var commentUrl = "<?php echo U('Index/comment');?>";
         var getComment = '<?php echo U("Index/getComment");?>';
         var keepUrl = '<?php echo U("Index/keep");?>';
+        var delWeibo = '<?php echo U("Index/delWeibo");?>';
     </script>
 </head>
 <body>
@@ -241,11 +242,13 @@
                     <!--发布时间-->
                         <span class="send_time"><?php echo (time_format($v["time"])); ?></span>
                         <ul>
+                        <?php if(isset($_SESSION["uid"]) && $_SESSION["uid"] == $v["uid"]): ?><li class='del-li hidden'><span class='del-weibo' wid='<?php echo ($v["id"]); ?>'>删除</span></li>
+                            <li class='del-li hidden'>|</li><?php endif; ?>
                             <li><span class='turn' id='<?php echo ($v["id"]); ?>'>转发<?php if($v["turn"]): ?>(<?php echo ($v["turn"]); ?>)<?php endif; ?></span></li>
                             <li>|</li>
                             <li class='keep-wrap'>
-                            <span class='keep' wid='<?php echo ($v["id"]); ?>'>收藏<?php if($v["keep"]): ?>(<?php echo ($v["keep"]); ?>)<?php endif; ?></span>
-                            <div class="keep-up hidden">收藏成功</div>
+                                <span class='keep' wid='<?php echo ($v["id"]); ?>'>收藏<?php if($v["keep"]): ?>(<?php echo ($v["keep"]); ?>)<?php endif; ?></span>
+                                <div class='keep-up hidden'></div>
                             </li>
                             <li>|</li>
                             <li><span class='comment' wid='<?php echo ($v["id"]); ?>'>评论<?php if($v["comment"]): ?>(<?php echo ($v["comment"]); ?>)<?php endif; ?></span></li>
@@ -293,6 +296,8 @@
                             <p><?php echo (replace_weibo(str_replace('//', '<span style="color:#ccc;font-weight:bold;">&nbsp;//&nbsp;</span>', $v["content"]))); ?></p>
                         </dd>
                     <!--转发的微博内容-->
+                    <?php if($v["isturn"] == -1): ?><dd class="wb_turn">该微博已被删除</dd>
+                    <?php else: ?>
                         <dd>
                             <div class="wb_turn">
                                 <dl>
@@ -340,7 +345,7 @@
                                     </ul>
                                 </div>
                             </div>
-                        </dd>
+                        </dd><?php endif; ?>
                     </dl>
                     <!--操作-->
                     <div class="wb_tool">
@@ -349,11 +354,13 @@
                             <?php echo (time_format($v["time"])); ?>
                         </span>
                         <ul>
+                        <?php if(isset($_SESSION["uid"]) && $_SESSION["uid"] == $v["uid"]): ?><li class='del-li hidden'><span class='del-weibo' wid='<?php echo ($v["id"]); ?>'>删除</span></li>
+                            <li class='del-li hidden'>|</li><?php endif; ?>
                             <li><span class='turn' id='<?php echo ($v["id"]); ?>' tid='<?php echo ($v["isturn"]["id"]); ?>'>转发<?php if($v["turn"]): ?>(<?php echo ($v["turn"]); ?>)<?php endif; ?></span></li>
                             <li>|</li>
-                            <li class="keep-warp">
-                            <span class='keep' wid='<?php echo ($v["id"]); ?>'>收藏<?php if($v["keep"]): ?>(<?php echo ($v["keep"]); ?>)<?php endif; ?></span>
-                            <div class="keep-up hidden">收藏成功</div>
+                            <li class='keep-wrap'>
+                                <span class='keep' wid='<?php echo ($v["id"]); ?>'>收藏<?php if($v["keep"]): ?>(<?php echo ($v["keep"]); ?>)<?php endif; ?></span>
+                                <div class='keep-up hidden'></div>
                             </li>
                             <li>|</li>
                             <li><span class='comment' wid='<?php echo ($v["id"]); ?>'>评论<?php if($v["comment"]): ?>(<?php echo ($v["comment"]); ?>)<?php endif; ?></span></li>
@@ -382,7 +389,7 @@
             <div id='page'><?php echo ($page); ?></div>
         </div>
 <!--==========右侧==========-->
-        <div id="right">
+                <div id="right">
             <div class="edit_tpl"><a href="" id='set_model'></a></div>
 			<?php $where =array("uid"=>$_SESSION["uid"]);$field = array("username","face80"=>"face","follow","fans","weibo","uid");$userinfo = M("userinfo")->where($where)->field($field)->find();extract($userinfo);?><dl class="user_face">
                 <dt>

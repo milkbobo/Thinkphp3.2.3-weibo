@@ -108,13 +108,38 @@ $(function () {
 		$(this).parents('.turn_img_tool').hide().prev().show();
 	});
 
+
+
+	/**
+	 * 自定义模版框
+	 */
+	 $('#set_model').click(function () {
+	 	//点击转发创建透明背景层
+	 	createBg('opacity_bg');
+	 	//定位模版选择框居中
+	 	var modelLeft = ($(window).width() - $('#model').width()) / 2;
+	 	var modelTop = $(document).scrollTop() + ($(window).height() - $('#model').height()) / 2;
+	 	$('#model').css({
+	 		'left' : modelLeft,
+	 		'top' : modelTop
+	 	}).fadeIn();
+	 	return false;
+	 });
+	 //点击消取时
+	 $('.model_cancel').click(function () {
+		$('#model').hide();
+		$('#opacity_bg').remove();
+	 });
+	 drag($('#model'), $('.model_text'));  //拖拽模版框
+
+
 	/**
 	 * 转发框处理
 	 */
 	 $('.turn').click(function () {
 	 	//获取原微内容并添加到转发框
-	 	var orgObj = $(this).parents('.wb_tool').prev();
-	 	var author = $.trim(orgObj.find('.author').html());
+	 	var orgObj = $(this).parents('.wb_tool').prev();//parents父级
+	 	var author = $.trim(orgObj.find('.author').html());//$.trim去除空格 find下一个标签，prev上一个标签
 	 	var content = orgObj.find('.content p').html();
 	 	var tid = $(this).attr('tid') ? $(this).attr('tid') : 0;
 	 	var cons = '';
@@ -129,7 +154,7 @@ $(function () {
 
 	 	$('.turn_main p').html(author + ' : ' + content);
 	 	$('.turn-cname').html(author);
-	 	$('form[name=turn] textarea').val(cons);
+	 	$('form[name=turn] textarea').val(cons);//转发内容
 
 	 	//提取原微博ID
 	 	$('form[name=turn] input[name=id]').val($(this).attr('id'));
@@ -164,37 +189,31 @@ $(function () {
 	 });
 	drag($('#turn'), $('.turn_text'));  //拖拽转发框
 
-
-	/**
+	/*
 	 * 收藏微博
 	 */
-	$('.keep').click(function () {
-		var wid = $(this).attr('wid');
-		var keepUp = $(this).next();
-		var msg = '';
-
-		$.post(keepUrl, {wid : wid}, function (data) {
-			if (data == 1) {
+	$('.keep').click(function(){
+		var wid=$(this).attr('wid');
+		var keepUp=$(this).next();
+		var msg ='';
+		
+		$.post(keepUrl,{wid:wid},function(data){
+			if (data == 1){
 				msg = '收藏成功';
 			}
-
-			if (data == -1) {
+			if(data == -1){
 				msg = '已收藏';
 			}
-
-			if (data == 0) {
+			if(data == 0){
 				msg = '收藏失败';
 			}
-
 			keepUp.html(msg).fadeIn();
-			setTimeout(function () {
+			setTimeout(function(){
 				keepUp.fadeOut();
-			}, 3000);
+			},3000);
+		})
 
-		}, 'json');
-		
 	});
-
 
 	/**
 	 * 评论框处理
@@ -286,7 +305,7 @@ $(function () {
 	/**
 	 * 评论异步分类处理
 	 */
-	$('.comment-page dd').live('click', function () {
+	$('.comment-page dd').live('click', function () {//因为是ajax过来，未来事件，所以要用绑定函数live或者on。
 		var commentList = $(this).parents('.comment_list');
 		var commentLoad = commentList.prev();
 		var wid = $(this).attr('wid');
@@ -313,32 +332,18 @@ $(function () {
 		});
 	});
 
-	/**
+
+	/*
 	 * 删除微博
 	 */
-	$('.weibo').hover(function () {
+
+	$('.weibo').hover(function(){
 		$(this).find('.del-li').show();
-	}, function () {
+	},function(){
 		$(this).find('.del-li').hide();
 	});
-	$('.del-weibo').click(function () {
-		var wid = $(this).attr('wid');
-		var isDel = confirm('确认要删除该微博？');
-		var obj = $(this).parents('.weibo');
-
-		if (isDel) {
-			$.post(delWeibo, {wid : wid}, function (data) {
-				if (data) {
-					obj.slideUp('slow', function () {
-						obj.remove();
-					});
-				} else {
-					alert('删除失败请重试...');
-				}
-			}, 'json');
-		}
-	});
-
+	
+	
     /**
      * 表情处理
      * 以原生JS添加点击事件，不走jQuery队列事件机制
@@ -404,7 +409,8 @@ function check (str) {
  * 替换微博内容，去除 <a> 链接与表情图片
  */
 function replace_weibo (content) {
-	content = content.replace(/<img.*?title=['"](.*?)['"].*?\/?>/ig, '[$1]');
-	content = content.replace(/<a.*?>(.*?)<\/a>/ig, '$1');
-	return content.replace(/<span.*?>\&nbsp;(\/\/)\&nbsp;<\/span>/ig, '$1');
+	content = content.replace(/<img.*?title=['"](.*?)['"].*?\/?>/ig, '[$1]');//替换表情//[]可能包含什么符号 //问好 0到1次
+	content = content.replace(/<a.*?>(.*?)<\/a>/ig, '$1');//替换a链接
+	return content.replace(/<span.*?>\&nbsp;(\/\/)\&nbsp;<\/span>/ig,'$1');//切换右侧线（//）标签
+
 }

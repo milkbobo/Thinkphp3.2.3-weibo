@@ -306,7 +306,33 @@ class IndexController extends CommonController {
 		}else {
 			echo 'false';
 		}
-		
+	}
+	
+	/*
+	 * 删除微博
+	 */
+	
+	public function delWeibo(){
+		if(!IS_AJAX)$this->error('页面不存在');
+		//获取删除微博ID
+		$wid = I('wid','','intval');
+		if (M('weibo')->delete($wid)){
+			//如果删除的微博含有图片
+			$db = M('picture');
+			$img = $db->where(array('wid'=>$wid))->find();
+			
+			//对图片表记录进行删除
+			if ($img){
+				$db->delete($img['id']);
+				//删除源文件
+				@unlink('./Uploads/Pic'.$img['mini']);
+				@unlink('./Uploads/Pic'.$img['medium']);
+				@unlink('./Uploads/Pic'.$img['max']);
+			}
+			echo 1;
+		}else {
+			echo 0;
+		}
 		
 	}
 	
