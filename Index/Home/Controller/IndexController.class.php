@@ -329,6 +329,7 @@ class IndexController extends CommonController {
 				@unlink('./Uploads/Pic'.$img['medium']);
 				@unlink('./Uploads/Pic'.$img['max']);
 			}
+			M('userinfo')->where(array('uid'=> session('uid')))->setDec('weibo');
 			echo 1;
 		}else {
 			echo 0;
