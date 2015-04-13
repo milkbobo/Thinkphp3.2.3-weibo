@@ -83,7 +83,34 @@ class CommonController extends Controller {
 	}
 	
 	/*
-	 * 处理图片上传
+	 * 异步移除关注与粉丝
+	 */
+	
+	public function delFollow(){
+		if(!IS_AJAX)$this->error('页面不存在');
+		
+		$uid = I('uid','','intval');
+		$type = I('type','','intval');
+		
+		$where = $type ? array('follow'=>$uid,'fans'=>session('uid')) :array('fans'=>$uid,'follow'=>session('uid'));
+		
+		if(M('follow')->where($where)->delete()){
+			$db = M('userinfo');
+			if($type){
+				$db->where(array('uid'=>session('uid')))->setDec('follow');
+				$db->where(array('uid'=>$uid))->setDec('fans');
+			}else {
+				$db->where(array('uid'=>session('uid')))->setDec('fans');
+				$db->where(array('uid'=>$uid))->setDec('follow');
+			}
+		echo 1;
+		}else{
+			echo 0;
+		}
+	}
+
+	/*
+	 * 图片上传处理
 	 * @param [String] $path [保存文件夹名称]
 	 * @param [String] $width [缩略图宽度,多个用逗号隔开]
 	 * @param [String] $height [缩略图宽度,多个用逗号隔开]

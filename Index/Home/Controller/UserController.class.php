@@ -107,7 +107,6 @@ class UserController extends CommonController {
 			
 			//分配用户信息到视图
 			$this->users=$users;
-			
 		}
 		
 		$where= array('fans'=>session('uid'));

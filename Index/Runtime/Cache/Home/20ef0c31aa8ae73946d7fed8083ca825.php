@@ -21,6 +21,11 @@
         var keepUrl = '<?php echo U("Index/keep");?>';
         var delWeibo = '<?php echo U("Index/delWeibo");?>';
     </script>
+<script type='text/javascript'>
+    var delFollow = "<?php echo U('Common:delFollow');?>";
+    var editStyle = "<?php echo U('Common:editStyle');?>";
+    var getMsgUrl = "<?php echo U('Common:getMsg');?>";
+</script>
 </head>
 <body>
 <!--==========顶部固定导行条==========-->

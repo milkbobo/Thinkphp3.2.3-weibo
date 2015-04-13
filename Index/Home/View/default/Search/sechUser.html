@@ -67,10 +67,10 @@
 	    				<dl class='list-right'>
 	    					<if condition='$v["mutual"]'>
 	    						<dt>互相关注</dt>
-	    						<dd>移除</dd>
+	    						<dd class='del-follow' uid='{$v.uid}' type='1'>移除</dd>
     						<elseif condition='$v["followed"]' />
                             	<dt>√&nbsp;已关注</dt>
-                            	<dd>移除</dd>
+                            	<dd class='del-follow' uid='{$v.uid}' type='1'>移除</dd>
                         	<else/>
 	    						<dt class='add-fl' uid='{$v.uid}'>+&nbsp;关注</dt>
 	    					</if>
