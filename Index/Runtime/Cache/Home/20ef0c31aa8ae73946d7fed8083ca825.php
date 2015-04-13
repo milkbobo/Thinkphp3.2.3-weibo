@@ -122,7 +122,7 @@
             <li><a href=""><i class='icon icon-at'></i>&nbsp;&nbsp;提到我的</a></li>
             <li><a href=""><i class='icon icon-comment'></i>&nbsp;&nbsp;评论</a></li>
             <li><a href=""><i class='icon icon-letter'></i>&nbsp;&nbsp;私信</a></li>
-            <li><a href=""><i class='icon icon-keep'></i>&nbsp;&nbsp;收藏</a></li>
+            <li><a href="<?php echo U('User/keep');?>"><i class='icon icon-keep'></i>&nbsp;&nbsp;收藏</a></li>
         </ul>
         <div class="group">
             <fieldset><legend>分组</legend></fieldset>

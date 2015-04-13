@@ -141,14 +141,34 @@ class UserController extends CommonController {
 		$uid=session('uid');
 		
 		$count = M('keep')->where(array('uid'=>$uid))->count();
-		$Page       = new \Think\Page($count,10);// 实例化分页类 传入总记录数和每页显示的记录数(25)
+		$Page       = new \Think\Page($count,10);// 实例化分页类 传入总记录数和每页显示的记录数(10)
 		$limit=$Page->firstRow.','.$Page->listRows;
 		
 		$where = array('keep.uid'=>$uid);
 		$weibo=D('Keep')->getAll($where,$limit);
+		$Page->setConfig('theme',"共 %TOTAL_ROW% 条记录 %FIRST% %UP_PAGE% %NOW_PAGE% / %TOTAL_PAGE% %DOWN_PAGE% %END% ");
+		$Page->setConfig('prev','上一页');
+		$Page->setConfig('next','下一页');
+		
 		$this->weibo=$weibo;
 		$this->page= $Page->show();
 		$this->display('weiboList');
+	}
+	
+	/*
+	 * 异步取消收藏
+	*/
+	public function cancelKeep(){
+		if(!IS_AJAX)$this->error('页面不存在');
+		$kid =I('kid','','intval');
+		$wid=I('wid','','intval');
+		
+		if (M('keep')->delete($kid)){
+			M('weibo')->where(array('id'=>$wid))->setDec('keep');
+			echo 1;
+		}else {
+			echo 0;
+		}
 	}
 	
 	/*
