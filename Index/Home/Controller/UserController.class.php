@@ -101,12 +101,38 @@ class UserController extends CommonController {
 			}
 			
 			//提取用户个人信息
-			$where = array('IN'=>array($uids));
+			$where = array('uid' => array('IN',$uids));
 			$field = array('face50'=>'face','username','location','follow','fans','weibo','uid');
 			$users = M('userinfo')->where($where)->field($field)->select();
+			
+			//分配用户信息到视图
+			$this->users=$users;
+			
 		}
 		
- 		p($users);
+		$where= array('fans'=>session('uid'));
+		$follow=$db->field('follow')->where($where)->select();
+		if($follow){
+			foreach ($follow as $k=>$v){
+				$follow[$k] = $v['follow'];
+			}
+		}
+		
+		$where=array('follow'=>session('uid'));
+		$fans = $db->field('fans')->where($where)->select();
+		
+		if($fans){
+			foreach ($follow as $k=>$v){
+				$fans[$k] = $v['fans'];
+			}
+		}
+		
+		$this->type =$type;
+		$this->count =$count;
+		$this->follow=$follow;
+		$this->fans=$fans;
+		$this->display();
+ 		
 	}
 	
 	/*
