@@ -135,6 +135,23 @@ class UserController extends CommonController {
 	}
 	
 	/*
+	 * 收藏列表
+	 */
+	public function keep(){
+		$uid=session('uid');
+		
+		$count = M('keep')->where(array('uid'=>$uid))->count();
+		$Page       = new \Think\Page($count,10);// 实例化分页类 传入总记录数和每页显示的记录数(25)
+		$limit=$Page->firstRow.','.$Page->listRows;
+		
+		$where = array('keep.uid'=>$uid);
+		$weibo=D('Keep')->getAll($where,$limit);
+		$this->weibo=$weibo;
+		$this->page= $Page->show();
+		$this->display('weiboList');
+	}
+	
+	/*
 	 * 空操作
 	 */
 	public function _empty($name){
