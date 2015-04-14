@@ -309,7 +309,7 @@ class IndexController extends CommonController {
 	}
 	
 	/*
-	 * 删除微博
+	 * 异步删除微博
 	 */
 	
 	public function delWeibo(){
@@ -330,6 +330,7 @@ class IndexController extends CommonController {
 				@unlink('./Uploads/Pic'.$img['max']);
 			}
 			M('userinfo')->where(array('uid'=> session('uid')))->setDec('weibo');
+			M('comment')->where(array('wid'=>$wid))->delete();
 			echo 1;
 		}else {
 			echo 0;

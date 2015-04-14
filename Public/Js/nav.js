@@ -276,7 +276,7 @@ $(function () {
 	 })
 
 	//消息推送回调函数
-	get_msg(getMsgUrl);
+//	get_msg(getMsgUrl);
  
 	
 });

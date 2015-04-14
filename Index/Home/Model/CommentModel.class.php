@@ -7,7 +7,7 @@ use Think\Model\ViewModel;
 class CommentModel extends ViewModel{
 	Protected $viewFields = array(
 		'comment'=>array(
-			'id','content','time',//'uid',
+			'id','content','time','wid',//'uid',
 			'_type'=>'LEFT'
 		),
 		'userinfo'=>array(

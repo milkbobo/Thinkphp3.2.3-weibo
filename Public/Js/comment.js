@@ -7,6 +7,46 @@ $(function () {
 		$(this).parent().next().hide();
 	});
 
+	//回复按钮
+	$('.comment_btn').click(function(){
+		var data = {
+				wid:$(this).attr('wid'),
+				content:$(this).parents('ul').prev().val()
+		}
+		var odj = $(this).parents('.comment_list');
+		
+		$.post(replyUrl,data,function(data){
+			if(data){
+				alert('评论已回复');
+				odj.hide();
+			}else{
+				alert('回复失败请重试...');
+			}
+		},'text')
+	});
+	
+	//删除评论
+	$('.del-comment').click(function(){
+		var data = {
+				cid:$(this).attr('cid'),
+				wid:$(this).attr('wid')
+		};
+		var isDel = confirm('确定删除该评论?');
+		var obj = $(this).parents('dl');
+		
+		if(isDel){
+			$.post(delComment,data,function(data){
+				if(data){
+					obj.slideUp('slow', function (){
+						obj.remove();
+					});
+				}else{
+					alert('删除失败请重试...');
+				}
+			},'text');
+		}
+	});
+	
 	/**
      * 表情处理
      * 以原生JS添加点击事件，不走jQuery队列事件机制

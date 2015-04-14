@@ -217,7 +217,8 @@ $(function () {
 				commentLoad.show();
 			},
 			success : function (data) {
-				if (data != 'false') {
+				data2=data.replace(/[\r\n]/g,"");
+				if (data2 != 'false') {
 					commentList.append(data);
 				}
 			},

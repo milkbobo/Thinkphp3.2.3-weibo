@@ -151,7 +151,7 @@ class UserController extends CommonController {
 		$Page->setConfig('next','下一页');
 		
 		$this->weibo=$weibo;
-		$this->page= $Page->show();
+		$this->page2= $Page->show();
 		$this->display('weiboList');
 	}
 	
@@ -226,6 +226,63 @@ class UserController extends CommonController {
 			$this->success('私信已发送',U('letter'));
 		}
 	}
+	
+	/*
+	 * 评论列表
+	 */
+	
+	public function comment(){
+		$where=array('uid'=>session('uid'));
+		$count =M('comment')->where($where)->count();
+		$Page       = new \Think\Page($count,10);// 实例化分页类 传入总记录数和每页显示的记录数(10)
+		$limit=$Page->firstRow.','.$Page->listRows;
+		$comment =D('Comment')->where($where)->limit($limit)->order('time DESC')->select();
+		$Page->setConfig('theme',"共 %TOTAL_ROW% 条记录 %FIRST% %UP_PAGE% %NOW_PAGE% / %TOTAL_PAGE% %DOWN_PAGE% %END% ");
+		$Page->setConfig('prev','上一页');
+		$Page->setConfig('next','下一页');
+		
+		$this->count=$count;
+		$this->page= $Page->show();
+		$this->comment=$comment;
+		$this->display();
+	}
+	
+	/*
+	 * 评论回复
+	*/
+	public function reply(){
+		if(!IS_AJAX)$this->error('页面不存在');
+
+		$data=array(
+			'content'=>I('content'),
+			'time'=>time(),
+			'uid'=>session('uid'),
+			'wid'=>I('wid','','intval'),
+		);
+		if (M('comment')->data($data)->add()){
+			M('weibo')->where(array('id'=>I('wid','','intval')))->setInc('comment');
+			echo 1;
+		}else {
+			echo 0;
+		}
+	}
+	
+	/*
+	 * 删除评论
+	 */
+	public function delComment(){
+		if(!IS_AJAX)$this->error('页面不存在');
+		$cid=I('cid','','intval');
+		$wid=I('wid','','intval');
+		
+		if(M('comment')->delete($cid)){
+			M('weibo')->where(array('id'=>$wid))->setDec('comment');
+			echo 1;
+		}else{
+			echo 0;
+		}
+	}
+	
 	
 	/*
 	 * 空操作
