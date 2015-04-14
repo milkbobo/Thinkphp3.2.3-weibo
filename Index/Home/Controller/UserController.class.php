@@ -172,6 +172,62 @@ class UserController extends CommonController {
 	}
 	
 	/*
+	 * 私信列表
+	*/
+	public function letter(){
+		$uid=session('uid');
+		
+		$count=M('letter')->where($uid)->count();
+		$Page       = new \Think\Page($count,10);// 实例化分页类 传入总记录数和每页显示的记录数(10)
+		$limit=$Page->firstRow.','.$Page->listRows;
+		$where = array('letter.uid'=>$uid);
+		$letter =D('Letter')->where($where)->limit($limit)->order('time DESC')->select();
+		
+		$this->letter=$letter;
+		$this->count=$count;
+		$this->page= $Page->show();
+		$this->display();
+	}
+	
+	/*
+	 * 异步删除私信
+	*/
+	public function delLetter(){
+		if(!IS_AJAX)$this->error('页面不存在');
+		$lid=I('lid','','intval');
+		if(M('letter')->delete($lid)){
+			echo 1;
+		}else {
+			echo 0;
+		}
+	}
+	
+	/*
+	 * 私信发送表单处理
+	*/
+	public function letterSend(){
+		if(!IS_POST)$this->error('页面不存在');
+		$name=I('name');
+		$where=array('username'=>$name);
+		$uid=M('userinfo')->where($where)->getField('uid');
+		
+		if(!$uid){
+			$this->error('用户不存在');
+		}
+		
+		$data=array(
+			'from'=>session('uid'),
+			'content'=>I('content'),
+			'time'=>time(),
+			'uid'=>$uid,
+		);
+		
+		if(M('letter')->data($data)->add()){
+			$this->success('私信已发送',U('letter'));
+		}
+	}
+	
+	/*
 	 * 空操作
 	 */
 	public function _empty($name){
