@@ -32,6 +32,7 @@ class SearchController extends CommonController {
 		$result = $this->_getMutual($result);
 		
 		//分配搜索结果到视图
+		//判断是否有内容
 		$this->result = $result ? $result : false;
 		
 		//页码
@@ -42,6 +43,41 @@ class SearchController extends CommonController {
 		$this->keyword = $keyword;
 	//	p($result);die;
 		$this->display();
+	}
+	
+	/*
+	 * 搜索微博
+	 */
+	public function sechWeibo(){
+		$keyword = $this->_getKeyword();
+			
+		if ($keyword){
+			//检索含有关键字的微博
+			$where = array('content'=>array('LIKE','%'.$keyword.'%'));
+			$db = D('Weibo');
+		
+			//分页
+			$count      = M('weibo')->where($where)->count('id');// 查询满足要求的总记录数
+			$Page       = new \Think\Page($count,10);// 实例化分页类 传入总记录数和每页显示的记录数(25)
+			$limit=$Page->firstRow.','.$Page->listRows;
+			$Page->setConfig('theme',"共 %TOTAL_ROW% 条记录 %FIRST% %UP_PAGE% %NOW_PAGE% / %TOTAL_PAGE% %DOWN_PAGE% %END% ");
+			$Page->setConfig('prev','上一页');
+			$Page->setConfig('next','下一页');
+			// 进行分页数据查询 注意limit方法的参数要使用Page类的属性
+			$weibo=$db->getAll($where,$limit);
+
+			//判断是否有内容
+			$this->weibo = $weibo ? $weibo : false;
+		
+			//页码
+			$this->count=$count;
+			$this->page= $Page->show();// 分页显示输出
+		}
+		
+		$this->keyword = $keyword;
+		//	p($result);die;
+		$this->display();
+		
 	}
 	
 	/*

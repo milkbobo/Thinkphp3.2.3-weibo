@@ -16,14 +16,14 @@
     		<p id='sech-logo'></p>
     		<div id='sech'>
     			<div>
-	    			<form action="{:U('sechUser')}" method='get'>
+	    			<form action="{:U('sechUser')}" method='get' name='search'>
 	    				<input type="text" name='keyword' id='sech-cons' value='<if condition="$keyword">{$keyword}<else/>搜索微博、找人</if>'/>
 	    				<input type="submit" value='搜&nbsp;索' id='sech-sub'/>
 	    			</form>
     			</div>
     			<ul>
-                    <li><span class='cur'>找人</span></li>
-    				<li><span>微博</span></li>
+                    <li><span class='cur sech-type' url="{:U('sechUser')}">找人</span></li>
+    				<li><span class='sech-type' url="{:U('sechWeibo')}">微博</span></li>
     			</ul>
     		</div>
     		<if condition="isset($result)">
