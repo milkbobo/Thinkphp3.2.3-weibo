@@ -2,3 +2,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <php>
+    $style=M('userinfo')->where(array('uid'=>session('uid')))->getField('style');
+    </php>

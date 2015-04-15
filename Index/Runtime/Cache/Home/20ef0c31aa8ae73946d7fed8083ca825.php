@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <?php $style=M('userinfo')->where(array('uid'=>session('uid')))->getField('style'); ?>
     <title><?php echo (C("WEBNAME")); ?>-首页</title>
     <link rel="stylesheet" href="/Public/Theme/<?php echo ($style); ?>/Css/nav.css" />
     <link rel="stylesheet" href="/Public/Theme/<?php echo ($style); ?>/Css/index.css" />
@@ -62,7 +63,7 @@
                     <li class='selector'><i class='icon icon-setup'></i>
                         <ul class='hidden'>
                             <li><a href="<?php echo U('UserSetting/index');?>">帐号设置</a></li>
-                            <li><a href="">模版设置</a></li>
+                            <li><a href="" class='set_model'>模版设置</a></li>
                             <li><a href="<?php echo U('Index/loginOut');?>">退出登录</a></li>
                         </ul>
                     </li>
@@ -111,6 +112,24 @@
         </div>
     </div>
 <!--==========加关注弹出框==========-->
+<!--==========自定义模版==========-->
+    <div id='model' class='hidden'>
+        <div class="model_head">
+            <span class="model_text">个性化设置</span>
+            <span class="close fright"></span>
+        </div>
+        <ul>
+            <li style='background:url(/Public/Images/default.jpg) no-repeat;' theme='default'></li>
+            <li style='background:url(/Public/Images/style2.jpg) no-repeat;' theme='style2'></li>
+            <li style='background:url(/Public/Images/style3.jpg) no-repeat;' theme='style3'></li>
+            <li style='background:url(/Public/Images/style4.jpg) no-repeat;' theme='style4'></li>
+        </ul>
+        <div class='model_operat'>
+            <span class='model_save'>保存</span>
+            <span class='model_cancel'>取消</span>
+        </div>
+    </div>
+<!--==========自定义模版==========-->
 <!--==========内容主体==========-->
 <div style='height:60px;opcity:10'></div>
     <div class="main">
@@ -395,7 +414,7 @@
         </div>
 <!--==========右侧==========-->
                 <div id="right">
-            <div class="edit_tpl"><a href="" id='set_model'></a></div>
+            <div class="edit_tpl"><a href="" class='set_model'></a></div>
 			<?php $where =array("uid"=>$_SESSION["uid"]);$field = array("username","face80"=>"face","follow","fans","weibo","uid");$userinfo = M("userinfo")->where($where)->field($field)->find();extract($userinfo);?><dl class="user_face">
                 <dt>
                     <a href="<?php echo U('/'.$uid);?>"><img src="<?php if($face): ?>/Uploads/Face/<?php echo ($face); else: ?>/Public/Images/noface.gif<?php endif; ?>" width='80' height='80' alt="" /></a>
@@ -482,25 +501,6 @@
             </div>
         </div>
     </div>
-<!--==========自定义模版==========-->
-    <div id='model' class='hidden'>
-        <div class="model_head">
-            <span class="model_text">个性化设置</span>
-            <span class="close fright"></span>
-        </div>
-        <ul>
-            <li class='style1'></li>
-            <li class='style2'></li>
-            <li class='style3'></li>
-            <li class='style4'></li>
-        </ul>
-        <div class='model_operat'>
-            <span class='model_save'>保存</span>
-            <span class='model_cancel'>取消</span>
-        </div>
-    </div>
-<!--==========自定义模版==========-->
-
 <!--==========转发输入框==========-->
     <div id='turn' class='hidden'>
         <div class="turn_head">
