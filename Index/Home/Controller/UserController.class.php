@@ -283,6 +283,30 @@ class UserController extends CommonController {
 		}
 	}
 	
+	/*
+	 * @提到我的
+	 */
+	public function atme(){
+		$where = array('uid'=>session('uid'));
+		$wid =M('atme')->where($where)->field('wid')->select();
+		foreach ($wid as $k=>$v){
+			$wid[$k]=$v['wid'];
+		}
+		$count =M('atme')->where($where)->count();
+		$Page       = new \Think\Page($count,10);// 实例化分页类 传入总记录数和每页显示的记录数(10)
+		$limit=$Page->firstRow.','.$Page->listRows;
+		$where = array('id'=>array('IN',$wid));
+		$weibo =D('Weibo')->getAll($where,$limit);
+		
+		$Page->setConfig('theme',"共 %TOTAL_ROW% 条记录 %FIRST% %UP_PAGE% %NOW_PAGE% / %TOTAL_PAGE% %DOWN_PAGE% %END% ");
+		$Page->setConfig('prev','上一页');
+		$Page->setConfig('next','下一页');
+		
+		$this->weibo=$weibo;
+		$this->page2= $Page->show();
+		$this->atme=1;
+		$this->display('weiboList');
+	}
 	
 	/*
 	 * 空操作

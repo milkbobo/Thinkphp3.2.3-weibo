@@ -62,6 +62,7 @@ class IndexController extends CommonController {
 			'time'=> time() ,
 			'uid'=>session('uid')
 		);
+		
 		$wid = M('weibo')->data($data)->add();
 		if($wid){
 			if(!empty($_POST['max'])){
@@ -73,9 +74,34 @@ class IndexController extends CommonController {
 				);
 				M('picture')->data($img)->add();
 			}
+			//处理@用户
+			$this->_atmeHande($data['content'],$wid);
 			$this->success('发布成功',$_SERVER['HTTP_REFERE']);
 		}else {
 			$this->error('发布失败，请重试...');
+		}
+	}
+	
+	/*
+	 * @用户处理
+	 */
+	
+	private function _atmeHande($content,$wid){
+		$preg = '/@(\S+?)\s/is';
+		preg_match_all($preg,$content,$arr);
+		if(!empty($arr[1])){
+			$db=M('userinfo');
+			$atme=M('atme');
+			foreach ($arr[1] as $v){
+				$uid = $db->where(array('username'=>$v))->getField('uid');
+				if($uid){
+					$data = array(
+						'wid'=>$wid,
+						'uid'=>$uid,
+					);
+					$atme->data($data)->add();
+				}
+			}
 		}
 	}
 	
@@ -101,7 +127,8 @@ class IndexController extends CommonController {
 
 		//插入数据至微博表
 		$db = M('weibo');
-		if($db->data($data)->add()){
+		$wid = $db->data($data)->add();
+		if($wid){
 			//原微博转发数+1
 			$db->where(array('id'=>$id))->setInc('turn');
 			
@@ -111,7 +138,9 @@ class IndexController extends CommonController {
 			}
 			//用户发布微博数+1
 			M('userinfo')->where(array('uid'=>session('uid')))->setInc('weibo');
-
+			
+			//处理@用户
+			$this->_atmeHande($data['content'],$wid);
 			//如果点击了同时评论插入内容到评论表
 			if(isset($_POST['becomment'])){
 				$data=array(
@@ -124,7 +153,6 @@ class IndexController extends CommonController {
 				$db->where(array('id'=>$id))->setInc('comment');
 			}
 			}
-			
 			$this->success('转发成功...',$_SERVER['HTTP_REFERE']);
 		}else {
 			$this->error('转发失败，请重试！');
