@@ -39,7 +39,7 @@
                     <li class='selector'><i class='icon icon-setup'></i>
                         <ul class='hidden'>
                             <li><a href="{:U('UserSetting/index')}">帐号设置</a></li>
-                            <li><a href="">模版设置</a></li>
+                            <li><a href="" class='set_model'>模版设置</a></li>
                             <li><a href="{:U('Index/loginOut')}">退出登录</a></li>
                         </ul>
                     </li>
@@ -92,3 +92,21 @@
         </div>
     </div>
 <!--==========加关注弹出框==========-->
+<!--==========自定义模版==========-->
+    <div id='model' class='hidden'>
+        <div class="model_head">
+            <span class="model_text">个性化设置</span>
+            <span class="close fright"></span>
+        </div>
+        <ul>
+            <li style='background:url(__PUBLIC__/Images/default.jpg) no-repeat;' theme='default'></li>
+            <li style='background:url(__PUBLIC__/Images/style2.jpg) no-repeat;' theme='style2'></li>
+            <li style='background:url(__PUBLIC__/Images/style3.jpg) no-repeat;' theme='style3'></li>
+            <li style='background:url(__PUBLIC__/Images/style4.jpg) no-repeat;' theme='style4'></li>
+        </ul>
+        <div class='model_operat'>
+            <span class='model_save'>保存</span>
+            <span class='model_cancel'>取消</span>
+        </div>
+    </div>
+<!--==========自定义模版==========-->
