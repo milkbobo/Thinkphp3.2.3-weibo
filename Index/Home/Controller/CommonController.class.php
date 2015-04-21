@@ -114,7 +114,7 @@ class CommonController extends Controller {
 	 * 异步修改模板风格
 	*/
 	public function editStyle(){
-		//if(!IS_AJAX)$this->error('页面不存在');
+		if(!IS_AJAX)$this->error('页面不存在');
 	
 		$style=I('style');
 		$where=array('uid'=>session('uid'));
@@ -123,6 +123,18 @@ class CommonController extends Controller {
 		}else {
 			echo 0;
 		}
+	}
+	
+	/*
+	 * 异步轮询推送消息
+	*/
+	public function getMsg(){
+		if(!IS_AJAX)$this->error('页面不存在');
+		echo json_encode(array(
+			'status'=>1,
+			'total'=>1,
+			'type'=>1,
+		));
 	}
 	
 	/*

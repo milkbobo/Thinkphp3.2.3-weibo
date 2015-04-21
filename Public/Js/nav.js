@@ -1,6 +1,7 @@
 /**
  * 头部导航
  */
+//$(function(){})表示页面加载后运行
 $(function () {
 	/**
 	 * 头部选项移入效果
@@ -276,8 +277,9 @@ $(function () {
 	 })
 
 	//消息推送回调函数
-//	get_msg(getMsgUrl);
- 
+	 //news({'total':2,'type':3});
+	get_msg(getMsgUrl);
+
 	
 });
 
