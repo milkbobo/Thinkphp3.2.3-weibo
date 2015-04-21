@@ -124,14 +124,54 @@ function replace_weibo ($content){
 		}
 	}
 	return $content;
-	
-	
-	
-	
-	
-	
-	
 }
+
+/*
+ * 往内存写入推送消息
+ * @param [int] $uid [用户ID号]
+ * @param [int] $type[1:评论；2：私信；3：@用户]
+ */
+function set_msg($uid,$type){
+		$name = '';
+		switch($type){
+			case 1:
+				$name ='comment';
+				break;
+			
+			case 2:
+				$name ='letter';
+				break;
+			
+			case 3:
+				$name ='atme';
+				break;
+		}
+		
+// 		$msg2 = array(
+// 			'comment'=>array('total'=>0,'status'=>0),
+// 			'letter'=>array('total'=>0,'status'=>0),
+// 			'atme'=>array('total'=>0,'status'=>0),
+// 		);
+// 		$msg2[$name]['total']++;
+
+		//内存数据已存在时让相应数据+1
+		if(S('usermsg'.$uid)){
+			$data =S('usermag'.$uid);
+			$data[$name]['total']++;
+			$data[$name]['status'] = 1;
+			S('usermsg'.$uid,$data,0);
+		//内存数据不存在时，初始化用户数据并写入到内存
+		}else {
+			$data = array(
+				'comment'=>array('total'=>0,'status'=>0),
+				'letter'=>array('total'=>0,'status'=>0),
+				'atme'=>array('total'=>0,'status'=>0),
+			);
+			$data[$name]['total']++;
+			$data[$name]['status'] = 1;
+			S('usermsg'.$uid,$data,0);
+		}
+	}
 
 
 

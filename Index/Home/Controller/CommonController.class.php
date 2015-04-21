@@ -20,7 +20,8 @@ class CommonController extends Controller {
  			if($user && !$user['lock']){
  				session('uid',$user['id']);
  			}
-			
+			//$uid = session('uid');
+ 			//set_msg($uid, 3);die();
 		}
 		
 		if(!isset($_SESSION['uid'])){
