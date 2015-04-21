@@ -271,7 +271,7 @@ $(function () {
 	 			} else {
 	 				alert('修改失败请重试...');
 	 			}
-	 		}, 'json');
+	 		}, 'text');
 	 	}
 	 })
 

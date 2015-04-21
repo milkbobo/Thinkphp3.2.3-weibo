@@ -183,6 +183,10 @@ class UserController extends CommonController {
 		$where = array('letter.uid'=>$uid);
 		$letter =D('Letter')->where($where)->limit($limit)->order('time DESC')->select();
 		
+		$Page->setConfig('theme',"共 %TOTAL_ROW% 条记录 %FIRST% %UP_PAGE% %NOW_PAGE% / %TOTAL_PAGE% %DOWN_PAGE% %END% ");
+		$Page->setConfig('prev','上一页');
+		$Page->setConfig('next','下一页');
+		
 		$this->letter=$letter;
 		$this->count=$count;
 		$this->page= $Page->show();

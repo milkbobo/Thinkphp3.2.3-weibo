@@ -110,6 +110,21 @@ class CommonController extends Controller {
 	}
 
 	/*
+	 * 异步修改模板风格
+	*/
+	public function editStyle(){
+		//if(!IS_AJAX)$this->error('页面不存在');
+	
+		$style=I('style');
+		$where=array('uid'=>session('uid'));
+		if(M('userinfo')->where($where)->save(array('style'=>$style))){
+			echo 1;
+		}else {
+			echo 0;
+		}
+	}
+	
+	/*
 	 * 图片上传处理
 	 * @param [String] $path [保存文件夹名称]
 	 * @param [String] $width [缩略图宽度,多个用逗号隔开]
@@ -158,7 +173,7 @@ class CommonController extends Controller {
 		}
 	}
 	
-	
+
 	
 	
 	

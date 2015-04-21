@@ -36,9 +36,9 @@
                 <div class="logo fleft"></div>
                 <ul class='top_left fleft'>
                     <li class='cur_bg'><a href='/index.php'>首页</a></li>
-                    <li><a href=''>私信</a></li>
-                    <li><a href=''>评论</a></li>
-                    <li><a href=''>@我</a></li>
+                    <li><a href='<?php echo U('User/letter');?>'>私信</a></li>
+                    <li><a href='<?php echo U('User/comment');?>'>评论</a></li>
+                    <li><a href='<?php echo U('User/atme');?>'>@我</a></li>
                 </ul>
                 <div id="search" class='fleft'>
                     <form action='<?php echo U("Search/sechUser");?>' method='get'>
