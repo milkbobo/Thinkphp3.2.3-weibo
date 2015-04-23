@@ -1,0 +1,91 @@
+@import './common.css';
+
+body {
+	background:#080808;
+}
+#top {
+	width:100%;
+	height:52px;
+	background-color:#000;
+}
+#top a {
+	float: left;
+}
+#top .home {
+	float: right;
+	color:#3A66B0;
+	margin:20px 50px 0 0;
+}
+#top .home:hover {
+	color:#670768;
+}
+#main {
+	width:100%;
+	height:500px;
+	background: url('../Images/login_body.jpg') repeat-x;
+}
+#login {
+	width: 450px;
+	height: 300px;
+	margin: 0 auto;
+	display: none;
+	color:#444;
+}
+#login .user_logo {
+	width: 410px;
+	height: 32px;
+	line-height: 32px;
+	background:url('../Images/userbg.png') no-repeat;
+	padding:10px 10px 10px 30px;
+}
+#login .user_logo b {
+	background:url('../Images/userlogo.png') no-repeat left;
+	font-size: 20px;
+	text-indent: 38px;
+	display: block;
+}
+#login .login_form {
+	width:400px;
+	height: auto;
+	background-color:#f5f5f5;
+	padding:25px 25px 0 25px;
+}
+#login .login_form p {
+	width:400px;
+	padding-bottom: 10px;
+}
+#login .login_form p label {
+	display: block;
+	height:26px;
+	line-height: 26px;
+}
+#login .login_form .verify {
+	padding-top: 10px;
+	width:240px;
+}
+#login .login_form .verify span {
+	display:inline-block;
+	height:26px;
+	line-height: 26px;
+}
+#login .login_form .verify img {
+	cursor: pointer;
+	float: right;
+	_float:none;
+	margin-top:1px;
+}
+#login .login_form .login_btn {
+	text-align: center;
+	padding-bottom: 0;
+	margin-top: 25px;
+}
+.loginbg {
+	width : 80px;
+	height: 46px;
+	border: none;
+	cursor: pointer;
+	background: url(../Images/lgbtn.png) no-repeat 0 0;
+}
+.tologin {
+	background-position: 0 -46px;
+}

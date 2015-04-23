@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<title>HDWeiBo 后台管理中心</title>
+	<link rel="stylesheet" href="__PUBLIC__/Css/index.css" />
+	<script type="text/javascript" src='__PUBLIC__/Js/jquery-1.8.2.min.js'></script>
+	<script type="text/javascript" src='__PUBLIC__/Js/index.js'></script>
+	<base target="iframe" />
+</head>
+<body>
+	<div id="top">
+		<div class='logo'></div>
+		<div class='t_title'>后台管理中心</div>
+		<div class='menu'>
+			<ul>
+				<li class='first first_cur'>
+					<a href="{:U('copy')}"><span>首&nbsp;页</span></a>
+				</li>
+				<li class='next'>
+					<a href="{:U('User/index')}"><span>用户管理</span></a>
+				</li>
+				<li>
+					<a href="{:U('Weibo/index')}"><span>微博管理</span></a>
+				</li>
+				<li class='last'>
+					<a href="{:U('System/index')}"><span>系统设置</span><div></div></a>
+				</li>
+			</ul>
+			<div id='user'>
+				<span class='user_state'>当前管理员：[<span>{$Think.session.username}</span>]</span>
+				<a href="{:U('loginOut')}" target='_self' id='login_out'></a>
+			</div>
+		</div>
+	</div>
+	<div id='left'>
+		<div class='nav'>
+			<div class="nav_u"><span class="pos down">用户管理</span></div>
+		</div>
+		<ul class='option'>
+			<li><a href='{:U("User/index")}'>微博用户</a></li>
+			<li><a href='{:U("User/sechUser")}'>微博用户检索</a></li>
+			<li><a href='{:U("User/admin")}'>后台管理员</a></li>
+			<if condition='!$_SESSION["admin"]'>
+				<li><a href='{:U("User/addAdmin")}'>添加管理员</a></li>
+			</if>
+		</ul>
+
+		<div class='nav'>
+			<div class="nav_u"><span class="pos down">微博管理</span></div>
+		</div>
+		<ul class='option'>
+			<li><a href='{:U("Weibo/index")}'>原作微博</a></li>
+			<li><a href='{:U("Weibo/turn")}'>转发微博</a></li>
+			<li><a href='{:U("Weibo/sechWeibo")}'>微博检索</a></li>
+		</ul>
+		<div class='nav'>
+			<div class="nav_u"><span class="pos down">评论管理</span></div>
+		</div>
+		<ul class='option'>
+			<li><a href='{:U("Weibo/comment")}'>评论列表</a></li>
+			<li><a href='{:U("Weibo/sechComment")}'>评论检索</a></li>
+		</ul>
+		<div class='nav'>
+			<div class="nav_u"><span class="pos down">系统设置</span></div>
+		</div>
+		<ul class='option'>
+			<li><a href='{:U("System/filter")}'>关键字过滤</a></li>
+			<li><a href='{:U("System/index")}'>网站设置</a></li>
+			<li><a href='{:U("User/editPwd")}'>修改密码</a></li>
+		</ul>
+	</div>
+	<div id="right">
+		<iframe src="{:U('copy')}" frameborder="0" name='iframe'></iframe>
+	</div>
+</body>
+</html>

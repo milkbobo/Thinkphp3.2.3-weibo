@@ -1,0 +1,215 @@
+@import './common.css';
+
+/**********头部**********/
+#top {
+	height:100px;
+	background:url(../Images/top_bg.png) repeat-x;
+}
+#top .logo {
+	width:200px;
+	height:100px;
+	border-radius: 0 8px 8px 0;
+	border-right:2px solid #495CD9;
+	float:left;
+	background : url(../Images/logo.png) no-repeat 
+}
+#top .t_title {
+	height:74px;
+	line-height:74px;
+	text-align: center;
+	font-size: 30px;
+	font-weight: bold;
+	color:#fff;
+	overflow: hidden;
+	display: none;
+}
+#top .menu {
+	height: 26px;
+	overflow: hidden;
+	display: none;
+}
+#top .menu #map {
+	width:78px;
+	height:25px;
+	float: left;
+	margin: 0 10px;
+	background: url(../Images/lbtn.png) no-repeat 0 0;
+}
+#top .menu ul {
+	float: left;
+}
+#top .menu li {
+	text-align: center;
+	height: 26px;
+	float: left;
+}
+#top .menu li a {
+	display: block;
+	height:26px;
+	color:#555555;
+	padding-left: 26px;
+	background: url('../images/nav_bg.png') no-repeat 0 -135px;
+}
+#top .menu li a span {
+	display:block;
+	height:26px;
+	line-height:26px;
+	padding:0 5px;
+	background: url('../images/nav_bg.png') repeat-x 0 0;
+}
+#top .menu .first a {
+	padding-left:9px;
+	background: url('../images/nav_bg.png') no-repeat 0 -27px;
+}
+
+#top .menu .last a span {
+	float:left;
+}
+#top .menu .last a div {
+	width:26px;
+	height:26px;
+	float: right;
+	background: url('../images/nav_bg.png') no-repeat 0 -54px;
+}
+#top .menu .first_cur a {
+	background-position: 0 -81px;
+}
+#top .menu .first_cur a span {
+	font-weight: bold;
+	color: #1E90FF;
+	background-position: 0 -270px;
+}
+#top .menu .next a {
+	background-position: 0 -297px;
+}
+#top .menu .cur a {
+	background-position: 0 -324px;
+}
+#top .menu .cur a span {
+	font-weight: bold;
+	color: #1E90FF;
+	background-position: 0 -270px;
+}
+#top .menu .last_cur a {
+	background-position: 0 -324px;
+}
+#top .menu .last_cur a span {
+	font-weight: bold;
+	color: #1E90FF;
+	background-position: 0 -270px;
+}
+#top .menu .last_cur a div {
+	background-position: 0 -108px;
+}
+#top #user {
+	height:26px;
+	float:right;
+	color: #fff;
+}
+#top #user .user_state {
+	display: block;
+	height:26px;
+	line-height:26px;
+	float: left;	
+}
+#top #user .user_state span {
+	color:#670768;
+	font-weight:bold;
+}
+#top #user #web {
+	display: block;
+	float: left;
+	width:78px;
+	height:25px;
+	margin-right: 10px;
+	background:url(../Images/lbtn.png) no-repeat 0 -25px;
+}
+#top #user #login_out {
+	display: block;
+	float: left;
+	width:58px;
+	height:25px;
+	margin-left:10px;
+	background:url(../Images/lbtn.png) no-repeat 0 -50px;
+}
+/**********左侧**********/
+#left {
+	width:200px;
+	float: left;
+	overflow-x:hidden;
+	overflow-y:auto;
+	background:#dcdcdc;
+	border-top:1px solid #BBBAB9;
+	border-right:1px solid #BBBAB9;
+	border-radius: 0 8px 0 0;
+}
+#left .nav {
+	width:200px;
+	height:40px;
+	overflow:hidden;
+	position:relative;
+	background:url(../Images/nav.png) repeat-x;
+}
+#left .nav_u {
+	height:40px;
+	line-height: 40px;
+	font-weight:bold;
+	position:relative;
+}
+#left .pos {
+	position:relative;
+	text-indent: 2em;
+}
+#left .nav span {
+	text-decoration:none;
+	display:block;
+	color:#3A66B0;
+	cursor: pointer;
+	font-size:14px;
+}
+#left .nav_ub {
+	width:100%;
+	height:26px;
+	position:absolute;
+	top:0px;
+	background-color:#dcdcdc;
+}
+#left .nav_db {
+	width:100%;
+	height:14px;
+	position:absolute;
+	bottom:0px;
+	background:#dcdcdc;
+}
+#left .option {
+	width: 200px;
+	height: auto;
+	overflow: hidden;
+	border-bottom: 1px solid #BBBAB9;
+	border-top: 1px solid #BBBAB9;
+	background-color: #dcdcdc;
+	display: none;
+}
+#left .option li {
+	width: 160px;
+	height: 20px;
+	line-height: 20px;
+	padding:5px 20px;
+}
+#left .option li a {
+	display: block;
+	height:20px;
+	float: right;
+	text-align: right;
+	color:#670768;
+	padding:0 5px 0 15px;
+}
+#left .option li a:hover {
+	background:url(../Images/list.png) no-repeat 0 6px;
+}
+
+/**********右侧**********/
+#right {
+	float: left;
+	overflow: hidden;
+}

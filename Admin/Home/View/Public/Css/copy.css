@@ -1,0 +1,45 @@
+@import './common.css';
+
+body {
+	background:#f6f6f6;
+}
+#main {
+	width:98%;
+	height:700px;
+	border: 1px solid #ccc;
+	border-radius: 8px;
+	margin: 10px auto;
+	background: url(../Images/copy.jpg) no-repeat;
+	display: none;
+}
+#main dl {
+	width:44%;
+	height:auto;
+	margin: 10px 2%;
+	float: left;
+}
+#main dl dt {
+	width:100px;
+	background: #a266ec;
+	border-radius: 6px 0 6px 0;
+	color:#fff;
+	padding:5px;
+	margin-bottom: 10px;
+	border:1px solid #fff;
+}
+#main dl dd {
+	color:#dcdcdc;
+	text-indent: 2em;
+	padding: 10px 5px;
+}
+#main dl dd span {
+	padding:0 5px;
+	color:#fff;
+}
+#main #pv {
+	clear: both;
+	width: 98%;
+}
+#main #pv dt {
+	width:200px;
+}
