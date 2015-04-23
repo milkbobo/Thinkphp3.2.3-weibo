@@ -277,7 +277,7 @@ $(function () {
 	 })
 
 	//消息推送回调函数
-	 //news({'total':2,'type':3});
+	//news({'total':2,'type':3});
 	get_msg(getMsgUrl);
 
 	

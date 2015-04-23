@@ -6,7 +6,7 @@ class IndexController extends CommonController {
 	 * 首页视图
 	 */
 	public function Index(){
-		
+		//p(S('usermsg'.session('uid')));
 		//replace_weibo('adsf');
 		
 		$db=D('Weibo');
@@ -99,6 +99,8 @@ class IndexController extends CommonController {
 						'wid'=>$wid,
 						'uid'=>$uid,
 					);
+					//写入消息推送
+					set_msg($uid,3);
 					$atme->data($data)->add();
 				}
 			}
@@ -263,6 +265,8 @@ class IndexController extends CommonController {
 		$str.='<div class="reply">';
 		$str.='<a href="">回复</a>';
 		$str.='</div></dd></dl>';
+		
+		set_msg($uid,1);
 		echo $str;
 		}else {
 			echo 'false';

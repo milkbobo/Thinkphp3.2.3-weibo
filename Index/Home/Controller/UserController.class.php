@@ -177,6 +177,7 @@ class UserController extends CommonController {
 	public function letter(){
 		$uid=session('uid');
 		
+		set_msg($uid,2,true);
 		$count=M('letter')->where($uid)->count();
 		$Page       = new \Think\Page($count,10);// 实例化分页类 传入总记录数和每页显示的记录数(10)
 		$limit=$Page->firstRow.','.$Page->listRows;
@@ -227,6 +228,7 @@ class UserController extends CommonController {
 		);
 		
 		if(M('letter')->data($data)->add()){
+			set_msg($uid,2);
 			$this->success('私信已发送',U('letter'));
 		}
 	}
@@ -236,6 +238,7 @@ class UserController extends CommonController {
 	 */
 	
 	public function comment(){
+		set_msg(session('uid'),1,true);
 		$where=array('uid'=>session('uid'));
 		$count =M('comment')->where($where)->count();
 		$Page       = new \Think\Page($count,10);// 实例化分页类 传入总记录数和每页显示的记录数(10)
@@ -291,6 +294,7 @@ class UserController extends CommonController {
 	 * @提到我的
 	 */
 	public function atme(){
+		set_msg(session('uid'),3,true);
 		$where = array('uid'=>session('uid'));
 		$wid =M('atme')->where($where)->field('wid')->select();
 		foreach ($wid as $k=>$v){

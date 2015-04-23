@@ -20,8 +20,6 @@ class CommonController extends Controller {
  			if($user && !$user['lock']){
  				session('uid',$user['id']);
  			}
-			//$uid = session('uid');
- 			//set_msg($uid, 3);die();
 		}
 		
 		if(!isset($_SESSION['uid'])){
@@ -130,11 +128,50 @@ class CommonController extends Controller {
 	*/
 	public function getMsg(){
 		if(!IS_AJAX)$this->error('页面不存在');
-		echo json_encode(array(
-			'status'=>1,
-			'total'=>1,
-			'type'=>1,
-		));
+// 		echo json_encode(array(
+// 			'status'=>1,
+// 			'total'=>1,
+// 			'type'=>1,
+// 		));
+
+		$uid = session('uid');
+		$msg=S('usermsg'.$uid);
+		
+		if ($msg){
+			if ($msg['comment']['status']){
+				//$msg['comment']['status']=0;
+				//S('usermsg'.$uid,$msg,0);//把$msg的状态推送进去
+				echo json_encode(array(
+					'status'=>1,
+					'total'=>$msg['comment']['total'],
+					'type'=>1
+				));
+				exit();
+				}
+			
+			if ($msg['letter']['status']){
+				//$msg['letter']['status']=0;
+				//S('usermsg'.$uid,$msg,0);
+				echo json_encode(array(
+						'status'=>1,
+						'total'=>$msg['letter']['total'],
+						'type'=>2
+				));
+				exit();
+				}
+			
+			if ($msg['atme']['status']){
+				//$msg['atme']['status']=0;
+				//S('usermsg'.$uid,$msg,0);
+				echo json_encode(array(
+						'status'=>1,
+						'total'=>$msg['atme']['total'],
+						'type'=>3
+				));
+				exit();
+				}
+		}
+		echo json_encode(array('status'=>0));
 	}
 	
 	/*

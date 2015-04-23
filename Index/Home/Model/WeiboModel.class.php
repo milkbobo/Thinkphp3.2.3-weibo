@@ -29,8 +29,11 @@ class WeiboModel extends ViewModel{
 		//重组结果集数组，得到转发微博
 		if($result){
 			foreach ($result as $k => $v){
-				$tmp = $this->find($v['isturn']);// TP会自动识别 $db 数据库 变成$this ，find()里面可以翻where()条件
-				$result[$k]['isturn'] =$tmp ? $tmp : -1;
+ 				//$tmp = $this->find($v['isturn']);// TP会自动识别 $db 数据库 变成$this ，find()里面可以返where()条件
+ 				//$result[$k]['isturn'] =$tmp ? $tmp : -1;
+ 				$v['isturn'] =='' ? $tmp = -1 : $tmp = $v['isturn'];
+ 				$tmp2 = $this->find($tmp);
+				$result[$k]['isturn']=$tmp2;
 			}
 
 		}

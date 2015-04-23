@@ -30,10 +30,10 @@
                     <li title='快速发微博' class='fast_send'><i class='icon icon-write'></i></li>
                     <li class='selector'><i class='icon icon-msg'></i>
                         <ul class='hidden'>
-                            <li><a href="">查看评论</a></li>
-                            <li><a href="">查看私信</a></li>
-                            <li><a href="">查看收藏</a></li>
-                            <li><a href="">查看@我</a></li>
+                            <li><a href="{:U('User/comment')}">查看评论</a></li>
+                            <li><a href="{:U('User/letter')}">查看私信</a></li>
+                            <li><a href="{:U('User/keep')}">查看收藏</a></li>
+                            <li><a href="{:U('User/atme')}">查看@我</a></li>
                         </ul>
                     </li>
                     <li class='selector'><i class='icon icon-setup'></i>
@@ -48,13 +48,13 @@
                         <i class='icon icon-news'></i>
                         <ul>
                             <li class='news_comment hidden'>
-                                <a href=""></a>
+                                <a href="{:U('User/comment')}"></a>
                             </li>
                             <li class='news_letter hidden'>
-                                <a href=""></a>
+                                <a href="{:U('User/letter')}"></a>
                             </li>
                             <li class='news_atme hidden'>
-                                <a href=""></a>
+                                <a href="{:U('User/atme')}"></a>
                             </li>
                         </ul>
                     </li>
