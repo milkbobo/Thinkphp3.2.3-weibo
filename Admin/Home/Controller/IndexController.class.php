@@ -3,8 +3,7 @@
  * 后台首页控制器
  */
 namespace Home\Controller;
-use Think\Controller;
-class IndexController extends Controller {
+class IndexController extends CommonController {
 	
 	/*
 	 * 后台首页视图
@@ -20,4 +19,12 @@ class IndexController extends Controller {
     	$this->display();
     }
     
+    /*
+     * 退出登陆
+     */
+    public function loginOut(){
+    	session_unset();
+    	session_destroy();
+    	redirect(U('Login/index'));
+    }
 }
