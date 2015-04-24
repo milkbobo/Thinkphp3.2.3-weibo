@@ -70,6 +70,37 @@ class UserController extends CommonController {
     }
     
     /*
+     * 锁定后天管理员
+    */
+    public function lockAdmin(){
+		$data=array(
+			'id'=>I('id','intval'),
+			'lock'=>I('lock','intval'),
+		);
+		
+		$msg = $data['lock'] ? '锁定' : '解锁';
+		if(M('admin')->save($data)){
+			$this->success($msg.'成功',U('admin'));//$_SERVER['HTTP_REFERE'] 提交时候的页面，连接的来源地址
+		}else {
+			$this->error($msg.'失败，请重试');
+		}
+		
+    }
+    
+    /*
+     * 删除后台管理员
+     */
+    public function delAdmin(){
+    	$id = I('id','','intval');
+    	
+    	if(M('admin')->delete($id)){
+    		$this->success('删除成功',$_SERVER['HTTP_REFERE']);
+    	}else {
+    		$this->error('删除失败,请重试。。。');
+    	}
+    }
+    
+    /*
      * 执行添加管理员炒作
      */
     public function runAddAdmin(){
@@ -93,12 +124,36 @@ class UserController extends CommonController {
     	
     }
     
+    /*
+     * 修改密码视图
+     */
+    public function editPwd(){
+    	$this->display();
+    }
     
     
-    
-    
-    
-    
+    /*
+     * 修改密码操作
+     */
+    public function runEditPwd(){
+    	$db = M('admin');
+    	$old = $db->where(array('id'=>session('uid')))->getField('password');
+    	
+    	if($old != md5(I('old')))$this->error('旧密码错误');
+    	if(I('pwd') != I('pwded'))$this->error('两次密码不一致');
+    	if($old == I('pwd','','md5'))$this->error('旧密码和新密码一样，请重试');
+    	
+    	$data = array(
+    		'id'=>session('uid'),
+    		'password'=>I('pwd','','md5')
+    	);
+    	
+    	if($db->save($data)){
+    		$this->success('修改成功',U('Index/copy'));
+    	}else {
+    		$this->error('修改失败，请重试...');
+    	}
+    }
     
     
     
