@@ -50,6 +50,7 @@ class LoginController extends Controller {
 		session('logintime',date('Y-m-d H:i',$user['logintime']));
 		session('now',date('Y-m-d H:i',time()));
 		session('loginip',$user['loginip']);
+		session('admin',$user['admin']);
 		$this->success('正在登陆...',__APP__);
     }
     

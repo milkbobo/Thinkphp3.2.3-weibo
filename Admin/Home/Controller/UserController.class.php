@@ -54,12 +54,44 @@ class UserController extends CommonController {
     	$this->display();
     }
     
+    /*
+     * 后台管理员列表
+     */
+    public function admin(){
+    	$this->admin=M('admin')->select();
+    	$this->display();
+    }
     
+    /*
+     * 添加后台管理员
+     */
+    public function addAdmin(){
+    	$this->display();
+    }
     
-    
-    
-    
-    
+    /*
+     * 执行添加管理员炒作
+     */
+    public function runAddAdmin(){
+    	if($_POST['pwd'] != $_POST['pwded']){
+    		$this->error('两次密码不正确');
+    	}
+    	
+    	$data = array(
+    		'username'=>I('username'),
+    		'password'=>I('pwd','','md5'),
+    		'logintime'=>time(),
+    		'loginip'=>get_client_ip(),
+    		'admin'=>I('admin','','intval'),
+    	);
+    	
+    	if(M('admin')->data($data)->add()){
+    		$this->success('添加成功');
+    	}else {
+    		$this->error('添加失败，请重试');
+    	}
+    	
+    }
     
     
     
