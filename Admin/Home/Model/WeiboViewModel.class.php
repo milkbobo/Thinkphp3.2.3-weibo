@@ -6,7 +6,7 @@ namespace Home\Model;
 use Think\Model\ViewModel;
 class WeiboViewModel extends ViewModel{
 	
-	Protected $viewFields = array(
+	public $viewFields = array(
 		'weibo'=>array(
 			'id','content','isturn','time','turn','keep','comment',
 			'_type'=>'LEFT',

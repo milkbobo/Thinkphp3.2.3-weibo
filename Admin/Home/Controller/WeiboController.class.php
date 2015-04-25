@@ -42,11 +42,40 @@ class WeiboController extends CommonController {
     	}
     }
     
+    /*
+     * 转发微博列表
+     */
+    public function turn(){
+    	
+    	$where=array('isturn'=>array('GT',0));//原创微博
+    	$count  = M('weibo')->where($where)->count();// 查询满足要求的 总记录数
+    	$Page       = new \Think\Page($count,20);// 实例化分页类 传入总记录数和每页显示的记录数(20)
+    	// 进行分页数据查询 注意limit方法的参数要使用Page类的属性
+    	$limit=$Page->firstRow.','.$Page->listRows;
+    	$Page->setConfig('theme',"共 %TOTAL_ROW% 条记录 %FIRST% %UP_PAGE% %NOW_PAGE% / %TOTAL_PAGE% %DOWN_PAGE% %END% ");
+    	$Page->setConfig('prev','上一页');
+    	$Page->setConfig('next','下一页');
+    	
+    	$db = D('WeiboView');
+    	unset($db->viewFields['picture']);
+    	//p($db->viewFields);
+    	$this->turn = $db->where($where)->limit($limit)->order('time DESC')->select();
+    	//p($this->turn);
+    	$this->page= $Page->show();// 分页显示输出
+    	$this->display();
+    }
     
-    
-    
-    
-    
+    /*
+     * 微博检索
+     */
+    public function sechWeibo(){
+    	if(isset($_GET['sech'])){
+    		$where = array('content'=>array('LIKE','%'.I('sech').'%'));
+    		$weibo =D('WeiboView')->where($where)->order('time DESC')->select();
+    		$this->weibo=$weibo ? $weibo : false;
+    	}
+    	$this->display();
+    }
     
     
     
