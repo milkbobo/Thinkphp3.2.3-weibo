@@ -6,7 +6,7 @@ namespace Home\Model;
 use Think\Model\ViewModel;
 class WeiboViewModel extends ViewModel{
 	
-	public $viewFields = array(
+	public $viewFields = array( //public的话，外面就可以调用D('WeiboView')->viewFields['picture'];
 		'weibo'=>array(
 			'id','content','isturn','time','turn','keep','comment',
 			'_type'=>'LEFT',
