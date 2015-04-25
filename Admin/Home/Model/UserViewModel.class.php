@@ -8,7 +8,7 @@ class UserViewModel extends ViewModel{
 	
 	Protected $viewFields = array(
 		'user'=>array(
-			'id','`lock`','registime',
+			'id','`lock`','registime',//lock是sql的关键词，所以用``号来区分
 			'_type'=>'LEFT',
 		),
 		'userinfo'=>array(
