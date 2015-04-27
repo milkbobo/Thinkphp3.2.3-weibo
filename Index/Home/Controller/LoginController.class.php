@@ -50,6 +50,7 @@ class LoginController extends Controller {
      * 注册页面
      */
     public function register(){
+    	if(!C('REGIS_ON'))$this->error('网站暂停注册',U('index'));
     	$this->display();
     }
     

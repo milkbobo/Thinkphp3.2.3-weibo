@@ -8,10 +8,8 @@ class IndexController extends CommonController {
 	public function Index(){
 		//p(S('usermsg'.session('uid')));
 		//replace_weibo('adsf');
-		
+		//p(C('FILTER'));
 		$db=D('Weibo');
-		
-		
 		
 		//取得当前用户的ID与当前用户 所有关注好友的ID
 		

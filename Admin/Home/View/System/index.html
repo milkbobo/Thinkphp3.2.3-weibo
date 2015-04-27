@@ -16,20 +16,20 @@
 			<tr>
 				<td width='45%' align='right'>网站名称：</td>
 				<td>
-					<input type="text" name='webname' value='{$config.WEBNAME}'/>
+					<input type="text" name='webname' value='{$config2.WEBNAME}'/>
 				</td>
 			</tr>
 			<tr>
 				<td align='right'>版权信息：</td>
 				<td>
-					<input type="text" name='copy' class='input-long' value='{$config.COPY}'/>
+					<input type="text" name='copy' class='input-long' value='{$config2.COPY}'/>
 				</td>
 			</tr>
 			<tr>
 				<td align='right'>是否开启注册：</td>
 				<td height='30'>
-					<input type="radio" name='regis_on' value='1' class='radio' <if condition='$config["REGIS_ON"]'>checked='checked'</if>/>&nbsp;开启&nbsp;&nbsp;
-					<input type="radio" name='regis_on' value='0' class='radio'<if condition='!$config["REGIS_ON"]'>checked='checked'</if>/>&nbsp;暂停
+					<input type="radio" name='regis_on' value='1' class='radio' <if condition='$config2["REGIS_ON"]'>checked='checked'</if>/>&nbsp;开启&nbsp;&nbsp;
+					<input type="radio" name='regis_on' value='0' class='radio'<if condition='!$config2["REGIS_ON"]'>checked='checked'</if>/>&nbsp;暂停
 				</td>
 			</tr>
 			<tr>

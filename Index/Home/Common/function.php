@@ -123,7 +123,7 @@ function replace_weibo ($content){
 			
 		}
 	}
-	return $content;
+	return str_replace(C('FILTER'),'***', $content);
 }
 
 /*

@@ -39,4 +39,6 @@ return array(
 // 		'MEMCACHE_HOST'=>'127.0.0.1',
 // 		'MEMCACHE_PORT'=>11211,
 		
+		//加载扩张配置
+		'LOAD_EXT_CONFIG'=>'system',
 );
